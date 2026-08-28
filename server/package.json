@@ -1,0 +1,12 @@
+{
+  "name": "masung-smokehouse-api",
+  "version": "1.0.0",
+  "description": "Backend API and dispatch worker for Masung Smokehouse",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1"
+  }
+}

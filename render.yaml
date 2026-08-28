@@ -1,0 +1,45 @@
+services:
+  # Static Site for Vite React Frontend
+  - type: web
+    name: masung-smokehouse-frontend
+    env: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: X-XSS-Protection
+        value: "1; mode=block"
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_SUPABASE_URL
+        value: https://wjwtgzwhzrzusacntmra.supabase.co
+      - key: VITE_SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqd3RnendoenJ6dXNhY250bXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYxNzk4NjYsImV4cCI6MjEwMTc1NTg2Nn0.vZoMOZm4a-S4QNUCUY-9cBCzQM3ySR44kpp-VaVhTeg
+
+  # Optional Background/Webhook API Server on Render
+  - type: web
+    name: masung-smokehouse-api
+    env: node
+    plan: starter
+    rootDir: server
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: SUPABASE_URL
+        value: https://wjwtgzwhzrzusacntmra.supabase.co
+      - key: SUPABASE_ANON_KEY
+        value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indqd3RnendoenJ6dXNhY250bXJhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYxNzk4NjYsImV4cCI6MjEwMTc1NTg2Nn0.vZoMOZm4a-S4QNUCUY-9cBCzQM3ySR44kpp-VaVhTeg
