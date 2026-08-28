@@ -42,20 +42,18 @@ Vercel provides edge caching, global CDN, and automated SSL for the React/Vite f
 
 ---
 
-## 3. Render (Static Site + Optional Node.js API Service)
+---
 
-Render allows infrastructure-as-code deployment using the included [render.yaml](file:///c:/dev/masung/render.yaml).
+## 3. Render (OPTIONAL — Can Skip Completely!)
 
-### What is needed from you (2 Simple Steps):
-1. **Push your code to GitHub** (same as above).
-2. **Deploy via Render Blueprint**:
-   - Go to [dashboard.render.com](https://dashboard.render.com/).
-   - Click **New +** $\rightarrow$ **Blueprint**.
-   - Connect your GitHub repository.
-   - Render will parse `render.yaml` and configure two services automatically:
-     1. `masung-smokehouse-frontend` (Static site hosting `./dist`)
-     2. `masung-smokehouse-api` (Background Node.js worker on port 10000 with rate limiting, health checks, and Supabase relay)
-   - Click **Apply**.
+> [!TIP]
+> **You do NOT need Render!**
+> Every feature on the site (Menu, Order, Loyalty Pass, Discounts, and Supabase Order Syncing) runs directly in the frontend and connects straight to Supabase.
+> 
+> **Vercel + Supabase is 100% FREE and requires ZERO credit card or billing details.**
+> You can completely skip Render.
+
+If you ever want a dedicated background Node.js webhook server in the future, the `render.yaml` file is preserved, but you do not need it right now. All ordering and loyalty functions work perfectly on Vercel alone.
 
 ---
 
