@@ -24,16 +24,12 @@ We inspected and verified the database directly using the Supabase API:
 
 Vercel provides edge caching, global CDN, and automated SSL for the React/Vite frontend.
 
+- **GitHub Repository**: [https://github.com/r-bug-r/masung-smokehouse](https://github.com/r-bug-r/masung-smokehouse)
+
 ### What is needed from you (3 Simple Steps):
-1. **Push your code to GitHub**:
-   ```bash
-   git add .
-   git commit -m "Production release: Masung Smokehouse"
-   git push origin main
-   ```
-2. **Import Project to Vercel**:
+1. **Import Project to Vercel**:
    - Go to [vercel.com](https://vercel.com/) and click **Add New** $\rightarrow$ **Project**.
-   - Select your Masung repository from GitHub.
+   - Select **r-bug-r/masung-smokehouse** from your GitHub repositories.
    - Framework Preset: **Vite** (auto-detected).
    - Build Command: `npm run build` (auto-detected).
    - Output Directory: `dist` (auto-detected).
