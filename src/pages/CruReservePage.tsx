@@ -7,7 +7,6 @@ import {
   ChevronLeft, 
   Plus, 
   Check, 
-  ShoppingBag, 
   ArrowRight,
   ChevronDown
 } from 'lucide-react';
@@ -94,7 +93,7 @@ const FAQ_ITEMS = [
 ];
 
 export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) => {
-  const { addItem, totalQuantity, finalTotal } = useCart();
+  const { addItem } = useCart();
 
   const [activeCutIndex, setActiveCutIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -122,28 +121,23 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
     <div className="min-h-screen bg-[#0E1217] text-[#E5DFD5] font-sans antialiased selection:bg-[#C5A059] selection:text-black">
       
       {/* ------------------------------------------------------------- */}
-      {/* 1. CRU HAIRLINE HEADER WITH 3 MENU OPTIONS & THEME SWITCHER */}
+      {/* 1. CRU HAIRLINE HEADER: PURE TEXT LOGO & 3 HAIRLINE MENU LINKS */}
       {/* ------------------------------------------------------------- */}
       <header className="sticky top-0 z-50 w-full bg-[#090D12]/95 backdrop-blur-md border-b border-white/10 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between">
           
-          {/* Left: Minimalist Text Logo */}
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={() => onNavigate('home')}
-              className="text-left group cursor-pointer focus:outline-none"
-            >
-              <span className="block font-heading text-xl sm:text-2xl font-bold tracking-[0.25em] uppercase text-white group-hover:text-[#D4AF37] transition-colors">
-                MASUNG
-              </span>
-              <span className="block text-[8px] sm:text-[9px] tracking-[0.35em] uppercase text-[#D4AF37] font-medium -mt-0.5">
-                STEAKHOUSE & SMOKE
-              </span>
-            </button>
-          </div>
+          {/* Left: Pure Minimalist Text Logo */}
+          <button 
+            onClick={() => onNavigate('reserve')}
+            className="text-left group cursor-pointer focus:outline-none"
+          >
+            <span className="font-heading text-lg sm:text-xl font-bold tracking-[0.25em] uppercase text-white group-hover:text-[#D4AF37] transition-colors">
+              MASUNG STEAKHOUSE
+            </span>
+          </button>
 
-          {/* Center: The Three Hairline Menu Options requested by user */}
-          <nav className="hidden md:flex items-center gap-10 lg:gap-14">
+          {/* Right: Exactly Three Hairline Menu Options */}
+          <nav className="flex items-center gap-8 sm:gap-12 lg:gap-14">
             <button
               onClick={() => onNavigate('order')}
               className="text-xs uppercase tracking-[0.2em] text-[#C5BDB5] hover:text-white font-medium transition-colors cursor-pointer py-1 relative group"
@@ -169,37 +163,6 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             </button>
           </nav>
 
-          {/* Right: Actions (Reserve Table, Order Bag & Style Switcher) */}
-          <div className="flex items-center gap-3 sm:gap-4">
-            
-            {/* Style Switcher Back to Classic Smokehouse */}
-            <button
-              onClick={() => onNavigate('home')}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 border border-white/20 hover:border-[#D4AF37] text-[10px] uppercase tracking-[0.15em] text-[#E5DFD5] hover:text-white transition-all cursor-pointer bg-white/5"
-              title="Switch back to Classic Smokehouse theme"
-            >
-              <span>← Classic Smokehouse</span>
-            </button>
-
-            {/* Quick Order / Tray status */}
-            {totalQuantity > 0 && (
-              <button
-                onClick={() => onNavigate('order')}
-                className="px-3 py-1.5 bg-[#D4AF37]/20 border border-[#D4AF37] text-[#D4AF37] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5"
-              >
-                <ShoppingBag className="w-3.5 h-3.5" />
-                <span>{totalQuantity} (₱{finalTotal})</span>
-              </button>
-            )}
-
-            {/* Hairline Reserve Outline Button (Cru Style) */}
-            <button
-              onClick={() => onNavigate('order')}
-              className="px-5 sm:px-6 py-2 border border-[#D4AF37] hover:bg-[#D4AF37] text-[#D4AF37] hover:text-black text-xs font-semibold uppercase tracking-[0.2em] transition-all duration-300 cursor-pointer"
-            >
-              Reserve
-            </button>
-          </div>
         </div>
       </header>
 
