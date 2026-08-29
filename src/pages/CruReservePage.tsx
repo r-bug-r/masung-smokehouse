@@ -126,12 +126,12 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
   };
 
   return (
-    <div className="min-h-screen bg-[#0E1217] text-[#E5DFD5] font-sans antialiased selection:bg-[#C5A059] selection:text-black">
+    <div className="min-h-screen bg-[#0A0406] text-[#F3ECE6] font-sans antialiased selection:bg-[#7D0A1E] selection:text-white">
       
       {/* ------------------------------------------------------------- */}
       {/* 1. CRU HAIRLINE HEADER: PURE TEXT LOGO & 3 HAIRLINE MENU LINKS */}
       {/* ------------------------------------------------------------- */}
-      <header className="sticky top-0 z-50 w-full bg-[#090D12]/95 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+      <header className="sticky top-0 z-50 w-full bg-[#0A0406]/95 backdrop-blur-md border-b border-[#3D0C15]/70 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between">
           
           {/* Left: Pure Minimalist Text Logo */}
@@ -139,7 +139,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             onClick={() => onNavigate('reserve')}
             className="text-left group cursor-pointer focus:outline-none"
           >
-            <span className="font-heading text-lg sm:text-xl font-bold tracking-[0.25em] uppercase text-white group-hover:text-[#D4AF37] transition-colors">
+            <span className="font-heading text-lg sm:text-xl font-bold tracking-[0.25em] uppercase text-[#FFF5F7] group-hover:text-[#D4AF37] transition-colors">
               MASUNG STEAKHOUSE
             </span>
           </button>
@@ -148,7 +148,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
           <nav className="flex items-center gap-8 sm:gap-12 lg:gap-14">
             <button
               onClick={() => onNavigate('order')}
-              className="text-xs uppercase tracking-[0.2em] text-[#C5BDB5] hover:text-white font-medium transition-colors cursor-pointer py-1 relative group"
+              className="text-xs uppercase tracking-[0.2em] text-[#D8C7C4] hover:text-[#FFF5F7] font-medium transition-colors cursor-pointer py-1 relative group"
             >
               Shop
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
@@ -156,7 +156,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
 
             <button
               onClick={() => onNavigate('menu')}
-              className="text-xs uppercase tracking-[0.2em] text-[#C5BDB5] hover:text-white font-medium transition-colors cursor-pointer py-1 relative group"
+              className="text-xs uppercase tracking-[0.2em] text-[#D8C7C4] hover:text-[#FFF5F7] font-medium transition-colors cursor-pointer py-1 relative group"
             >
               Menu
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
@@ -164,7 +164,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
 
             <button
               onClick={() => onNavigate('about')}
-              className="text-xs uppercase tracking-[0.2em] text-[#C5BDB5] hover:text-white font-medium transition-colors cursor-pointer py-1 relative group"
+              className="text-xs uppercase tracking-[0.2em] text-[#D8C7C4] hover:text-[#FFF5F7] font-medium transition-colors cursor-pointer py-1 relative group"
             >
               About
               <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
@@ -175,19 +175,19 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       </header>
 
       {/* ------------------------------------------------------------- */}
-      {/* 2. CRU HERO SECTION WITH AMBIENT BACKDROP & FLOATING SERIF */}
+      {/* 2. CRU HERO SECTION WITH DARK SCARLET AMBIENT BACKDROP */}
       {/* ------------------------------------------------------------- */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-between overflow-hidden">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-between overflow-hidden bg-[#0A0406]">
         
         {/* Ambient Dark Steakhouse Imagery Backdrop */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80"
             alt="Cru Steakhouse Ambience"
-            className="w-full h-full object-cover object-center filter brightness-[0.38] scale-105 transition-transform duration-1000 ease-out"
+            className="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.1] scale-105 transition-transform duration-1000 ease-out"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0E1217] via-transparent to-[#090D12]/80" />
-          <div className="absolute inset-0 bg-[#32070E]/20 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-[#1C0A0F]/60 to-[#0A0406]/90" />
+          <div className="absolute inset-0 bg-[#3D0C15]/40 mix-blend-multiply" />
         </div>
 
         {/* Top spacer */}
@@ -195,28 +195,28 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
 
         {/* Center: Large Floating Editorial Headline */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
-          <span className="inline-block text-[11px] sm:text-xs font-medium uppercase tracking-[0.35em] text-[#D4AF37]">
+          <span className="inline-block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#D4AF37]">
             Texas Wood Fire • Montalban, Rizal
           </span>
           
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-white tracking-tight drop-shadow-2xl leading-[1.05]">
+          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-[#FFF5F7] tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.05]">
             Masung Steakhouse
           </h1>
 
-          <p className="max-w-xl mx-auto text-sm sm:text-base text-[#D0C8BF] font-light tracking-wide leading-relaxed">
+          <p className="max-w-xl mx-auto text-sm sm:text-base text-[#E2D5D2] font-light tracking-wide leading-relaxed">
             Hand-carved oakwood smoked meats, prime cuts, and authentic Pinoy comfort food cooked low and slow for 8 to 16 hours.
           </p>
 
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => onNavigate('menu')}
-              className="px-8 py-3.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-xs uppercase tracking-[0.2em] transition-all cursor-pointer"
+              className="px-8 py-3.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-xs uppercase tracking-[0.2em] transition-all cursor-pointer shadow-lg hover:shadow-[#D4AF37]/20"
             >
               Explore Our Menus
             </button>
             <button
               onClick={() => onNavigate('order')}
-              className="px-8 py-3.5 border border-white/40 hover:border-white text-white font-medium text-xs uppercase tracking-[0.2em] transition-all cursor-pointer backdrop-blur-sm bg-black/20"
+              className="px-8 py-3.5 border border-[#8E1B2D]/80 hover:border-[#D4AF37] text-[#FFF5F7] font-medium text-xs uppercase tracking-[0.2em] transition-all cursor-pointer backdrop-blur-sm bg-[#1C0A0F]/60 hover:bg-[#3D0C15]/80"
             >
               Order Online
             </button>
@@ -224,8 +224,8 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
         </div>
 
         {/* Bottom Hairline Status Bar (Cru Style) */}
-        <div className="relative z-10 w-full border-t border-white/15 bg-black/40 backdrop-blur-sm py-3 px-4 sm:px-8">
-          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] sm:text-xs tracking-[0.15em] uppercase text-[#D0C8BF]">
+        <div className="relative z-10 w-full border-t border-[#3D0C15]/80 bg-[#0A0406]/90 backdrop-blur-sm py-3 px-4 sm:px-8">
+          <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] sm:text-xs tracking-[0.15em] uppercase text-[#D8C7C4]">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full inline-block" />
               <span>Now Open • 4:00 PM to 11:00 PM (Tue–Sun)</span>
@@ -241,13 +241,13 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 3. ASYMMETRICAL EDITORIAL OVERLAP SECTION */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 sm:py-28 bg-[#0E1217] relative">
+      <section className="py-20 sm:py-28 bg-[#0A0406] relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             
             {/* White Floating Editorial Card (Matches Cru Screenshot) */}
-            <div className="lg:col-span-5 bg-white text-[#181615] p-8 sm:p-12 shadow-2xl relative z-20 border border-[#E5DFD5]">
-              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#C67D26] uppercase block mb-3">
+            <div className="lg:col-span-5 bg-[#FFFFFF] text-[#181615] p-8 sm:p-12 shadow-2xl relative z-20 border border-[#E5DFD5]">
+              <span className="text-[10px] sm:text-[11px] font-bold tracking-[0.25em] text-[#8E1B2D] uppercase block mb-3">
                 Montalban, Rizal
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#181615] leading-tight mb-5">
@@ -262,27 +262,27 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
               
               <button
                 onClick={() => onNavigate('about')}
-                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#5B101D] hover:text-[#C67D26] transition-colors group cursor-pointer"
+                className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#8E1B2D] hover:text-[#5B101D] transition-colors group cursor-pointer"
               >
                 <span>Discover Our Heritage</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
 
-            {/* Overlapping Gourmet Food Photography */}
+            {/* Overlapping Gourmet Food Photography with Scarlet Hairline Glow */}
             <div className="lg:col-span-7 relative z-10 lg:-ml-12">
-              <div className="relative overflow-hidden border border-white/10 shadow-2xl">
+              <div className="relative overflow-hidden border border-[#3D0C15] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
                 <img
                   src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"
                   alt="Plated Smoked Steak"
                   className="w-full h-[350px] sm:h-[480px] object-cover hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent" />
                 <div className="absolute bottom-4 right-4 text-right">
-                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] block">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] block font-semibold">
                     Carved Fresh Daily
                   </span>
-                  <span className="text-xs font-serif italic text-white/90">
+                  <span className="text-xs font-serif italic text-[#FFF5F7]">
                     Hardwood Smoke & Daily Carvings
                   </span>
                 </div>
@@ -296,7 +296,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 4. LUXURY CUT SHOWCASE ("AN EXQUISITE DINING JOURNEY") */}
       {/* ------------------------------------------------------------- */}
-      <section className="animate-section py-20 sm:py-28 bg-[#090D12] border-y border-white/10 relative">
+      <section className="animate-section py-20 sm:py-28 bg-[#120609] border-y border-[#3D0C15]/80 relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
@@ -304,10 +304,10 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             <span className="text-[11px] uppercase tracking-[0.3em] text-[#D4AF37] font-medium block">
               Curated Pit Selections
             </span>
-            <h2 className="font-serif text-3xl sm:text-5xl font-normal text-white tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-5xl font-normal text-[#FFF5F7] tracking-tight">
               An Exquisite Dining Journey Awaits You
             </h2>
-            <p className="text-xs sm:text-sm text-[#A09A92] font-light">
+            <p className="text-xs sm:text-sm text-[#D8C7C4] font-light">
               Select your cut below to view the pitmaster carving notes and add directly to your table order.
             </p>
           </div>
@@ -316,26 +316,26 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             
             {/* Left: High-Contrast Sliced Cut Photography */}
             <div className="lg:col-span-6 relative">
-              <div className="relative overflow-hidden border border-white/15 bg-black/50 shadow-2xl">
+              <div className="relative overflow-hidden border border-[#3D0C15] bg-[#0A0406] shadow-2xl">
                 <img
                   src={activeCut.imageUrl}
                   alt={activeCut.name}
                   className="w-full h-[380px] sm:h-[460px] object-cover transition-opacity duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent" />
                 
                 {/* Carousel Controls */}
                 <div className="absolute top-4 right-4 flex items-center gap-2">
                   <button
                     onClick={handlePrevCut}
-                    className="w-9 h-9 bg-black/60 hover:bg-[#D4AF37] hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
+                    className="w-9 h-9 bg-[#1C0A0F]/80 hover:bg-[#D4AF37] hover:text-black text-white border border-[#3D0C15] flex items-center justify-center transition-all cursor-pointer"
                     aria-label="Previous Cut"
                   >
                     <ChevronLeft className="w-4 h-4" />
                   </button>
                   <button
                     onClick={handleNextCut}
-                    className="w-9 h-9 bg-black/60 hover:bg-[#D4AF37] hover:text-black text-white border border-white/20 flex items-center justify-center transition-all cursor-pointer"
+                    className="w-9 h-9 bg-[#1C0A0F]/80 hover:bg-[#D4AF37] hover:text-black text-white border border-[#3D0C15] flex items-center justify-center transition-all cursor-pointer"
                     aria-label="Next Cut"
                   >
                     <ChevronRight className="w-4 h-4" />
@@ -343,10 +343,10 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                 </div>
 
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] block mb-1">
+                  <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] block mb-1 font-semibold">
                     {activeCut.subname}
                   </span>
-                  <h3 className="font-serif text-2xl text-white">
+                  <h3 className="font-serif text-2xl text-[#FFF5F7]">
                     {activeCut.name}
                   </h3>
                 </div>
@@ -364,17 +364,17 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                     onClick={() => setActiveCutIndex(idx)}
                     className={`text-left p-3 border transition-all cursor-pointer ${
                       activeCutIndex === idx
-                        ? 'border-[#D4AF37] bg-[#D4AF37]/10 text-white'
-                        : 'border-white/10 hover:border-white/30 text-[#A09A92] bg-white/5'
+                        ? 'border-[#D4AF37] bg-[#3D0C15]/50 text-[#FFF5F7] shadow-[0_0_15px_rgba(142,27,45,0.3)]'
+                        : 'border-[#3D0C15]/60 hover:border-[#8E1B2D] text-[#D8C7C4] bg-[#1C0A0F]/40'
                     }`}
                   >
-                    <span className="text-[10px] uppercase tracking-wider block text-[#D4AF37]">
+                    <span className="text-[10px] uppercase tracking-wider block text-[#D4AF37] font-semibold">
                       0{idx + 1}
                     </span>
-                    <span className="text-xs font-semibold uppercase tracking-wider truncate block">
+                    <span className="text-xs font-semibold uppercase tracking-wider truncate block text-[#FFF5F7]">
                       {cut.name}
                     </span>
-                    <span className="text-[11px] text-white/80 font-mono">
+                    <span className="text-[11px] text-[#E2D5D2] font-mono">
                       ₱{cut.price}
                     </span>
                   </button>
@@ -382,27 +382,27 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
               </div>
 
               {/* Active Cut Description Card */}
-              <div className="p-6 sm:p-8 border border-white/15 bg-white/5 space-y-4">
-                <div className="flex justify-between items-baseline border-b border-white/10 pb-4">
+              <div className="p-6 sm:p-8 border border-[#3D0C15] bg-[#1C0A0F]/70 space-y-4 shadow-xl">
+                <div className="flex justify-between items-baseline border-b border-[#3D0C15] pb-4">
                   <div>
-                    <h4 className="font-serif text-2xl text-white">
+                    <h4 className="font-serif text-2xl text-[#FFF5F7]">
                       {activeCut.name}
                     </h4>
-                    <span className="text-xs text-[#D4AF37] tracking-wider uppercase">
+                    <span className="text-xs text-[#D4AF37] tracking-wider uppercase font-semibold">
                       {activeCut.subname}
                     </span>
                   </div>
-                  <span className="font-serif text-2xl text-white font-bold">
+                  <span className="font-serif text-2xl text-[#FFF5F7] font-bold">
                     ₱{activeCut.price}
                   </span>
                 </div>
 
-                <p className="text-xs sm:text-sm text-[#C5BDB5] leading-relaxed font-light">
+                <p className="text-xs sm:text-sm text-[#E2D5D2] leading-relaxed font-light">
                   {activeCut.description}
                 </p>
 
-                <div className="p-3 bg-black/40 border border-white/10 text-[11px] text-[#A09A92]">
-                  <strong className="text-white block uppercase tracking-wider text-[10px] mb-0.5">
+                <div className="p-3 bg-[#0A0406]/80 border border-[#3D0C15] text-[11px] text-[#D8C7C4]">
+                  <strong className="text-[#FFF5F7] block uppercase tracking-wider text-[10px] mb-0.5">
                     Pairing Profile:
                   </strong>
                   {activeCut.pairingNotes}
@@ -411,7 +411,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                 <div className="pt-2 flex items-center gap-4">
                   <button
                     onClick={handleAddFeaturedCut}
-                    className="flex-1 py-3.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="flex-1 py-3.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-xs uppercase tracking-[0.2em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md hover:shadow-[#D4AF37]/20"
                   >
                     {addedCut ? (
                       <>
@@ -428,7 +428,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
 
                   <button
                     onClick={() => onNavigate('menu')}
-                    className="px-5 py-3.5 border border-white/20 hover:border-white text-white text-xs uppercase tracking-[0.15em] transition-all cursor-pointer"
+                    className="px-5 py-3.5 border border-[#8E1B2D]/70 hover:border-[#D4AF37] text-[#FFF5F7] text-xs uppercase tracking-[0.15em] transition-all cursor-pointer bg-[#0A0406]/50 hover:bg-[#1C0A0F]"
                   >
                     Full Menu
                   </button>
@@ -445,19 +445,19 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 5. GUEST TESTIMONIAL / CRITIC REVIEW */}
       {/* ------------------------------------------------------------- */}
-      <section className="animate-section py-20 bg-[#0E1217] text-center border-b border-white/10">
+      <section className="animate-section py-20 bg-[#0A0406] text-center border-b border-[#3D0C15]/70">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
           <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] block font-medium">
             Guest Testimonials
           </span>
-          <blockquote className="font-serif italic text-2xl sm:text-3xl md:text-4xl text-white font-normal leading-snug">
+          <blockquote className="font-serif italic text-2xl sm:text-3xl md:text-4xl text-[#FFF5F7] font-normal leading-snug">
             "The tenderness, dark pepper bark, and rich wood smoke here rival the finest hotel steakhouses in Metro Manila. True neighborhood perfection on every visit."
           </blockquote>
           <div className="pt-2">
             <span className="text-xs uppercase tracking-[0.25em] text-[#D4AF37] font-semibold block">
               Marco R. — Local Food Critic & Dining Guest
             </span>
-            <span className="text-[10px] text-[#A09A92] uppercase tracking-wider">
+            <span className="text-[10px] text-[#D8C7C4] uppercase tracking-wider">
               Verified Dine-In Experience • Rodriguez, Rizal
             </span>
           </div>
@@ -467,14 +467,14 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 6. MINIMALIST HAIRLINE FAQ ACCORDION */}
       {/* ------------------------------------------------------------- */}
-      <section className="animate-section py-20 sm:py-28 bg-[#090D12]">
+      <section className="animate-section py-20 sm:py-28 bg-[#120609]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-14 space-y-2">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] font-medium block">
               Information & Guidance
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-white">
+            <h2 className="font-serif text-3xl sm:text-4xl font-normal text-[#FFF5F7]">
               Your Questions, Answered.
             </h2>
           </div>
@@ -485,20 +485,20 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
               return (
                 <div 
                   key={index}
-                  className="border border-white/15 bg-white/5 transition-colors overflow-hidden"
+                  className="border border-[#3D0C15] bg-[#1C0A0F]/60 transition-colors overflow-hidden"
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? null : index)}
                     className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer focus:outline-none"
                   >
-                    <span className="font-serif text-lg sm:text-xl text-white">
+                    <span className="font-serif text-lg sm:text-xl text-[#FFF5F7]">
                       {item.q}
                     </span>
                     <ChevronDown className={`w-4 h-4 text-[#D4AF37] shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
 
                   {isOpen && (
-                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-xs sm:text-sm text-[#C5BDB5] font-light leading-relaxed border-t border-white/10 pt-4">
+                    <div className="px-5 pb-6 sm:px-6 sm:pb-6 text-xs sm:text-sm text-[#E2D5D2] font-light leading-relaxed border-t border-[#3D0C15] pt-4">
                       {item.a}
                     </div>
                   )}
@@ -521,20 +521,20 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             
             {/* Address */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#C67D26]">
+              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#8E1B2D]">
                 Address
               </h4>
               <p className="text-xs text-[#5C5651] leading-relaxed">
                 Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez (Montalban), Rizal
               </p>
-              <span className="text-[11px] text-[#5B101D] font-medium block">
+              <span className="text-[11px] text-[#8E1B2D] font-medium block">
                 Free Street & Neighborhood Parking Available
               </span>
             </div>
 
             {/* Contact */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#C67D26]">
+              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#8E1B2D]">
                 Contact Us
               </h4>
               <p className="text-xs text-[#5C5651]">
@@ -548,7 +548,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                   href="https://www.facebook.com/MasungSmokeHouse/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#5B101D] hover:underline"
+                  className="text-xs text-[#8E1B2D] hover:underline"
                 >
                   Facebook Page
                 </a>
@@ -557,7 +557,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                   href="https://www.instagram.com/masungsmokehouse"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-[#5B101D] hover:underline"
+                  className="text-xs text-[#8E1B2D] hover:underline"
                 >
                   Instagram
                 </a>
@@ -566,7 +566,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
 
             {/* Hours */}
             <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#C67D26]">
+              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#8E1B2D]">
                 Hours
               </h4>
               <p className="text-xs text-[#5C5651] leading-relaxed">
@@ -577,7 +577,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
               </p>
               <button
                 onClick={() => onNavigate('home')}
-                className="mt-3 px-3 py-1 bg-[#181615] text-white text-[10px] uppercase tracking-widest hover:bg-[#5B101D] transition-colors cursor-pointer"
+                className="mt-3 px-3 py-1 bg-[#181615] text-white text-[10px] uppercase tracking-widest hover:bg-[#8E1B2D] transition-colors cursor-pointer"
               >
                 Switch to Classic Smokehouse View
               </button>
@@ -592,7 +592,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
               <button onClick={() => onNavigate('menu')} className="hover:underline">Menu</button>
               <button onClick={() => onNavigate('order')} className="hover:underline">Order</button>
               <button onClick={() => onNavigate('loyalty')} className="hover:underline">Pit Pass</button>
-              <button onClick={() => onNavigate('home')} className="text-[#5B101D] font-bold hover:underline">Classic Theme</button>
+              <button onClick={() => onNavigate('home')} className="text-[#8E1B2D] font-bold hover:underline">Classic Theme</button>
             </div>
           </div>
         </div>
@@ -600,13 +600,13 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       </footer>
 
       {/* Floating Sticky Bottom Reserve / Status Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#090D12]/95 backdrop-blur-md border-t border-white/10 py-2.5 px-4">
+      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0A0406]/95 backdrop-blur-md border-t border-[#3D0C15] py-2.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.8)]">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] hidden sm:inline">
               — Now Open • 4:00 PM to 11:00 PM
             </span>
-            <span className="text-[11px] text-[#E5DFD5] font-mono">
+            <span className="text-[11px] text-[#FFF5F7] font-mono">
               0968 237 0329
             </span>
           </div>
@@ -614,13 +614,13 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
           <div className="flex items-center gap-3">
             <button
               onClick={() => onNavigate('home')}
-              className="text-[10px] uppercase tracking-wider text-[#A09A92] hover:text-white px-2 py-1 border border-white/20 hidden sm:inline"
+              className="text-[10px] uppercase tracking-wider text-[#D8C7C4] hover:text-white px-2 py-1 border border-[#3D0C15] hover:border-[#8E1B2D] hidden sm:inline transition-colors"
             >
               Classic Theme
             </button>
             <button
               onClick={() => onNavigate('order')}
-              className="px-4 py-1.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-[11px] uppercase tracking-widest transition-all cursor-pointer"
+              className="px-4 py-1.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-[11px] uppercase tracking-widest transition-all cursor-pointer shadow-md"
             >
               Reserve / Order
             </button>

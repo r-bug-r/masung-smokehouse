@@ -53,7 +53,7 @@ const MainApp: React.FC = () => {
   const isCruReserve = currentPage === 'reserve';
 
   return (
-    <div className={`min-h-screen flex flex-col ${isCruReserve ? 'bg-[#0E1217] text-[#E5DFD5]' : 'bg-[#FBF8F3] text-[#181615]'} selection:bg-[#5B101D] selection:text-white`}>
+    <div className={`min-h-screen flex flex-col ${isCruReserve ? 'bg-[#0A0406] text-[#F3ECE6]' : 'bg-[#FBF8F3] text-[#181615]'} selection:bg-[#7D0A1E] selection:text-white`}>
       {/* Full-Width Navigation Bar (shown on classic pages) */}
       {!isCruReserve && <Navbar currentPage={currentPage} onNavigate={navigateTo} />}
 
