@@ -28,10 +28,9 @@ function sanitizePromoCode(code) {
   return code.replace(/[^a-zA-Z0-9]/g, '').toUpperCase().slice(0, 16);
 }
 
-// Promo Engine Logic
 function applyPromoCode(code, subtotal) {
   const cleanCode = sanitizePromoCode(code);
-  if (cleanCode === 'MASUNGFB50' || cleanCode === 'MASUNGIG50') {
+  if (cleanCode === 'MASUNGFB50' || cleanCode === 'MASUNGIG50' || cleanCode === 'FEEDBACK50') {
     return { success: true, discountAmount: 50, code: cleanCode };
   }
   if (cleanCode === 'MASUNG10') {
@@ -102,6 +101,12 @@ test('2. Social Vouchers & Promo Engine QA', async (t) => {
     const res = applyPromoCode('MASUNG10', subtotal);
     assert.equal(res.success, true);
     assert.equal(res.discountAmount, 50); // 10% of 500
+  });
+
+  await t.test('validates guest feedback reward discount (FEEDBACK50)', () => {
+    const res = applyPromoCode('feedback50', subtotal);
+    assert.equal(res.success, true);
+    assert.equal(res.discountAmount, 50);
   });
 
   await t.test('rejects fake or malformed promo codes', () => {
@@ -216,23 +221,24 @@ test('6. Reserve Suite Routing & Booking Contract Validation', async (t) => {
     assert.ok(reservePages.includes('reserve-vip'));
   });
 
-  await t.test('validates table booking reference generation and contract', () => {
-    const randomId = `MS-RES-${Math.floor(100000 + 0.5 * 900000)}`;
+  await t.test('validates event and venue reservation reference generation and contract', () => {
+    const randomId = `MS-EVT-${Math.floor(100000 + 0.5 * 900000)}`;
     const mockBooking = {
       id: randomId,
-      guestName: sanitizeText('Chef Marco'),
+      guestName: sanitizeText('Event Organizer Marco'),
       guestPhone: sanitizePhoneNumber('0968-237-0329'),
-      date: '2026-08-30',
-      timeSlot: '06:30 PM',
-      partySize: 4,
-      seatingZone: 'hearth',
+      date: '2026-09-05',
+      timeSlot: '05:00 PM (Early Dinner Feast)',
+      partySize: 20,
+      seatingZone: 'upper_mezzanine',
+      specialRequests: sanitizeText('Milestone celebration; request pre-sliced brisket platters and barista espresso packages.'),
       status: 'confirmed',
       createdAt: new Date().toISOString()
     };
 
-    assert.ok(mockBooking.id.startsWith('MS-RES-'));
+    assert.ok(mockBooking.id.startsWith('MS-EVT-'));
     assert.equal(mockBooking.guestPhone, '09682370329');
-    assert.ok(['hearth', 'smoker_bar', 'billiards_alcove', 'garden_terrace'].includes(mockBooking.seatingZone));
-    assert.ok(mockBooking.partySize >= 1 && mockBooking.partySize <= 12);
+    assert.ok(['full_loft_buyout', 'upper_mezzanine', 'ground_cafe', 'celebration_package'].includes(mockBooking.seatingZone));
+    assert.ok(mockBooking.partySize >= 6 && mockBooking.partySize <= 50);
   });
 });

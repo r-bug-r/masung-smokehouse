@@ -163,6 +163,11 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setPromoDiscount(discount);
       return { success: true, message: '10% Welcome discount applied!' };
     }
+    if (cleanCode === 'FEEDBACK50') {
+      setAppliedPromoCode('FEEDBACK50');
+      setPromoDiscount(50);
+      return { success: true, message: '₱50 Guest Feedback voucher applied!' };
+    }
     return { success: false, message: 'Invalid voucher code.' };
   };
 

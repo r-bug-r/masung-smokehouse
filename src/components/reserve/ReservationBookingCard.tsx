@@ -13,27 +13,43 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
 
   const [date, setDate] = useState<string>(() => {
     const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setDate(tomorrow.getDate() + 2);
     return tomorrow.toISOString().split('T')[0];
   });
 
-  const [timeSlot, setTimeSlot] = useState('06:00 PM');
-  const [partySize, setPartySize] = useState(4);
-  const [seatingZone, setSeatingZone] = useState<'hearth' | 'smoker_bar' | 'billiards_alcove' | 'garden_terrace'>('hearth');
+  const [timeSlot, setTimeSlot] = useState('05:00 PM');
+  const [partySize, setPartySize] = useState(15);
+  const [seatingZone, setSeatingZone] = useState<'full_loft_buyout' | 'upper_mezzanine' | 'ground_cafe' | 'celebration_package'>('upper_mezzanine');
   const [guestName, setGuestName] = useState('');
   const [guestPhone, setGuestPhone] = useState('');
   const [specialRequests, setSpecialRequests] = useState('');
   const [confirmedBooking, setConfirmedBooking] = useState<ReserveBooking | null>(null);
 
   const timeSlots = [
-    '04:30 PM', '05:30 PM', '06:30 PM', '07:30 PM', '08:30 PM', '09:30 PM'
+    '12:00 PM (Lunch Function)', '02:00 PM (Afternoon Gathering)', '05:00 PM (Early Dinner Feast)', '07:00 PM (Evening Celebration)', '08:30 PM (Night Gathering)'
   ];
 
-  const seatingOptions: { id: typeof seatingZone; label: string; desc: string }[] = [
-    { id: 'hearth', label: 'Hearth Dining Room', desc: 'Central dining adjacent to the carving station' },
-    { id: 'smoker_bar', label: 'Smoker Bar Counter', desc: 'High-top lounge with craft iced drinks' },
-    { id: 'billiards_alcove', label: 'Billiards Alcove', desc: 'Corner booth with complimentary pool table access' },
-    { id: 'garden_terrace', label: 'Evening Terrace', desc: 'Cool Montalban mountain evening breeze' }
+  const seatingOptions = [
+    {
+      id: 'full_loft_buyout' as const,
+      label: 'Full Loft Venue Buyout',
+      desc: 'Exclusive access to entire 2-story venue (ground floor + upper mezzanine), capacity ~50 guests'
+    },
+    {
+      id: 'upper_mezzanine' as const,
+      label: 'Upper Floor Mezzanine',
+      desc: 'Intimate loft lounge space with cozy seating clusters, ideal for 10–20 guests'
+    },
+    {
+      id: 'ground_cafe' as const,
+      label: 'Ground Floor Cafe & Dining',
+      desc: 'High-energy cafe setup adjacent to espresso bar, ideal for 10–25 guests'
+    },
+    {
+      id: 'celebration_package' as const,
+      label: 'Group Gathering & Feast',
+      desc: 'Reserved table cluster with pre-set barbecue platters & drink packages for 6–15 guests'
+    }
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -44,17 +60,17 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
     const cleanRequests = sanitizeText(specialRequests.trim());
 
     if (!cleanName) {
-      showToast('Name Required', 'Please enter a name for the reservation.', 'info');
+      showToast('Name Required', 'Please enter a contact name for the event reservation.', 'info');
       return;
     }
 
     if (!cleanPhone || cleanPhone.length < 10) {
-      showToast('Phone Required', 'Please provide a valid 11-digit mobile number.', 'info');
+      showToast('Phone Required', 'Please provide a valid 11-digit mobile number for confirmation.', 'info');
       return;
     }
 
     const newBooking: ReserveBooking = {
-      id: `MS-RES-${Math.floor(100000 + Math.random() * 900000)}`,
+      id: `MS-EVT-${Math.floor(100000 + Math.random() * 900000)}`,
       guestName: cleanName,
       guestPhone: cleanPhone,
       date,
@@ -76,7 +92,7 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
     }
 
     setConfirmedBooking(newBooking);
-    showToast('Reservation Reserved', `Booking confirmed for ${newBooking.guestName}! Reference: ${newBooking.id}`, 'success');
+    showToast('Event Reservation Logged', `Event booking received for ${newBooking.guestName}! Reference: ${newBooking.id}`, 'success');
 
     if (onSuccess) {
       onSuccess(newBooking);
@@ -92,23 +108,23 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
 
         <div className="space-y-2">
           <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] block font-semibold">
-            Confirmed Table Reservation
+            Event Reservation Received
           </span>
           <h3 className="font-serif text-3xl sm:text-4xl text-[#FFF5F7]">
-            We Look Forward to Welcoming You
+            We Look Forward to Hosting You
           </h3>
-          <p className="text-xs text-[#D8C7C4] font-light max-w-md mx-auto">
-            Your table reservation has been logged into the Masung Steakhouse concierge books.
+          <p className="text-xs text-[#D8C7C4] font-light max-w-md mx-auto leading-relaxed">
+            Your event reservation inquiry has been logged. Our Montalban event coordination team (Cel & Gina) will reach out via SMS/call to confirm table setup and catering details.
           </p>
         </div>
 
         <div className="max-w-md mx-auto bg-[#0A0406] border border-[#3D0C15] p-6 text-left space-y-3 font-mono text-xs">
           <div className="flex justify-between border-b border-[#3D0C15] pb-2">
-            <span className="text-[#A89895]">Booking Reference:</span>
+            <span className="text-[#A89895]">Event Reference:</span>
             <strong className="text-[#D4AF37]">{confirmedBooking.id}</strong>
           </div>
           <div className="flex justify-between border-b border-[#3D0C15] pb-2">
-            <span className="text-[#A89895]">Guest Name:</span>
+            <span className="text-[#A89895]">Lead Organizer:</span>
             <span className="text-[#FFF5F7] font-sans">{confirmedBooking.guestName}</span>
           </div>
           <div className="flex justify-between border-b border-[#3D0C15] pb-2">
@@ -116,12 +132,12 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
             <span className="text-[#FFF5F7]">{confirmedBooking.date} • {confirmedBooking.timeSlot}</span>
           </div>
           <div className="flex justify-between border-b border-[#3D0C15] pb-2">
-            <span className="text-[#A89895]">Party Size:</span>
+            <span className="text-[#A89895]">Estimated Guests:</span>
             <span className="text-[#FFF5F7]">{confirmedBooking.partySize} Guests</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-[#A89895]">Dining Area:</span>
-            <span className="text-[#D4AF37] uppercase">{confirmedBooking.seatingZone.replace('_', ' ')}</span>
+            <span className="text-[#A89895]">Venue Space:</span>
+            <span className="text-[#D4AF37] uppercase">{confirmedBooking.seatingZone.replace(/_/g, ' ')}</span>
           </div>
         </div>
 
@@ -130,7 +146,7 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
             onClick={() => setConfirmedBooking(null)}
             className="px-6 py-3 border border-[#3D0C15] hover:border-[#D4AF37] text-xs uppercase tracking-widest text-[#D8C7C4] hover:text-white transition-all cursor-pointer"
           >
-            Reserve Another Table
+            Submit Another Event Inquiry
           </button>
         </div>
       </div>
@@ -143,13 +159,13 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
       {/* Header */}
       <div className="border-b border-[#3D0C15] pb-5">
         <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] block font-semibold mb-1">
-          Direct Concierge Booking
+          Private Event & Venue Reservation
         </span>
         <h3 className="font-serif text-2xl sm:text-3xl text-[#FFF5F7]">
-          Reserve a Dining Table
+          Reserve Our Loft Space for Gatherings
         </h3>
         <p className="text-xs text-[#D8C7C4] font-light mt-1">
-          Complimentary table reservations with guaranteed pit cut allocations.
+          Host private celebrations, milestones, team dinners, or casual group feasts in our Montalban loft cafe & smokehouse (capacity up to ~50 guests).
         </p>
       </div>
 
@@ -160,7 +176,7 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
         <div className="space-y-1.5">
           <label className="text-[10px] uppercase tracking-wider text-[#A89895] flex items-center gap-1.5 font-medium">
             <Calendar className="w-3.5 h-3.5 text-[#D4AF37]" />
-            Dining Date
+            Event Date
           </label>
           <input
             type="date"
@@ -176,7 +192,7 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
         <div className="space-y-1.5">
           <label className="text-[10px] uppercase tracking-wider text-[#A89895] flex items-center gap-1.5 font-medium">
             <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
-            Seating Time
+            Event Start Time
           </label>
           <select
             value={timeSlot}
@@ -195,10 +211,10 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
         <div className="space-y-1.5">
           <label className="text-[10px] uppercase tracking-wider text-[#A89895] flex items-center gap-1.5 font-medium">
             <Users className="w-3.5 h-3.5 text-[#D4AF37]" />
-            Party Size
+            Estimated Guests
           </label>
           <div className="flex items-center gap-2">
-            {[2, 4, 6, 8, 12].map((num) => (
+            {[6, 10, 15, 20, 30, 50].map((num) => (
               <button
                 type="button"
                 key={num}
@@ -221,7 +237,7 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
       <div className="space-y-2">
         <label className="text-[10px] uppercase tracking-wider text-[#A89895] flex items-center gap-1.5 font-medium">
           <MapPin className="w-3.5 h-3.5 text-[#D4AF37]" />
-          Select Seating Ambience
+          Select Venue Space Setup
         </label>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {seatingOptions.map((opt) => (
@@ -256,7 +272,7 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
         
         <div className="space-y-1.5">
           <label className="text-[10px] uppercase tracking-wider text-[#A89895] block font-medium">
-            Lead Guest Name *
+            Lead Host / Organizer Name *
           </label>
           <input
             type="text"
@@ -287,11 +303,11 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
       {/* Special Requests */}
       <div className="space-y-1.5">
         <label className="text-[10px] uppercase tracking-wider text-[#A89895] block font-medium">
-          Special Notes or Dietary Requests (Optional)
+          Special Notes or Catering Requests (Optional)
         </label>
         <input
           type="text"
-          placeholder="e.g. Celebrating wedding anniversary; request well-done pepper bark."
+          placeholder="e.g. Milestone birthday gathering; request pre-sliced brisket platters and barista espresso packages."
           value={specialRequests}
           onChange={(e) => setSpecialRequests(e.target.value)}
           className="w-full bg-[#0A0406] border border-[#3D0C15] text-[#FFF5F7] px-3.5 py-2.5 text-xs focus:outline-none focus:border-[#D4AF37]"
@@ -303,13 +319,13 @@ export const ReservationBookingCard: React.FC<ReservationBookingCardProps> = ({ 
         type="submit"
         className="w-full py-4 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-xs uppercase tracking-[0.25em] transition-all flex items-center justify-center gap-2 cursor-pointer shadow-lg hover:shadow-[#D4AF37]/20"
       >
-        <span>Confirm Table Reservation</span>
+        <span>Submit Event Reservation Request</span>
         <ArrowRight className="w-4 h-4" />
       </button>
 
       <div className="flex items-center justify-center gap-2 text-[10px] text-[#A89895] uppercase tracking-wider">
         <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
-        <span>No reservation fees • Free cancellation up to 1 hour before</span>
+        <span>No upfront reservation fees • Coordinated directly with on-site staff (Cel & Gina's team)</span>
       </div>
 
     </form>

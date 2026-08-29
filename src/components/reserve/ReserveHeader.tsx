@@ -27,7 +27,7 @@ export const ReserveHeader: React.FC<ReserveHeaderProps> = ({ currentPage, onNav
     { id: 'reserve-menu', label: 'Menu' },
     { id: 'reserve-shop', label: 'Shop' },
     { id: 'reserve-about', label: 'Craft & Smoke' },
-    { id: 'reserve-book', label: 'Reservations' },
+    { id: 'reserve-book', label: 'Events' },
     { id: 'reserve-vip', label: 'VIP Club' },
   ];
 

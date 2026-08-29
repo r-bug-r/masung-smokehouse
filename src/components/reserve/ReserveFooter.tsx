@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PageId } from '../../types';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ShieldCheck, ArrowRight, Coffee } from 'lucide-react';
 
 interface ReserveFooterProps {
   onNavigate: (page: PageId) => void;
@@ -14,13 +14,13 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
       <div className="border-b border-[#3D0C15]/70 py-6 px-4 bg-[#120609]/60">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
           <p className="text-xs uppercase tracking-[0.25em] text-[#D8C7C4] font-light">
-            <span className="text-[#D4AF37] font-semibold">The Reserve Philosophy:</span> Philippine Mountain Hardwood • Low & Slow 225°F • Uncompromising Tenderness
+            <span className="text-[#D4AF37] font-semibold">Masung Cafe & Smokehouse:</span> Loft Venue • Dela Costa V, Montalban • Events & Group Gatherings
           </p>
           <button
             onClick={() => onNavigate('reserve-book')}
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D4AF37] hover:text-white transition-colors group cursor-pointer"
           >
-            <span>Inquire Private Dining</span>
+            <span>Book Event Venue</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </button>
         </div>
@@ -37,23 +37,27 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
                 MASUNG STEAKHOUSE
               </span>
               <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]">
-                Reserve Edition • Montalban
+                Cafe & Smokehouse Loft • Montalban
               </span>
             </div>
 
             <p className="text-xs text-[#D8C7C4] leading-relaxed font-light">
               Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez (Montalban), Rizal.
             </p>
-            <div className="flex items-center gap-2 text-[11px] text-[#8E1B2D] font-medium">
-              <MapPin className="w-3.5 h-3.5 shrink-0 text-[#D4AF37]" />
-              <span>Complimentary Street & Neighborhood Parking</span>
+            <div className="flex items-center gap-2 text-[11px] text-[#D4AF37] font-medium">
+              <Coffee className="w-3.5 h-3.5 shrink-0" />
+              <span>Specialty Coffee & Sourced Smoked Meats</span>
+            </div>
+            <div className="flex items-center gap-2 text-[11px] text-[#A89895] font-light">
+              <MapPin className="w-3.5 h-3.5 shrink-0 text-[#8E1B2D]" />
+              <span>Capacity ~50 Guests (Ground Floor + Loft)</span>
             </div>
           </div>
 
-          {/* Col 2: Carving Hours & Pit Schedule */}
+          {/* Col 2: Service Hours */}
           <div className="space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]">
-              Pitmaster Schedule
+              Service Hours
             </h4>
             <div className="space-y-2 text-xs text-[#D8C7C4]">
               <p className="flex items-center gap-2">
@@ -61,15 +65,15 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
                 <span>Tue – Sun: <strong>4:00 PM – 11:00 PM</strong></span>
               </p>
               <p className="text-[11px] text-[#A89895] pl-5.5">
-                Smoker carving boards open promptly at 4:00 PM.
+                Kitchen & specialty barista service.
               </p>
               <p className="text-[11px] text-[#8E1B2D] pt-1 pl-5.5">
-                Monday: Smoker Maintenance & Wood Curing (Closed)
+                Monday: Closed (Restocking & Maintenance)
               </p>
             </div>
           </div>
 
-          {/* Col 3: Concierge & Reservations */}
+          {/* Col 3: Concierge Desk & Host Team */}
           <div className="space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]">
               Concierge Desk
@@ -82,6 +86,9 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
               <p className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#D4AF37]" />
                 <span>masungsmokehouse@gmail.com</span>
+              </p>
+              <p className="text-[11px] text-[#A89895]">
+                Event Inquiries: Hosted by Cel & Gina
               </p>
               <div className="pt-2 flex items-center gap-4 text-xs">
                 <a
@@ -123,12 +130,12 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button onClick={() => onNavigate('reserve-about')} className="hover:text-[#D4AF37] transition-colors">
-                  Pitmaster Heritage & Smoke
+                  Sourcing & Heritage
                 </button>
               </li>
               <li>
                 <button onClick={() => onNavigate('reserve-book')} className="hover:text-[#D4AF37] transition-colors">
-                  Private Table Reservation
+                  Event & Venue Reservation
                 </button>
               </li>
               <li>
@@ -156,7 +163,7 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-[#D4AF37]">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Authentic Oakwood Low & Slow</span>
+              <span>Sourced from Montalban, Rizal</span>
             </span>
           </div>
         </div>

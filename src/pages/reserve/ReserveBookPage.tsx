@@ -2,7 +2,8 @@ import React, { useEffect } from 'react';
 import type { PageId } from '../../types';
 import { initScrollAnimations } from '../../lib/animations';
 import { ReservationBookingCard } from '../../components/reserve/ReservationBookingCard';
-import { Phone, Clock } from 'lucide-react';
+import { GuestFeedbackCard } from '../../components/reserve/GuestFeedbackCard';
+import { Phone, Clock, Users, Coffee, MapPin, Building2 } from 'lucide-react';
 
 interface ReserveBookPageProps {
   onNavigate?: (page: PageId) => void;
@@ -13,30 +14,30 @@ export const ReserveBookPage: React.FC<ReserveBookPageProps> = () => {
     initScrollAnimations();
   }, []);
 
-  const atmospheres = [
+  const venueHighlights = [
     {
-      title: 'Hearth Dining Room',
-      subtitle: 'Heart of the Smoker Lounge',
-      desc: 'Tables positioned nearest to the carving board. Immerse yourself in the aromas of roasted hardwood and live knife carving.',
-      image: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'
+      icon: <Building2 className="w-5 h-5 text-[#D4AF37]" />,
+      title: 'Loft-Style Layout (~50 Capacity)',
+      tag: 'Ground + Mezzanine',
+      desc: 'Versatile two-level space featuring 12 ground floor cafe seats and 4 upper floor lounge seating clusters, tailored for private celebrations and team retreats.'
     },
     {
-      title: 'Smoker Bar Counter',
-      subtitle: 'Casual High-Top Lounge',
-      desc: 'High-top bar seating ideal for solo diners, couples, and quick tastings paired with refreshing calamansi sodas.',
-      image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=600&q=80'
+      icon: <Coffee className="w-5 h-5 text-[#D4AF37]" />,
+      title: 'Cafe & Smokehouse Concept',
+      tag: 'Specialty Beverages',
+      desc: 'Artisanal espresso drinks and specialty coffee paired with Texas-style slow-smoked meats, rich bone broth, and Filipino comfort staples.'
     },
     {
-      title: 'Billiards Alcove',
-      subtitle: 'Dining & Recreation Booth',
-      desc: 'Cozy leather seating with complimentary access to our full-size neighborhood billiards table and vintage arcade games.',
-      image: 'https://images.unsplash.com/photo-1574096079513-d8259312b785?auto=format&fit=crop&w=600&q=80'
+      icon: <MapPin className="w-5 h-5 text-[#D4AF37]" />,
+      title: 'Sourced in Montalban, Rizal',
+      tag: 'Fresh Commissary Supply',
+      desc: 'All barbecue cuts and meats are freshly prepared and supplied directly from Montalban, Rizal, maintaining exacting tenderness and flavor.'
     },
     {
-      title: 'Evening Terrace',
-      subtitle: 'Montalban Mountain Breeze',
-      desc: 'Open-air patio dining beneath string lights. Enjoy the cool evening breeze of Rodriguez, Rizal as twilight settles.',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80'
+      icon: <Users className="w-5 h-5 text-[#D4AF37]" />,
+      title: 'Hospitality & Renovation',
+      tag: 'Cel, Gina & Barista Team',
+      desc: 'Venue is scheduled for interior renovation to expand comfort. Hosted on-site with genuine neighborhood warmth by Cel, Gina, and our 3 specialty baristas.'
     }
   ];
 
@@ -44,60 +45,58 @@ export const ReserveBookPage: React.FC<ReserveBookPageProps> = () => {
     <div className="min-h-screen bg-[#0A0406] text-[#F3ECE6] py-12 sm:py-16 pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 space-y-16">
         
-        {/* Header */}
+        {/* Header: Focused on Event & Venue Preservation */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#D4AF37] block">
-            Table & Private Dining
+            Montalban, Rizal • Loft-Style Venue
           </span>
           <h1 className="font-serif text-4xl sm:text-6xl font-normal text-[#FFF5F7] tracking-tight">
-            Reserve Your Experience
+            Private Events & Venue Reservation
           </h1>
           <p className="text-xs sm:text-sm text-[#D8C7C4] font-light leading-relaxed">
-            Reserve a table in advance to guarantee prime cut allocations and enjoy personalized carving board service in Dela Costa V, Rodriguez, Rizal.
+            Reserve our two-level loft space for birthdays, milestone celebrations, team dinners, or private gatherings (capacity up to ~50 guests). Enjoy specialty coffee and authentic wood-smoked meats.
           </p>
         </div>
 
-        {/* Interactive Booking Card (Senior Component) */}
+        {/* Interactive Event Booking Card */}
         <div className="max-w-4xl mx-auto">
           <ReservationBookingCard />
         </div>
 
-        {/* The 4 Atmospheres Showcase */}
-        <div className="space-y-8 animate-section pt-8">
+        {/* Generic Venue & Space Overview (Reflecting Real Site Notes) */}
+        <div className="space-y-8 animate-section pt-4">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] block font-semibold">
-              Distinct Spaces
+              Venue Overview
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl text-[#FFF5F7]">
-              Four Dining Environments
+              The Masung Loft Experience
             </h2>
+            <p className="text-xs text-[#A89895] font-light">
+              An intimate cafe and smokehouse space in Dela Costa V, Rodriguez (Montalban), Rizal.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {atmospheres.map((space) => (
+            {venueHighlights.map((item) => (
               <div
-                key={space.title}
-                className="bg-[#120609] border border-[#3D0C15] overflow-hidden group hover:border-[#8E1B2D] transition-all"
+                key={item.title}
+                className="bg-[#120609] border border-[#3D0C15] p-6 space-y-3 hover:border-[#8E1B2D] transition-colors"
               >
-                <div className="h-44 overflow-hidden relative">
-                  <img
-                    src={space.image}
-                    alt={space.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 brightness-[0.85]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#120609] via-transparent to-transparent" />
+                <div className="w-10 h-10 bg-[#1C0A0F] border border-[#3D0C15] flex items-center justify-center">
+                  {item.icon}
                 </div>
-                <div className="p-5 space-y-2">
-                  <span className="text-[9px] uppercase tracking-wider text-[#D4AF37] block font-mono">
-                    {space.subtitle}
+                <div>
+                  <span className="text-[9px] uppercase tracking-widest text-[#D4AF37] font-mono block">
+                    {item.tag}
                   </span>
-                  <h3 className="font-serif text-lg text-[#FFF5F7]">
-                    {space.title}
+                  <h3 className="font-serif text-lg text-[#FFF5F7] mt-1">
+                    {item.title}
                   </h3>
-                  <p className="text-xs text-[#D8C7C4] font-light leading-relaxed">
-                    {space.desc}
-                  </p>
                 </div>
+                <p className="text-xs text-[#D8C7C4] font-light leading-relaxed">
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -108,22 +107,22 @@ export const ReserveBookPage: React.FC<ReserveBookPageProps> = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-3">
               <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] block font-semibold">
-                Feasts & Private Gatherings
+                Event Catering & Group Packages
               </span>
               <h3 className="font-serif text-2xl sm:text-3xl text-[#FFF5F7]">
-                Whole Smoked Brisket & Private Salon Bookings
+                Customized Feasts & Full Loft Buyouts
               </h3>
               <p className="text-xs sm:text-sm text-[#D8C7C4] font-light leading-relaxed">
-                Hosting a birthday, milestone dinner, or team retreat? Reserve an entire 5kg–7kg Texas wood-smoked brisket carved hot for up to 20 guests, complete with private access to our billiard lounge.
+                Hosting a birthday, milestone dinner, or corporate retreat? We provide pre-sliced smoked brisket platters, complimentary red rice, and barista coffee service tailored for your party.
               </p>
-              <div className="pt-2 flex items-center gap-6 text-xs text-[#D8C7C4]">
+              <div className="pt-2 flex flex-wrap items-center gap-6 text-xs text-[#D8C7C4]">
                 <span className="flex items-center gap-1.5">
                   <Phone className="w-3.5 h-3.5 text-[#D4AF37]" />
                   <span>Direct Inquiries: 0968 237 0329</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>24-Hour Advance Notice Required</span>
+                  <span>Advance Notice Appreciated</span>
                 </span>
               </div>
             </div>
@@ -137,6 +136,11 @@ export const ReserveBookPage: React.FC<ReserveBookPageProps> = () => {
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Guest Feedback & Renovation Reward System */}
+        <div className="max-w-4xl mx-auto animate-section pt-4">
+          <GuestFeedbackCard />
         </div>
 
       </div>

@@ -103,7 +103,8 @@ export interface ReserveBooking {
   date: string;
   timeSlot: string;
   partySize: number;
-  seatingZone: 'hearth' | 'smoker_bar' | 'billiards_alcove' | 'garden_terrace';
+  seatingZone: 'full_loft_buyout' | 'upper_mezzanine' | 'ground_cafe' | 'celebration_package' | string;
+  eventType?: string;
   specialRequests?: string;
   status: 'confirmed' | 'pending';
   createdAt: string;
