@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { PageId, MenuItem } from '../types';
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
 import { MENU_ITEMS } from '../data/menuData';
+import { initScrollAnimations } from '../lib/animations';
 import { 
   ChevronRight, 
   ChevronLeft, 
@@ -32,7 +34,7 @@ const FEATURED_CUTS: CruFeaturedCut[] = [
     name: 'Texas Oak-Smoked Beef Brisket',
     subname: '12-Hour Low & Slow Prime Cut',
     price: 199,
-    description: '12-hour oakwood smoked beef brisket with a coarse black pepper bark, distinctive pink smoke ring, and melt-in-the-mouth tenderness. Hand-carved across the grain straight from the carving board.',
+    description: '12-hour oakwood smoked beef brisket with a coarse black pepper bark, distinctive pink smoke ring, and deep tenderness. Hand-carved across the grain straight from the carving board.',
     pairingNotes: 'Paired with heirloom red rice, signature house BBQ glaze, and hot bone broth.',
     imageUrl: 'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=1200&q=80',
     menuItem: MENU_ITEMS.find(i => i.id === 'smoked-brisket-meal') || MENU_ITEMS[0]
@@ -52,8 +54,8 @@ const FEATURED_CUTS: CruFeaturedCut[] = [
     name: 'Smoked Beef Kare-Kare',
     subname: 'Brisket Drippings & Roasted Peanuts',
     price: 179,
-    description: 'Rich roasted peanut sauce simmered with smoked beef brisket drippings, tender smoked beef chunks, native eggplant, pechay, and artisan bagoong alamang.',
-    pairingNotes: 'Filipino soul elevated by authentic Texas wood smoke.',
+    description: 'Rich roasted peanut sauce simmered with smoked beef brisket drippings, tender smoked beef chunks, native eggplant, pechay, and house-made bagoong alamang.',
+    pairingNotes: 'Classic Filipino stew simmered with wood-smoked drippings.',
     imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80',
     menuItem: MENU_ITEMS.find(i => i.id === 'smoked-beef-karekare') || MENU_ITEMS[2]
   },
@@ -94,10 +96,15 @@ const FAQ_ITEMS = [
 
 export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) => {
   const { addItem } = useCart();
+  const { showToast } = useToast();
 
   const [activeCutIndex, setActiveCutIndex] = useState(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [addedCut, setAddedCut] = useState(false);
+
+  useEffect(() => {
+    initScrollAnimations();
+  }, []);
 
   const activeCut = FEATURED_CUTS[activeCutIndex];
 
@@ -105,6 +112,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
     if (activeCut.menuItem) {
       addItem(activeCut.menuItem);
       setAddedCut(true);
+      showToast('Added to Order', `${activeCut.name} • ₱${activeCut.price}`, 'success');
       setTimeout(() => setAddedCut(false), 2500);
     }
   };
@@ -275,7 +283,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                     Carved Fresh Daily
                   </span>
                   <span className="text-xs font-serif italic text-white/90">
-                    Artisan Plating & Wood Smoke
+                    Hardwood Smoke & Daily Carvings
                   </span>
                 </div>
               </div>
@@ -288,7 +296,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 4. LUXURY CUT SHOWCASE ("AN EXQUISITE DINING JOURNEY") */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 sm:py-28 bg-[#090D12] border-y border-white/10 relative">
+      <section className="animate-section py-20 sm:py-28 bg-[#090D12] border-y border-white/10 relative">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Header */}
@@ -349,7 +357,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             <div className="lg:col-span-6 space-y-6">
               
               {/* Cut Selector Pills */}
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2 animate-grid">
                 {FEATURED_CUTS.map((cut, idx) => (
                   <button
                     key={cut.id}
@@ -437,7 +445,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 5. GUEST TESTIMONIAL / CRITIC REVIEW */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 bg-[#0E1217] text-center border-b border-white/10">
+      <section className="animate-section py-20 bg-[#0E1217] text-center border-b border-white/10">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-6">
           <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] block font-medium">
             Guest Testimonials
@@ -459,7 +467,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       {/* 6. MINIMALIST HAIRLINE FAQ ACCORDION */}
       {/* ------------------------------------------------------------- */}
-      <section className="py-20 sm:py-28 bg-[#090D12]">
+      <section className="animate-section py-20 sm:py-28 bg-[#090D12]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-14 space-y-2">

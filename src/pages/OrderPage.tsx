@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { PageId, SmokehouseOrder } from '../types';
 import { useCart } from '../context/CartContext';
 import { useLoyalty } from '../context/LoyaltyContext';
+import { useToast } from '../context/ToastContext';
 import { REWARD_VOUCHERS } from '../data/rewardsData';
 import { ShoppingBag, Trash2, Plus, Minus, Check, MessageCircle, Copy, Award, Utensils, Flame, ArrowLeft, Send, Tag } from 'lucide-react';
 import { sanitizeText, sanitizePhoneNumber, sanitizePromoCode } from '../lib/sanitize';
@@ -50,6 +51,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
   } = useCart();
 
   const { profile, recordOrder } = useLoyalty();
+  const { showToast } = useToast();
 
   // Local state for the generated receipt slip on-page (Zero modal popup)
   const [activeOrder, setActiveOrder] = useState<SmokehouseOrder | null>(null);
@@ -66,6 +68,9 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
     setPromoMsg(res.message);
     if (res.success) {
       setPromoInput('');
+      showToast('Voucher Applied', res.message, 'reward');
+    } else {
+      showToast('Voucher Error', res.message, 'error');
     }
     setTimeout(() => setPromoMsg(''), 3500);
   };
@@ -94,6 +99,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
 
     setActiveOrder(newOrder);
     setLivePitStep('slicing');
+    showToast('Order Sent to Kitchen', `Order ${newOrder.id} confirmed! Now slicing at the pit.`, 'success');
     clearCart();
 
     // Auto-advance the live pit simulator
@@ -141,6 +147,7 @@ Please confirm receipt and start carving!`;
     const slipText = `MASUNG SMOKEHOUSE KITCHEN SLIP\nOrder ID: ${activeOrder.id}\nTable: ${activeOrder.tableNumber}\nGuest: ${activeOrder.customerName}\nTotal: ₱${activeOrder.finalTotal}\nTimestamp: ${activeOrder.timestamp}`;
     navigator.clipboard.writeText(slipText);
     setCopiedSlip(true);
+    showToast('Slip Copied', 'Kitchen order summary copied to clipboard', 'info');
     setTimeout(() => setCopiedSlip(false), 2000);
   };
 

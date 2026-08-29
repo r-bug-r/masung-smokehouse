@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
 import { Check, Copy, ExternalLink, Tag } from 'lucide-react';
 import { bounceElement } from '../lib/animations';
 
 export const SocialVoucherBanner: React.FC = () => {
   const { claimedSocialVouchers, claimSocialVoucher, appliedPromoCode } = useCart();
+  const { showToast } = useToast();
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
 
   const handleClaim = (platform: 'facebook' | 'instagram', url: string) => {
@@ -13,6 +15,7 @@ export const SocialVoucherBanner: React.FC = () => {
     
     // Trigger voucher claim & auto apply
     claimSocialVoucher(platform);
+    showToast('₱50 Voucher Claimed', `Follower discount applied to your order (-₱50)`, 'reward');
 
     // Trigger bounce feedback
     bounceElement(`#voucher-${platform}`);
@@ -21,6 +24,7 @@ export const SocialVoucherBanner: React.FC = () => {
   const handleCopy = (code: string) => {
     navigator.clipboard.writeText(code);
     setCopiedCode(code);
+    showToast('Code Copied', `Promo code ${code} copied to clipboard`, 'info');
     setTimeout(() => setCopiedCode(null), 2000);
   };
 

@@ -1,7 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import type { PageId, MenuCategory, MenuItem, MenuVariant } from '../types';
 import { MENU_ITEMS } from '../data/menuData';
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
+import { initScrollAnimations, bounceElement } from '../lib/animations';
 import { Search, Plus, Check, Utensils, ArrowRight } from 'lucide-react';
 
 interface MenuPageProps {
@@ -19,6 +21,7 @@ const CATEGORIES: { id: MenuCategory; label: string; count: number }[] = [
 
 export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
   const { addItem, totalQuantity, finalTotal } = useCart();
+  const { showToast } = useToast();
   const [selectedCategory, setSelectedCategory] = useState<MenuCategory>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterTag, setFilterTag] = useState<string | null>(null);
@@ -26,6 +29,10 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
   // Selected variant map per item: { [itemId]: selectedVariant }
   const [selectedVariants, setSelectedVariants] = useState<{ [itemId: string]: MenuVariant }>({});
   const [addedItems, setAddedItems] = useState<{ [lineKey: string]: boolean }>({});
+
+  useEffect(() => {
+    initScrollAnimations();
+  }, [selectedCategory, filterTag]);
 
   const filteredItems = useMemo(() => {
     return MENU_ITEMS.filter(item => {
@@ -65,6 +72,8 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
 
     const lineKey = `${item.id}-${chosenVariant?.label || 'default'}`;
     setAddedItems(prev => ({ ...prev, [lineKey]: true }));
+    showToast('Added to Order', `${item.name} (${chosenVariant?.label || 'Solo'}) • ₱${chosenVariant ? chosenVariant.price : item.price}`, 'success');
+    bounceElement('.sticky-order-bar');
     setTimeout(() => {
       setAddedItems(prev => ({ ...prev, [lineKey]: false }));
     }, 1200);
@@ -177,7 +186,7 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-grid">
             {filteredItems.map(item => {
               const currentVariant = selectedVariants[item.id] || (item.variants ? item.variants[0] : undefined);
               const displayPrice = currentVariant ? currentVariant.price : item.price;
@@ -293,7 +302,7 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
         {/* Sticky Floating Bottom Bar if Cart Has Items */}
         {totalQuantity > 0 && (
           <div className="fixed bottom-4 left-4 right-4 max-w-xl mx-auto z-40">
-            <div className="bg-[#181615] text-white p-3.5 sm:p-4 border-2 border-[#5B101D] flex items-center justify-between gap-4 shadow-elevated">
+            <div className="sticky-order-bar bg-[#181615] text-white p-3.5 sm:p-4 border-2 border-[#5B101D] flex items-center justify-between gap-4 shadow-elevated">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 bg-[#5B101D] text-white flex items-center justify-center font-heading font-extrabold text-sm">
                   {totalQuantity}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { LoyaltyProvider } from './context/LoyaltyContext';
 import { CartProvider } from './context/CartContext';
+import { ToastProvider } from './context/ToastContext';
 import type { PageId } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -75,10 +76,12 @@ const MainApp: React.FC = () => {
 
 export default function App() {
   return (
-    <LoyaltyProvider>
-      <CartProvider>
-        <MainApp />
-      </CartProvider>
-    </LoyaltyProvider>
+    <ToastProvider>
+      <LoyaltyProvider>
+        <CartProvider>
+          <MainApp />
+        </CartProvider>
+      </LoyaltyProvider>
+    </ToastProvider>
   );
 }

@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { PageId, RewardVoucher } from '../types';
 import { useLoyalty } from '../context/LoyaltyContext';
 import { useCart } from '../context/CartContext';
+import { useToast } from '../context/ToastContext';
+import { initScrollAnimations } from '../lib/animations';
 import { REWARD_VOUCHERS } from '../data/rewardsData';
 import { Flame, Gift, Check, Clock, ShoppingBag, ExternalLink, Tag } from 'lucide-react';
 
@@ -12,17 +14,23 @@ interface LoyaltyPageProps {
 export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate }) => {
   const { profile, orders, updateProfile, claimWelcomeBonus, redeemVoucher, nextTierConfig, pointsToNextTier } = useLoyalty();
   const { applyReward, addItem, claimedSocialVouchers, claimSocialVoucher } = useCart();
+  const { showToast } = useToast();
 
   const [editingProfile, setEditingProfile] = useState(false);
   const [nameInput, setNameInput] = useState(profile.name);
   const [phoneInput, setPhoneInput] = useState(profile.phone);
   const [redeemSuccess, setRedeemSuccess] = useState<string | null>(null);
 
+  useEffect(() => {
+    initScrollAnimations();
+  }, []);
+
   const handleSaveProfile = (e: React.FormEvent) => {
     e.preventDefault();
     if (nameInput.trim() && phoneInput.trim()) {
       updateProfile(nameInput.trim(), phoneInput.trim());
       setEditingProfile(false);
+      showToast('Profile Saved', 'Pit Pass member details updated', 'success');
     }
   };
 
@@ -31,6 +39,7 @@ export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate }) => {
     if (success) {
       applyReward(voucher);
       setRedeemSuccess(`Successfully redeemed: ${voucher.title}! Applied to your table order.`);
+      showToast('Reward Redeemed', `${voucher.title} applied to your order!`, 'reward');
       setTimeout(() => setRedeemSuccess(null), 4000);
     }
   };
@@ -39,7 +48,13 @@ export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate }) => {
     order.items.forEach(cartItem => {
       addItem(cartItem.item, cartItem.selectedVariant, cartItem.notes, cartItem.spiceChoice);
     });
+    showToast('Items Added', 'Dishes from previous visit added to order', 'success');
     onNavigate('order');
+  };
+
+  const handleClaimWelcome = () => {
+    claimWelcomeBonus();
+    showToast('Welcome Bonus Claimed', '25 BBQ Points added to your balance!', 'reward');
   };
 
   return (
@@ -153,7 +168,7 @@ export const LoyaltyPage: React.FC<LoyaltyPageProps> = ({ onNavigate }) => {
                     New here? Claim <strong>25 Welcome Points</strong>:
                   </span>
                   <button
-                    onClick={claimWelcomeBonus}
+                    onClick={handleClaimWelcome}
                     className="px-3.5 py-1.5 bg-[#C67D26] hover:bg-[#A5641A] text-white font-heading font-extrabold text-xs uppercase cursor-pointer"
                   >
                     Claim 25 PTS
