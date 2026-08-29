@@ -6,7 +6,7 @@ export type MenuCategory =
   | 'sides-extras'
   | 'drinks';
 
-export type PageId = 'home' | 'menu' | 'order' | 'loyalty' | 'about' | 'contact';
+export type PageId = 'home' | 'menu' | 'order' | 'loyalty' | 'about' | 'contact' | 'reserve';
 
 export interface MenuVariant {
   label: string;

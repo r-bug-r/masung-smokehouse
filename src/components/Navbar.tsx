@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import type { PageId } from '../types';
 import { useCart } from '../context/CartContext';
 import { useLoyalty } from '../context/LoyaltyContext';
-import { Award, ShoppingBag, Menu, X } from 'lucide-react';
+import { Award, ShoppingBag, Menu, X, Sparkles } from 'lucide-react';
 import { bounceElement } from '../lib/animations';
 
 interface NavbarProps {
@@ -71,22 +71,35 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 <button
                   key={link.id}
                   onClick={() => handleNav(link.id)}
-                  className={`text-xs xl:text-sm font-semibold tracking-wide transition-colors py-1 border-b-2 flex items-center gap-1.5 cursor-pointer ${
-                    isActive
-                      ? 'border-[#C67D26] text-[#C67D26]'
-                      : 'border-transparent text-[#FBF8F3]/85 hover:text-white'
+                  className={`text-xs font-heading font-extrabold uppercase tracking-wider py-1 transition-all flex items-center gap-1.5 relative cursor-pointer ${
+                    isActive 
+                      ? 'text-white' 
+                      : 'text-[#E5DFD5] hover:text-white'
                   }`}
                 >
                   {link.icon}
                   {link.label}
+                  {isActive && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#C67D26]" />
+                  )}
                 </button>
               );
             })}
           </nav>
 
-          {/* Right: Actions (Points & Tray) */}
+          {/* Right: Actions (Theme Switcher, Points & Order) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
+            {/* New Design Switcher Button */}
+            <button
+              onClick={() => handleNav('reserve')}
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C67D26]/70 hover:border-[#C67D26] bg-[#460B15] hover:bg-[#32070E] text-[11px] font-heading font-bold uppercase tracking-wider text-[#E5DFD5] hover:text-white transition-all cursor-pointer shadow-subtle"
+              title="Preview the Cru Steakhouse-inspired Minimal Reserve design"
+            >
+              <Sparkles className="w-3 h-3 text-[#C67D26]" />
+              <span>Reserve Edition →</span>
+            </button>
+
             {/* Direct Points Display (Desktop) */}
             <button
               onClick={() => handleNav('loyalty')}
@@ -97,7 +110,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               <span className="text-white">{profile.points} pts</span>
             </button>
 
-            {/* Direct Table Order Tray Button */}
+            {/* Direct Table Order Button */}
             <button
               onClick={() => handleNav('order')}
               className="relative px-3.5 sm:px-4 py-2 sm:py-2.5 bg-[#C67D26] hover:bg-[#A5641A] text-white text-xs font-heading font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 shadow-subtle cursor-pointer"
@@ -114,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
               )}
             </button>
 
-            {/* Mobile Hamburger Toggle (Respects phone touch targets) */}
+            {/* Mobile Hamburger Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 text-white hover:text-[#C67D26] transition-colors focus:outline-none"
@@ -146,6 +159,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 {link.icon}
               </button>
             ))}
+
+            <button
+              onClick={() => handleNav('reserve')}
+              className="text-left text-xs font-heading font-extrabold uppercase tracking-wider py-2.5 px-3 border border-[#C67D26]/60 bg-[#32070E] text-[#C67D26] hover:text-white flex items-center justify-between mt-2"
+            >
+              <span className="flex items-center gap-2">
+                <Sparkles className="w-3.5 h-3.5" />
+                Cru Reserve Edition
+              </span>
+              <span>→</span>
+            </button>
           </nav>
 
           <div className="pt-3 border-t border-[#32070E] flex items-center justify-between">

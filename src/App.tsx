@@ -10,6 +10,7 @@ import { OrderPage } from './pages/OrderPage';
 import { LoyaltyPage } from './pages/LoyaltyPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { CruReservePage } from './pages/CruReservePage';
 import { transitionPage } from './lib/animations';
 
 function getInitialPage(): PageId {
@@ -19,6 +20,7 @@ function getInitialPage(): PageId {
   if (hash === 'loyalty') return 'loyalty';
   if (hash === 'about') return 'about';
   if (hash === 'contact') return 'contact';
+  if (hash === 'reserve' || hash === 'cru' || hash === 'steakhouse') return 'reserve';
   return 'home';
 }
 
@@ -47,10 +49,12 @@ const MainApp: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const isCruReserve = currentPage === 'reserve';
+
   return (
-    <div className="min-h-screen bg-[#FBF8F3] text-[#181615] flex flex-col selection:bg-[#5B101D] selection:text-white">
-      {/* Full-Width Navigation Bar */}
-      <Navbar currentPage={currentPage} onNavigate={navigateTo} />
+    <div className={`min-h-screen flex flex-col ${isCruReserve ? 'bg-[#0E1217] text-[#E5DFD5]' : 'bg-[#FBF8F3] text-[#181615]'} selection:bg-[#5B101D] selection:text-white`}>
+      {/* Full-Width Navigation Bar (shown on classic pages) */}
+      {!isCruReserve && <Navbar currentPage={currentPage} onNavigate={navigateTo} />}
 
       {/* Main Dedicated Page View with GSAP Transition */}
       <main ref={mainRef} className="flex-1">
@@ -60,10 +64,11 @@ const MainApp: React.FC = () => {
         {currentPage === 'loyalty' && <LoyaltyPage onNavigate={navigateTo} />}
         {currentPage === 'about' && <AboutPage onNavigate={navigateTo} />}
         {currentPage === 'contact' && <ContactPage onNavigate={navigateTo} />}
+        {currentPage === 'reserve' && <CruReservePage onNavigate={navigateTo} />}
       </main>
 
-      {/* Wooden Smokehouse Footer */}
-      <Footer onNavigate={navigateTo} />
+      {/* Wooden Smokehouse Footer (shown on classic pages) */}
+      {!isCruReserve && <Footer onNavigate={navigateTo} />}
     </div>
   );
 };

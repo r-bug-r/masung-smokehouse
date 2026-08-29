@@ -3,6 +3,7 @@
 @theme {
   --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
 
   /* Solid Premium Palette - Zero Gradients */
   --color-cream: #FBF8F3;
