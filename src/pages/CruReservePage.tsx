@@ -151,7 +151,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
         {/* Center: Large Floating Editorial Headline */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-6">
           <span className="inline-block text-[11px] sm:text-xs font-semibold uppercase tracking-[0.35em] text-[#D4AF37]">
-            Texas Wood Fire • Montalban, Rizal
+            U-Belt, Manila • Montalban, Rizal
           </span>
           
           <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-[#FFF5F7] tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.05]">
