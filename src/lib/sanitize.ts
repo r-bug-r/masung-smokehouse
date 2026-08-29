@@ -63,6 +63,8 @@ export function sanitizePhoneNumber(phone: string): string {
   return cleaned.slice(0, 16);
 }
 
+export const sanitizePhone = sanitizePhoneNumber;
+
 /**
  * Validates promo code input (only alphanumeric, uppercase, up to 16 chars).
  */

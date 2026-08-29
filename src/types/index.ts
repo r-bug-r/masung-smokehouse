@@ -6,7 +6,19 @@ export type MenuCategory =
   | 'sides-extras'
   | 'drinks';
 
-export type PageId = 'home' | 'menu' | 'order' | 'loyalty' | 'about' | 'contact' | 'reserve';
+export type PageId = 
+  | 'home' 
+  | 'menu' 
+  | 'order' 
+  | 'loyalty' 
+  | 'about' 
+  | 'contact' 
+  | 'reserve' 
+  | 'reserve-menu' 
+  | 'reserve-shop' 
+  | 'reserve-about' 
+  | 'reserve-book' 
+  | 'reserve-vip';
 
 export interface MenuVariant {
   label: string;
@@ -81,4 +93,18 @@ export interface SmokehouseOrder {
   status: 'pit_smoking' | 'carving_plating' | 'ready_served' | 'smoking';
   specialInstructions?: string;
   specialNotes?: string;
+}
+
+export interface ReserveBooking {
+  id: string;
+  guestName: string;
+  guestPhone: string;
+  guestEmail?: string;
+  date: string;
+  timeSlot: string;
+  partySize: number;
+  seatingZone: 'hearth' | 'smoker_bar' | 'billiards_alcove' | 'garden_terrace';
+  specialRequests?: string;
+  status: 'confirmed' | 'pending';
+  createdAt: string;
 }

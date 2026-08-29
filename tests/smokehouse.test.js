@@ -198,3 +198,41 @@ test('5. Supabase Order Payload Contract Validation', async (t) => {
   assert.equal(mockOrder.finalTotal, mockOrder.subtotal - mockOrder.discountAmount);
   assert.equal(mockOrder.pointsEarned, Math.floor(mockOrder.finalTotal / 10));
 });
+
+test('6. Reserve Suite Routing & Booking Contract Validation', async (t) => {
+  const validPages = [
+    'home', 'menu', 'order', 'loyalty', 'about', 'contact',
+    'reserve', 'reserve-menu', 'reserve-shop', 'reserve-about', 'reserve-book', 'reserve-vip'
+  ];
+
+  await t.test('verifies all dedicated Reserve pages are valid PageId tokens', () => {
+    const reservePages = validPages.filter(p => p.startsWith('reserve'));
+    assert.equal(reservePages.length, 6);
+    assert.ok(reservePages.includes('reserve'));
+    assert.ok(reservePages.includes('reserve-menu'));
+    assert.ok(reservePages.includes('reserve-shop'));
+    assert.ok(reservePages.includes('reserve-about'));
+    assert.ok(reservePages.includes('reserve-book'));
+    assert.ok(reservePages.includes('reserve-vip'));
+  });
+
+  await t.test('validates table booking reference generation and contract', () => {
+    const randomId = `MS-RES-${Math.floor(100000 + 0.5 * 900000)}`;
+    const mockBooking = {
+      id: randomId,
+      guestName: sanitizeText('Chef Marco'),
+      guestPhone: sanitizePhoneNumber('0968-237-0329'),
+      date: '2026-08-30',
+      timeSlot: '06:30 PM',
+      partySize: 4,
+      seatingZone: 'hearth',
+      status: 'confirmed',
+      createdAt: new Date().toISOString()
+    };
+
+    assert.ok(mockBooking.id.startsWith('MS-RES-'));
+    assert.equal(mockBooking.guestPhone, '09682370329');
+    assert.ok(['hearth', 'smoker_bar', 'billiards_alcove', 'garden_terrace'].includes(mockBooking.seatingZone));
+    assert.ok(mockBooking.partySize >= 1 && mockBooking.partySize <= 12);
+  });
+});

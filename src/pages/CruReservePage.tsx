@@ -4,6 +4,7 @@ import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { MENU_ITEMS } from '../data/menuData';
 import { initScrollAnimations } from '../lib/animations';
+import { FlavorRadar } from '../components/reserve/FlavorRadar';
 import { 
   ChevronRight, 
   ChevronLeft, 
@@ -129,53 +130,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
     <div className="min-h-screen bg-[#0A0406] text-[#F3ECE6] font-sans antialiased selection:bg-[#7D0A1E] selection:text-white">
       
       {/* ------------------------------------------------------------- */}
-      {/* 1. CRU HAIRLINE HEADER: PURE TEXT LOGO & 3 HAIRLINE MENU LINKS */}
-      {/* ------------------------------------------------------------- */}
-      <header className="sticky top-0 z-50 w-full bg-[#0A0406]/95 backdrop-blur-md border-b border-[#3D0C15]/70 transition-all duration-300 shadow-[0_4px_24px_rgba(0,0,0,0.6)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-20 flex items-center justify-between">
-          
-          {/* Left: Pure Minimalist Text Logo */}
-          <button 
-            onClick={() => onNavigate('reserve')}
-            className="text-left group cursor-pointer focus:outline-none"
-          >
-            <span className="font-heading text-lg sm:text-xl font-bold tracking-[0.25em] uppercase text-[#FFF5F7] group-hover:text-[#D4AF37] transition-colors">
-              MASUNG STEAKHOUSE
-            </span>
-          </button>
-
-          {/* Right: Exactly Three Hairline Menu Options */}
-          <nav className="flex items-center gap-8 sm:gap-12 lg:gap-14">
-            <button
-              onClick={() => onNavigate('order')}
-              className="text-xs uppercase tracking-[0.2em] text-[#D8C7C4] hover:text-[#FFF5F7] font-medium transition-colors cursor-pointer py-1 relative group"
-            >
-              Shop
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
-            </button>
-
-            <button
-              onClick={() => onNavigate('menu')}
-              className="text-xs uppercase tracking-[0.2em] text-[#D8C7C4] hover:text-[#FFF5F7] font-medium transition-colors cursor-pointer py-1 relative group"
-            >
-              Menu
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
-            </button>
-
-            <button
-              onClick={() => onNavigate('about')}
-              className="text-xs uppercase tracking-[0.2em] text-[#D8C7C4] hover:text-[#FFF5F7] font-medium transition-colors cursor-pointer py-1 relative group"
-            >
-              About
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[#D4AF37] group-hover:w-full transition-all duration-300" />
-            </button>
-          </nav>
-
-        </div>
-      </header>
-
-      {/* ------------------------------------------------------------- */}
-      {/* 2. CRU HERO SECTION WITH DARK SCARLET AMBIENT BACKDROP */}
+      {/* 1. CRU HERO SECTION WITH DARK SCARLET AMBIENT BACKDROP */}
       {/* ------------------------------------------------------------- */}
       <section className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-between overflow-hidden bg-[#0A0406]">
         
@@ -209,13 +164,13 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
 
           <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
             <button
-              onClick={() => onNavigate('menu')}
+              onClick={() => onNavigate('reserve-menu')}
               className="px-8 py-3.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-xs uppercase tracking-[0.2em] transition-all cursor-pointer shadow-lg hover:shadow-[#D4AF37]/20"
             >
               Explore Our Menus
             </button>
             <button
-              onClick={() => onNavigate('order')}
+              onClick={() => onNavigate('reserve-shop')}
               className="px-8 py-3.5 border border-[#8E1B2D]/80 hover:border-[#D4AF37] text-[#FFF5F7] font-medium text-xs uppercase tracking-[0.2em] transition-all cursor-pointer backdrop-blur-sm bg-[#1C0A0F]/60 hover:bg-[#3D0C15]/80"
             >
               Order Online
@@ -261,7 +216,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
               </p>
               
               <button
-                onClick={() => onNavigate('about')}
+                onClick={() => onNavigate('reserve-about')}
                 className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.15em] text-[#8E1B2D] hover:text-[#5B101D] transition-colors group cursor-pointer"
               >
                 <span>Discover Our Heritage</span>
@@ -427,7 +382,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                   </button>
 
                   <button
-                    onClick={() => onNavigate('menu')}
+                    onClick={() => onNavigate('reserve-menu')}
                     className="px-5 py-3.5 border border-[#8E1B2D]/70 hover:border-[#D4AF37] text-[#FFF5F7] text-xs uppercase tracking-[0.15em] transition-all cursor-pointer bg-[#0A0406]/50 hover:bg-[#1C0A0F]"
                   >
                     Full Menu
@@ -511,122 +466,13 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       </section>
 
       {/* ------------------------------------------------------------- */}
-      {/* 7. CLEAN LUXURY WHITE & CHARCOAL FOOTER (MATCHES CRU SCREENSHOT) */}
+      {/* 7. SENSORY RADAR SECTION */}
       {/* ------------------------------------------------------------- */}
-      <footer className="bg-white text-[#181615] border-t border-[#E5DFD5]">
-        
-        {/* Main 3-Column Info Grid */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
-            
-            {/* Address */}
-            <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#8E1B2D]">
-                Address
-              </h4>
-              <p className="text-xs text-[#5C5651] leading-relaxed">
-                Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez (Montalban), Rizal
-              </p>
-              <span className="text-[11px] text-[#8E1B2D] font-medium block">
-                Free Street & Neighborhood Parking Available
-              </span>
-            </div>
-
-            {/* Contact */}
-            <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#8E1B2D]">
-                Contact Us
-              </h4>
-              <p className="text-xs text-[#5C5651]">
-                Direct Line: <strong>0968 237 0329</strong>
-              </p>
-              <p className="text-xs text-[#5C5651]">
-                Email: masungsmokehouse@gmail.com
-              </p>
-              <div className="pt-2 flex items-center justify-center md:justify-start gap-4">
-                <a
-                  href="https://www.facebook.com/MasungSmokeHouse/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#8E1B2D] hover:underline"
-                >
-                  Facebook Page
-                </a>
-                <span className="text-gray-300">•</span>
-                <a
-                  href="https://www.instagram.com/masungsmokehouse"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-[#8E1B2D] hover:underline"
-                >
-                  Instagram
-                </a>
-              </div>
-            </div>
-
-            {/* Hours */}
-            <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#8E1B2D]">
-                Hours
-              </h4>
-              <p className="text-xs text-[#5C5651] leading-relaxed">
-                Tuesday – Sunday: <strong>4:00 PM – 11:00 PM</strong>
-              </p>
-              <p className="text-xs text-[#8A837C]">
-                Monday: Closed (Hardwood curing & smoker maintenance)
-              </p>
-              <button
-                onClick={() => onNavigate('home')}
-                className="mt-3 px-3 py-1 bg-[#181615] text-white text-[10px] uppercase tracking-widest hover:bg-[#8E1B2D] transition-colors cursor-pointer"
-              >
-                Switch to Classic Smokehouse View
-              </button>
-            </div>
-
-          </div>
-
-          {/* Hairline Bottom Copyright & Disclaimer */}
-          <div className="mt-12 pt-8 border-t border-[#E5DFD5] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#8A837C]">
-            <p>© {new Date().getFullYear()} Masung Smokehouse & Steakhouse. All Rights Reserved.</p>
-            <div className="flex items-center gap-4">
-              <button onClick={() => onNavigate('menu')} className="hover:underline">Menu</button>
-              <button onClick={() => onNavigate('order')} className="hover:underline">Order</button>
-              <button onClick={() => onNavigate('loyalty')} className="hover:underline">Pit Pass</button>
-              <button onClick={() => onNavigate('home')} className="text-[#8E1B2D] font-bold hover:underline">Classic Theme</button>
-            </div>
-          </div>
+      <section className="animate-section py-20 bg-[#0A0406] border-t border-[#3D0C15]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <FlavorRadar />
         </div>
-
-      </footer>
-
-      {/* Floating Sticky Bottom Reserve / Status Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0A0406]/95 backdrop-blur-md border-t border-[#3D0C15] py-2.5 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.8)]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-[11px] uppercase tracking-[0.2em] text-[#D4AF37] hidden sm:inline">
-              — Now Open • 4:00 PM to 11:00 PM
-            </span>
-            <span className="text-[11px] text-[#FFF5F7] font-mono">
-              0968 237 0329
-            </span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => onNavigate('home')}
-              className="text-[10px] uppercase tracking-wider text-[#D8C7C4] hover:text-white px-2 py-1 border border-[#3D0C15] hover:border-[#8E1B2D] hidden sm:inline transition-colors"
-            >
-              Classic Theme
-            </button>
-            <button
-              onClick={() => onNavigate('order')}
-              className="px-4 py-1.5 bg-[#D4AF37] hover:bg-[#B89327] text-black font-semibold text-[11px] uppercase tracking-widest transition-all cursor-pointer shadow-md"
-            >
-              Reserve / Order
-            </button>
-          </div>
-        </div>
-      </div>
+      </section>
 
     </div>
   );
