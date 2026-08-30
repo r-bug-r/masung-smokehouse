@@ -104,30 +104,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   Pit Pass Rewards
                 </button>
               </li>
-              <li className="pt-2 border-t border-[#2B2724]">
-                <button
-                  onClick={() => onNavigate('pos')}
-                  className="hover:text-white transition-colors cursor-pointer text-[#C67D26] font-semibold"
-                >
-                  Staff POS Terminal
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('inventory')}
-                  className="hover:text-white transition-colors cursor-pointer text-stone-400"
-                >
-                  Smoker Inventory
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onNavigate('loyalty')}
-                  className="hover:text-white transition-colors cursor-pointer"
-                >
-                  Pit Pass Rewards
-                </button>
-              </li>
               <li>
                 <button
                   onClick={() => onNavigate('contact')}

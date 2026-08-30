@@ -8,9 +8,13 @@ import {
   Flame, 
   Check, 
   Search,
-  Plus
+  Plus,
+  LogOut,
+  ShieldCheck
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { useStaffAuth } from '../context/StaffAuthContext';
+import { StaffLoginGate } from '../components/StaffLoginGate';
 
 interface PosSystemPageProps {
   onNavigate: (page: PageId) => void;
@@ -122,6 +126,7 @@ const DEFAULT_ORDERS: SmokehouseOrder[] = [
 
 export const PosSystemPage: React.FC<PosSystemPageProps> = ({ onNavigate }) => {
   const { showToast } = useToast();
+  const { isStaffAuthenticated, staffUser, logoutStaff } = useStaffAuth();
 
   // Active Station Tab: strictly staff-facing
   const [activeStation, setActiveStation] = useState<'cashier_pos' | 'kitchen_kds' | 'expediter_serve'>('cashier_pos');
@@ -259,6 +264,10 @@ export const PosSystemPage: React.FC<PosSystemPageProps> = ({ onNavigate }) => {
   const cookingOrders = orders.filter(o => o.status === 'paid_counter' || o.status === 'kitchen_cooking');
   const readyOrders = orders.filter(o => o.status === 'ready_to_serve');
 
+  if (!isStaffAuthenticated) {
+    return <StaffLoginGate onNavigate={onNavigate} terminalName="POS System" />;
+  }
+
   return (
     <div className="min-h-screen bg-[#FBF8F3] py-6 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
@@ -277,7 +286,13 @@ export const PosSystemPage: React.FC<PosSystemPageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
+            {staffUser && (
+              <div className="px-3 py-2 bg-[#FBF8F3] border border-[#E5DFD5] text-[#181615] flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#5B101D]" />
+                <span className="font-mono font-bold text-[11px] uppercase">{staffUser.name}</span>
+              </div>
+            )}
             <button
               onClick={() => setShowWalkinModal(true)}
               className="px-3.5 py-2 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-bold text-xs uppercase tracking-wider flex items-center gap-1.5 cursor-pointer"
@@ -290,6 +305,17 @@ export const PosSystemPage: React.FC<PosSystemPageProps> = ({ onNavigate }) => {
               className="px-3.5 py-2 border border-[#E5DFD5] hover:border-[#5B101D] text-[#181615] font-semibold transition-colors cursor-pointer"
             >
               Inventory
+            </button>
+            <button
+              onClick={() => {
+                logoutStaff();
+                onNavigate('home');
+              }}
+              title="Lock Staff Terminal"
+              className="px-3 py-2 bg-[#460B15] hover:bg-[#5B101D] text-white flex items-center gap-1.5 cursor-pointer text-xs font-bold uppercase tracking-wider transition-colors"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Lock</span>
             </button>
           </div>
         </div>

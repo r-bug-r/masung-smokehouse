@@ -25,10 +25,9 @@ export const ReserveHeader: React.FC<ReserveHeaderProps> = ({ currentPage, onNav
   const navLinks: { id: PageId; label: string }[] = [
     { id: 'reserve', label: 'Reserve Home' },
     { id: 'menu', label: 'Menu & Macros' },
-    { id: 'pos', label: 'POS & Orders' },
+    { id: 'order', label: 'Order Online' },
     { id: 'reservation', label: 'Reservations' },
     { id: 'feedback', label: 'Reviews & Poll' },
-    { id: 'inventory', label: 'Inventory' },
   ];
 
   const handleNav = (id: PageId) => {

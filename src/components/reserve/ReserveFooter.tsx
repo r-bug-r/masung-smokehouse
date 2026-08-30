@@ -121,8 +121,8 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('pos')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
-                  POS & Live Order Workflow
+                <button onClick={() => onNavigate('order')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  Order Online & Trays
                 </button>
               </li>
               <li>
@@ -136,8 +136,8 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('inventory')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
-                  Predictive Smoker Inventory
+                <button onClick={() => onNavigate('loyalty')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  Pit Pass Rewards
                 </button>
               </li>
             </ul>

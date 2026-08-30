@@ -3,8 +3,12 @@ import type { PageId, InventoryCut } from '../types';
 import { useToast } from '../context/ToastContext';
 import { 
   Flame, 
-  AlertTriangle 
+  AlertTriangle,
+  ShieldCheck,
+  LogOut
 } from 'lucide-react';
+import { useStaffAuth } from '../context/StaffAuthContext';
+import { StaffLoginGate } from '../components/StaffLoginGate';
 
 interface InventoryPageProps {
   onNavigate: (page: PageId) => void;
@@ -107,6 +111,7 @@ const DEFAULT_INVENTORY: InventoryCut[] = [
 
 export const InventoryPage: React.FC<InventoryPageProps> = ({ onNavigate }) => {
   const { showToast } = useToast();
+  const { isStaffAuthenticated, staffUser, logoutStaff } = useStaffAuth();
 
   const [inventory, setInventory] = useState<InventoryCut[]>(() => {
     try {
@@ -171,6 +176,10 @@ export const InventoryPage: React.FC<InventoryPageProps> = ({ onNavigate }) => {
     }));
   };
 
+  if (!isStaffAuthenticated) {
+    return <StaffLoginGate onNavigate={onNavigate} terminalName="Smoker Inventory" />;
+  }
+
   return (
     <div className="min-h-screen bg-[#FBF8F3] py-10 pb-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
@@ -189,18 +198,46 @@ export const InventoryPage: React.FC<InventoryPageProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Rush Velocity Controller */}
-          <div className="flex items-center gap-2 bg-[#FBF8F3] p-2 border border-[#E5DFD5] text-xs">
-            <span className="font-bold text-[#181615]">Dining Velocity:</span>
-            <select
-              value={peakTrafficMultiplier}
-              onChange={e => setPeakTrafficMultiplier(Number(e.target.value))}
-              className="bg-white border border-[#E5DFD5] px-2 py-1 font-mono font-bold text-xs"
+          <div className="flex flex-wrap items-center gap-3">
+            {staffUser && (
+              <div className="px-3 py-2 bg-[#FBF8F3] border border-[#E5DFD5] text-[#181615] flex items-center gap-1.5 text-xs">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#5B101D]" />
+                <span className="font-mono font-bold text-[11px] uppercase">{staffUser.name}</span>
+              </div>
+            )}
+
+            {/* Rush Velocity Controller */}
+            <div className="flex items-center gap-2 bg-[#FBF8F3] p-2 border border-[#E5DFD5] text-xs">
+              <span className="font-bold text-[#181615]">Dining Velocity:</span>
+              <select
+                value={peakTrafficMultiplier}
+                onChange={e => setPeakTrafficMultiplier(Number(e.target.value))}
+                className="bg-white border border-[#E5DFD5] px-2 py-1 font-mono font-bold text-xs"
+              >
+                <option value="1.0">Normal Pace (1.0x)</option>
+                <option value="1.2">Evening Rush (1.2x)</option>
+                <option value="1.5">Weekend Feast (1.5x)</option>
+              </select>
+            </div>
+
+            <button
+              onClick={() => onNavigate('pos')}
+              className="px-3.5 py-2 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
             >
-              <option value="1.0">Normal Pace (1.0x)</option>
-              <option value="1.2">Evening Rush (1.2x)</option>
-              <option value="1.5">Weekend Feast (1.5x)</option>
-            </select>
+              POS Terminal
+            </button>
+
+            <button
+              onClick={() => {
+                logoutStaff();
+                onNavigate('home');
+              }}
+              title="Lock Staff Terminal"
+              className="px-3 py-2 bg-[#460B15] hover:bg-[#5B101D] text-white flex items-center gap-1.5 cursor-pointer text-xs font-bold uppercase tracking-wider transition-colors"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Lock</span>
+            </button>
           </div>
         </div>
 

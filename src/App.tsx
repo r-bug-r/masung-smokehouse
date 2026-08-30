@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { LoyaltyProvider } from './context/LoyaltyContext';
 import { CartProvider } from './context/CartContext';
 import { ToastProvider } from './context/ToastContext';
+import { StaffAuthProvider } from './context/StaffAuthContext';
 import type { PageId } from './types';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -116,11 +117,13 @@ const MainApp: React.FC = () => {
 export default function App() {
   return (
     <ToastProvider>
-      <LoyaltyProvider>
-        <CartProvider>
-          <MainApp />
-        </CartProvider>
-      </LoyaltyProvider>
+      <StaffAuthProvider>
+        <LoyaltyProvider>
+          <CartProvider>
+            <MainApp />
+          </CartProvider>
+        </LoyaltyProvider>
+      </StaffAuthProvider>
     </ToastProvider>
   );
 }

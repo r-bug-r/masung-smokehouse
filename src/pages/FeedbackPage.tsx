@@ -525,10 +525,10 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onNavigate }) => {
                     View All Reviews →
                   </button>
                   <button
-                    onClick={() => onNavigate('pos')}
+                    onClick={() => onNavigate('order')}
                     className="px-6 py-2.5 bg-[#C67D26] hover:bg-[#A5641A] text-white text-xs font-heading font-extrabold uppercase tracking-wider cursor-pointer transition-colors"
                   >
-                    Use Code in Live POS →
+                    Use Code in Order Now →
                   </button>
                 </div>
               </div>

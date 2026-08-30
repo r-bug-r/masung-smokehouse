@@ -468,10 +468,10 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
           </div>
 
           <button
-            onClick={() => onNavigate('pos')}
+            onClick={() => onNavigate('order')}
             className="px-5 py-2.5 bg-[#C67D26] hover:bg-[#A5641A] text-white text-xs font-heading font-extrabold uppercase tracking-wider flex items-center gap-2 transition-colors cursor-pointer"
           >
-            <span>Proceed to POS</span>
+            <span>Review Order</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>

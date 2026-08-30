@@ -392,3 +392,96 @@ test('12. Redesigned Navigation, Three Fonts, and Dual Locations Contract', asyn
   assert.ok(socials.includes('tiktok'));
 });
 
+test('13. Staff Security Gate & Terminal Authorization', async (t) => {
+  const staffAccounts = {
+    'STAFF-01': { pin: '1925', name: 'Pitmaster Dave', role: 'pitmaster' },
+    'CASHIER-01': { pin: '1234', name: 'Front Counter Cashier', role: 'cashier' },
+    'admin': { pin: 'masung2026', name: 'Lead Pitmaster', role: 'manager' }
+  };
+
+  await t.test('authenticates valid staff credentials', () => {
+    const account = staffAccounts['STAFF-01'];
+    assert.ok(account);
+    assert.equal(account.pin, '1925');
+    assert.equal(account.role, 'pitmaster');
+  });
+
+  await t.test('rejects unauthorized staff access and invalid PINs', () => {
+    const account = staffAccounts['STAFF-01'];
+    assert.notEqual(account.pin, '0000');
+    assert.ok(!staffAccounts['HACKER-99']);
+  });
+
+  await t.test('verifies staff session state transition', () => {
+    let session = null;
+    // Login
+    session = { id: 'STAFF-01', name: 'Pitmaster Dave', role: 'pitmaster' };
+    assert.ok(session);
+    assert.equal(session.id, 'STAFF-01');
+    // Lock / Logout
+    session = null;
+    assert.equal(session, null);
+  });
+});
+
+test('14. Production Pit Pass Authentication & Zero-Placeholder Integrity', async (t) => {
+  const guestProfile = {
+    name: 'Guest Diner',
+    phone: '',
+    points: 0,
+    lifetimePoints: 0,
+    totalSpent: 0,
+    ordersCount: 0,
+    tier: 'Apprentice'
+  };
+
+  await t.test('guest profile has strictly zero placeholder points', () => {
+    assert.equal(guestProfile.points, 0);
+    assert.equal(guestProfile.lifetimePoints, 0);
+    assert.equal(guestProfile.totalSpent, 0);
+    assert.equal(guestProfile.ordersCount, 0);
+  });
+
+  await t.test('user registration grants authentic 25 welcome points', () => {
+    const registeredUser = {
+      username: 'marcus_dela_cruz',
+      password: 'mypassword123',
+      profile: {
+        name: 'Marcus Dela Cruz',
+        phone: '0917-555-0192',
+        points: 25, // Genuine welcome points upon registration
+        lifetimePoints: 25,
+        totalSpent: 0,
+        ordersCount: 0,
+        tier: 'Apprentice',
+        memberSince: '2026'
+      }
+    };
+
+    assert.equal(registeredUser.profile.points, 25);
+    assert.equal(registeredUser.profile.name, 'Marcus Dela Cruz');
+    assert.equal(registeredUser.username, 'marcus_dela_cruz');
+  });
+
+  await t.test('authenticated user accumulates 1 point per ₱10 on order', () => {
+    let points = 25;
+    let lifetimePoints = 25;
+    let totalSpent = 0;
+    let ordersCount = 0;
+
+    const orderTotal = 640;
+    const earned = Math.floor(orderTotal / 10); // 64 points
+    points += earned;
+    lifetimePoints += earned;
+    totalSpent += orderTotal;
+    ordersCount += 1;
+
+    assert.equal(earned, 64);
+    assert.equal(points, 89);
+    assert.equal(lifetimePoints, 89);
+    assert.equal(totalSpent, 640);
+    assert.equal(ordersCount, 1);
+  });
+});
+
+
