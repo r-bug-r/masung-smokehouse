@@ -4,7 +4,6 @@ import { SmokehouseHero } from '../components/SmokehouseHero';
 import { AboutPreview } from '../components/AboutPreview';
 import { CraftSection } from '../components/CraftSection';
 import { LoyaltyCardShowcase } from '../components/LoyaltyCardShowcase';
-import { SpecialsBoard } from '../components/SpecialsBoard';
 import { LocationGrid } from '../components/LocationGrid';
 import { initScrollAnimations } from '../lib/animations';
 
@@ -23,22 +22,19 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
   return (
     <div className="min-h-screen bg-[#FBF8F3]">
-      {/* 1. Background Video Hero with Centered Branding & 2 CTA Buttons */}
+      {/* 1. Background Video Hero with 3D Fire MASUNG Branding & 2 CTA Buttons */}
       <SmokehouseHero onNavigate={onNavigate} />
 
       {/* 2. Authentic About Preview with 'Read More' Button */}
       <AboutPreview onNavigate={onNavigate} />
 
-      {/* 3. Parallax Craftsmanship Section ('THE FIRST SMOKEHOUSE IN U-BELT') */}
-      <CraftSection />
+      {/* 3. Horizontal Parallax Dishes Showcase ('THE FIRST SMOKEHOUSE IN U-BELT') */}
+      <CraftSection onNavigate={onNavigate} />
 
-      {/* 4. Interactive 3D Pit Pass Loyalty Card Showcase */}
+      {/* 4. Interactive 3D Pit Pass Loyalty Card Showcase (Simplified) */}
       <LoyaltyCardShowcase onNavigate={onNavigate} />
 
-      {/* 5. Menu Highlights & Specials Board */}
-      <SpecialsBoard onNavigate={onNavigate} />
-
-      {/* 6. Dual Location Grid (Montalban & U-Belt) with TikTok, FB, IG */}
+      {/* 5. Dual Location Grid (Montalban & U-Belt with Photos) + TikTok, FB, IG */}
       <LocationGrid onNavigate={onNavigate} />
     </div>
   );

@@ -24,123 +24,165 @@ export const LocationGrid: React.FC<LocationGridProps> = () => {
           </p>
         </div>
 
-        {/* Dual Location Grid: Montalban & U-Belt */}
+        {/* Dual Location Grid: Montalban & U-Belt with Authentic Location Pictures */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
           {/* Card 1: Montalban, Rizal (Original Pit) */}
-          <div className="bg-white border-2 border-[#5B101D] p-6 sm:p-8 shadow-subtle flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD5]">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-[#5B101D] text-white flex items-center justify-center">
-                    <MapPin className="w-4 h-4 text-[#C67D26]" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-extrabold text-lg uppercase text-[#181615]">
-                      Montalban Smokehouse Pit
-                    </h3>
-                    <span className="text-[10px] uppercase font-bold text-[#8A837C]">
-                      Rodriguez, Rizal
-                    </span>
-                  </div>
-                </div>
-                <span className="px-2 py-0.5 bg-[#FFF8E7] text-[#8A4F08] border border-[#C67D26]/40 text-[10px] font-mono font-bold uppercase">
-                  Main Pit
+          <div className="bg-white border-2 border-[#5B101D] shadow-subtle flex flex-col justify-between overflow-hidden group">
+            <div>
+              {/* Authentic Location Picture */}
+              <div className="relative h-52 sm:h-60 overflow-hidden bg-[#181615] border-b-2 border-[#5B101D]">
+                <img
+                  src="/locations/montalban.jpg"
+                  alt="Montalban Smokehouse Pit in Rodriguez, Rizal"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 px-3 py-1 bg-[#5B101D] text-white text-[11px] font-heading font-extrabold uppercase tracking-wider shadow-md">
+                  Original Smokehouse Pit
+                </span>
+                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-[#181615]/90 text-[#C67D26] text-[10px] font-mono font-bold uppercase border border-[#C67D26]/40 backdrop-blur-xs">
+                  Main Smoker Rig
                 </span>
               </div>
 
-              <div className="space-y-3 text-xs text-[#5C5651] leading-relaxed">
-                <div>
-                  <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                    Address:
-                  </strong>
-                  <p>Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez (Montalban), Rizal</p>
+              {/* Card Details */}
+              <div className="p-6 sm:p-7 space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD5]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-[#5B101D] text-white flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-[#C67D26]" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-extrabold text-lg uppercase text-[#181615] leading-tight">
+                        Montalban Smokehouse Pit
+                      </h3>
+                      <span className="text-[10px] uppercase font-bold text-[#8A837C]">
+                        Rodriguez, Rizal
+                      </span>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 bg-[#FFF8E7] text-[#8A4F08] border border-[#C67D26]/40 text-[10px] font-mono font-bold uppercase shrink-0">
+                    Main Pit
+                  </span>
                 </div>
 
-                <div>
-                  <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                    Schedule:
-                  </strong>
-                  <p>Tuesday – Sunday: 4:00 PM to 11:00 PM</p>
-                  <p className="text-[11px] text-[#8A837C]">(Closed Mondays for smoker curing)</p>
-                </div>
+                <div className="space-y-2.5 text-xs text-[#5C5651] leading-relaxed">
+                  <div>
+                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
+                      Address:
+                    </strong>
+                    <p>Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez (Montalban), Rizal</p>
+                  </div>
 
-                <div>
-                  <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                    Contact & Orders:
-                  </strong>
-                  <p className="font-mono font-bold text-[#181615]">0968 237 0329</p>
+                  <div>
+                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
+                      Schedule:
+                    </strong>
+                    <p>Tuesday – Sunday: 4:00 PM to 11:00 PM</p>
+                    <p className="text-[11px] text-[#8A837C]">(Closed Mondays for smoker curing)</p>
+                  </div>
+
+                  <div>
+                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
+                      Contact & Orders:
+                    </strong>
+                    <p className="font-mono font-bold text-[#181615]">0968 237 0329</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <a
-              href="https://maps.google.com/?q=Masung+Smokehouse+Rodriguez+Rizal"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-3 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-            >
-              <Navigation className="w-3.5 h-3.5 text-[#C67D26]" />
-              <span>Open Montalban Google Maps</span>
-            </a>
+            <div className="p-6 sm:p-7 pt-0">
+              <a
+                href="https://maps.google.com/?q=Masung+Smokehouse+Rodriguez+Rizal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-subtle"
+              >
+                <Navigation className="w-3.5 h-3.5 text-[#C67D26]" />
+                <span>Open Montalban Google Maps</span>
+              </a>
+            </div>
           </div>
 
           {/* Card 2: U-Belt, Manila (University Belt Pit) */}
-          <div className="bg-white border-2 border-[#181615] p-6 sm:p-8 shadow-subtle flex flex-col justify-between space-y-6">
-            <div className="space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD5]">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-[#181615] text-white flex items-center justify-center">
-                    <MapPin className="w-4 h-4 text-[#C67D26]" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-extrabold text-lg uppercase text-[#181615]">
-                      U-Belt Smokehouse Branch
-                    </h3>
-                    <span className="text-[10px] uppercase font-bold text-[#8A837C]">
-                      Sampaloc, Manila
-                    </span>
-                  </div>
-                </div>
-                <span className="px-2 py-0.5 bg-[#F2ECE1] text-[#181615] border border-[#E5DFD5] text-[10px] font-mono font-bold uppercase">
+          <div className="bg-white border-2 border-[#181615] shadow-subtle flex flex-col justify-between overflow-hidden group">
+            <div>
+              {/* Authentic Location Picture */}
+              <div className="relative h-52 sm:h-60 overflow-hidden bg-[#181615] border-b-2 border-[#181615]">
+                <img
+                  src="/locations/ubelt.jpg"
+                  alt="U-Belt Smokehouse Branch near FEU Morayta, Sampaloc, Manila"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
+                  loading="lazy"
+                />
+                <span className="absolute top-3 left-3 px-3 py-1 bg-[#181615] text-[#C67D26] text-[11px] font-heading font-extrabold uppercase tracking-wider shadow-md border border-[#C67D26]/40">
                   U-Belt Branch
+                </span>
+                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-[#181615]/90 text-white text-[10px] font-mono font-bold uppercase border border-white/20 backdrop-blur-xs">
+                  Near FEU Morayta
                 </span>
               </div>
 
-              <div className="space-y-3 text-xs text-[#5C5651] leading-relaxed">
-                <div>
-                  <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                    Address:
-                  </strong>
-                  <p>Near FEU / Morayta, Sampaloc, Manila (University Belt)</p>
+              {/* Card Details */}
+              <div className="p-6 sm:p-7 space-y-4">
+                <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD5]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-[#181615] text-white flex items-center justify-center shrink-0">
+                      <MapPin className="w-4 h-4 text-[#C67D26]" />
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-extrabold text-lg uppercase text-[#181615] leading-tight">
+                        U-Belt Smokehouse Branch
+                      </h3>
+                      <span className="text-[10px] uppercase font-bold text-[#8A837C]">
+                        Sampaloc, Manila
+                      </span>
+                    </div>
+                  </div>
+                  <span className="px-2 py-0.5 bg-[#F2ECE1] text-[#181615] border border-[#E5DFD5] text-[10px] font-mono font-bold uppercase shrink-0">
+                    U-Belt Branch
+                  </span>
                 </div>
 
-                <div>
-                  <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                    Schedule:
-                  </strong>
-                  <p>Monday – Saturday: 10:30 AM to 9:00 PM</p>
-                  <p className="text-[11px] text-[#8A837C]">(Student ₱99 Bowls & Unli Rice all day)</p>
-                </div>
+                <div className="space-y-2.5 text-xs text-[#5C5651] leading-relaxed">
+                  <div>
+                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
+                      Address:
+                    </strong>
+                    <p>Near FEU / Morayta, Sampaloc, Manila (University Belt)</p>
+                  </div>
 
-                <div>
-                  <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                    Dining Features:
-                  </strong>
-                  <p>Fast student counter service, takeout trays, delivery dispatch</p>
+                  <div>
+                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
+                      Schedule:
+                    </strong>
+                    <p>Monday – Saturday: 10:30 AM to 9:00 PM</p>
+                    <p className="text-[11px] text-[#8A837C]">(Student ₱99 Bowls & Unli Rice all day)</p>
+                  </div>
+
+                  <div>
+                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
+                      Dining Features:
+                    </strong>
+                    <p>Fast student counter service, takeout trays, delivery dispatch</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <a
-              href="https://maps.google.com/?q=Morayta+Sampaloc+Manila"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-3 bg-[#181615] hover:bg-[#2B2724] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-xs"
-            >
-              <Navigation className="w-3.5 h-3.5 text-[#C67D26]" />
-              <span>Open U-Belt Google Maps</span>
-            </a>
+            <div className="p-6 sm:p-7 pt-0">
+              <a
+                href="https://maps.google.com/?q=Morayta+Sampaloc+Manila"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full py-3.5 bg-[#181615] hover:bg-[#2B2724] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-subtle"
+              >
+                <Navigation className="w-3.5 h-3.5 text-[#C67D26]" />
+                <span>Open U-Belt Google Maps</span>
+              </a>
+            </div>
           </div>
 
         </div>

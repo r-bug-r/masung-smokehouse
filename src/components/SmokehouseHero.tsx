@@ -13,9 +13,30 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
 
+  // 3D Fire Text Tilt State
+  const [fireTilt, setFireTilt] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     animateHeroEntrance(containerRef.current);
   }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    // Subtle 3D tilt
+    const rotX = ((y - centerY) / centerY) * -12;
+    const rotY = ((x - centerX) / centerX) * 12;
+    setFireTilt({ x: rotX, y: rotY });
+  };
+
+  const handleMouseLeave = () => {
+    setFireTilt({ x: 0, y: 0 });
+  };
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -37,7 +58,9 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
   return (
     <section 
       ref={containerRef} 
-      className="relative min-h-[580px] sm:min-h-[660px] lg:min-h-[720px] flex items-center justify-center overflow-hidden bg-[#181615] text-white border-b-2 border-[#5B101D]"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative min-h-[580px] sm:min-h-[660px] lg:min-h-[720px] flex items-center justify-center overflow-hidden bg-[#181615] text-white border-b-2 border-[#5B101D] perspective-[1200px]"
     >
       {/* Background Video Layer */}
       <video
@@ -47,11 +70,11 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
         loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.75] contrast-[1.05]"
+        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.70] contrast-[1.1]"
       />
 
       {/* Dark Smokehouse Vignette & Tint Overlay */}
-      <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-[#181615] via-black/40 to-black/65 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-[#181615] via-black/45 to-black/70 pointer-events-none" />
 
       {/* Video Audio/Playback Controls (Discrete Corner Controls) */}
       <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 p-1 bg-[#181615]/80 backdrop-blur-xs border border-white/20">
@@ -73,26 +96,38 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
         </button>
       </div>
 
-      {/* Centered Hero Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center flex flex-col items-center justify-center space-y-5">
+      {/* Centered Hero Content with 3D Fire Effect */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center flex flex-col items-center justify-center space-y-6">
         
-        {/* Top Tagline / Header Text */}
-        <div className="hero-anim-item inline-flex items-center gap-2 px-4 py-1.5 bg-[#460B15]/90 border border-[#781728] text-[#FBF8F3] text-xs sm:text-sm font-bold uppercase tracking-wider backdrop-blur-xs shadow-subtle">
-          <span>Smoked in Rodriguez, Rizal • Fresh out of the smoker every afternoon</span>
-        </div>
+        {/* 3D Fire Brand Name: MASUNG with dynamic fire ember depth and 3D tilt */}
+        <div 
+          style={{
+            transform: `perspective(1000px) rotateX(${fireTilt.x}deg) rotateY(${fireTilt.y}deg)`,
+            transition: 'transform 0.15s ease-out',
+            transformStyle: 'preserve-3d'
+          }}
+          className="hero-anim-item space-y-2 select-none"
+        >
+          {/* 3D Fire Text */}
+          <div className="relative inline-block">
+            {/* Ambient Flame Glow Background Layer */}
+            <div 
+              className="absolute -inset-4 bg-radial from-[#FF5722]/30 via-[#C67D26]/15 to-transparent blur-xl pointer-events-none -z-10" 
+              aria-hidden="true"
+            />
 
-        {/* Brand Name: Large MASUNG + Small smokehouse */}
-        <div className="hero-anim-item space-y-1">
-          <h1 className="font-heading text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold uppercase tracking-tight text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)] leading-none">
-            MASUNG
-          </h1>
-          <span className="block text-sm sm:text-lg md:text-xl font-extrabold tracking-[0.35em] text-[#C67D26] uppercase drop-shadow-md">
+            <h1 className="fire-text-3d font-heading text-7xl sm:text-8xl md:text-9xl lg:text-[10.5rem] font-extrabold uppercase tracking-tight text-white leading-none">
+              MASUNG
+            </h1>
+          </div>
+
+          <span className="block text-sm sm:text-lg md:text-2xl font-extrabold tracking-[0.4em] text-[#E5DFD5] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
             smokehouse
           </span>
         </div>
 
         {/* Two Centered Action Buttons */}
-        <div className="hero-anim-item flex flex-col sm:flex-row items-center justify-center gap-3 pt-4 w-full max-w-xl">
+        <div className="hero-anim-item flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4 w-full max-w-xl">
           
           {/* Button 1: Order to Table */}
           <button

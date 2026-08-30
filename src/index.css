@@ -64,3 +64,60 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #5B101D;
 }
+
+/* 3D Fire Text Animation */
+@keyframes fireFlicker {
+  0%, 100% {
+    text-shadow: 
+      0 1px 0 #9E1B27,
+      0 2px 0 #781728,
+      0 3px 0 #5B101D,
+      0 4px 0 #32070E,
+      0 0 16px rgba(255, 87, 34, 0.9),
+      0 -4px 28px rgba(255, 152, 0, 0.8),
+      0 -12px 45px rgba(255, 193, 7, 0.65),
+      0 -24px 70px rgba(255, 87, 34, 0.45);
+    filter: drop-shadow(0 0 14px rgba(255, 69, 0, 0.85));
+  }
+  25% {
+    text-shadow: 
+      0 1px 0 #B71C1C,
+      0 2px 0 #880E4F,
+      0 3px 0 #5B101D,
+      0 4px 0 #32070E,
+      0 0 24px rgba(255, 87, 34, 1),
+      0 -7px 34px rgba(255, 152, 0, 0.95),
+      0 -15px 52px rgba(255, 193, 7, 0.75),
+      0 -28px 80px rgba(255, 87, 34, 0.55);
+    filter: drop-shadow(0 0 20px rgba(255, 87, 34, 0.95));
+  }
+  50% {
+    text-shadow: 
+      0 1px 0 #9E1B27,
+      0 2px 0 #781728,
+      0 3px 0 #5B101D,
+      0 4px 0 #32070E,
+      0 0 18px rgba(255, 87, 34, 0.85),
+      0 -3px 24px rgba(255, 152, 0, 0.75),
+      0 -10px 40px rgba(255, 193, 7, 0.6),
+      0 -20px 62px rgba(255, 87, 34, 0.4);
+    filter: drop-shadow(0 0 12px rgba(255, 69, 0, 0.75));
+  }
+  75% {
+    text-shadow: 
+      0 1px 0 #C62828,
+      0 2px 0 #781728,
+      0 3px 0 #5B101D,
+      0 4px 0 #32070E,
+      0 0 28px rgba(255, 87, 34, 1),
+      0 -8px 38px rgba(255, 152, 0, 1),
+      0 -18px 56px rgba(255, 193, 7, 0.8),
+      0 -30px 88px rgba(255, 87, 34, 0.6);
+    filter: drop-shadow(0 0 22px rgba(255, 110, 64, 1));
+  }
+}
+
+.fire-text-3d {
+  animation: fireFlicker 2.5s infinite alternate ease-in-out;
+}
+
