@@ -148,10 +148,20 @@ export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate }) 
             Montalban, Rizal
           </span>
           <h1 className="font-heading text-3xl sm:text-4xl font-extrabold uppercase text-[#181615] tracking-tight">
-            Reserve a Table
+            Event & Venue Reservation
           </h1>
           <p className="text-xs text-[#5C5651]">
-            11 tables on the 1st floor • 4 tables on the 2nd floor
+            11 tables on the 1st floor • 4 tables on the 2nd floor (15 tables total)
+          </p>
+        </div>
+
+        {/* Policy Alert Banner */}
+        <div className="bg-[#FFF8E7] border-2 border-[#C67D26] p-4 text-center max-w-2xl mx-auto space-y-1 shadow-xs">
+          <div className="text-xs font-heading font-extrabold uppercase tracking-wider text-[#8A4F08]">
+            Notice: Tables Cannot Be Individually Reserved
+          </div>
+          <p className="text-xs text-[#5C5651] leading-relaxed">
+            Individual tables are walk-in only. Advance online reservations are exclusively for <strong>Full Floor Buyouts, Organization Dinners, and Group Feasts</strong>.
           </p>
         </div>
 

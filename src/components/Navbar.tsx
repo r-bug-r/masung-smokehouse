@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import type { PageId } from '../types';
 import { useCart } from '../context/CartContext';
-import { useLoyalty } from '../context/LoyaltyContext';
-import { Award, ShoppingBag, Menu, X, Sparkles } from 'lucide-react';
+import { ShoppingBag, Calendar, Menu, X } from 'lucide-react';
 import { bounceElement } from '../lib/animations';
 
 interface NavbarProps {
@@ -11,8 +10,7 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
-  const { totalQuantity, finalTotal } = useCart();
-  const { profile } = useLoyalty();
+  const { totalQuantity } = useCart();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const trayBadgeRef = useRef<HTMLSpanElement>(null);
   const prevQuantityRef = useRef(totalQuantity);
@@ -25,13 +23,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     prevQuantityRef.current = totalQuantity;
   }, [totalQuantity]);
 
-  const navLinks: { id: PageId; label: string; icon?: React.ReactNode }[] = [
+  // Header main navigation links as requested:
+  // Home, About, Our Menu, Reviews, Contact
+  const navLinks: { id: PageId; label: string }[] = [
     { id: 'home', label: 'Home' },
-    { id: 'menu', label: 'Menu' },
-    { id: 'order', label: 'Order' },
-    { id: 'reservation', label: 'Reservations' },
-    { id: 'feedback', label: 'Reviews & Poll' },
-    { id: 'loyalty', label: 'Rewards', icon: <Award className="w-3.5 h-3.5 text-[#C67D26]" /> },
+    { id: 'about', label: 'About' },
+    { id: 'menu', label: 'Our Menu' },
+    { id: 'feedback', label: 'Reviews' },
+    { id: 'contact', label: 'Contact' },
   ];
 
   const handleNav = (page: PageId) => {
@@ -47,24 +46,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 sm:h-18">
           
-          {/* Left: Brand Identity with SMOKEHOUSE Subtext */}
+          {/* Left: Just PNG of the Logo */}
           <button 
             onClick={() => handleNav('home')}
-            className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none shrink-0 group cursor-pointer"
+            className="flex items-center text-left focus:outline-none shrink-0 group cursor-pointer py-1"
+            aria-label="Masung Smokehouse Home"
           >
             <img
-              src="/mascot.jpg"
-              alt="Masung Mascot"
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover border border-[#C67D26] group-hover:opacity-90 transition-opacity shrink-0"
+              src="/logo.png"
+              alt="Masung Smokehouse"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
             />
-            <div>
-              <span className="block font-heading text-lg sm:text-xl font-extrabold uppercase tracking-tight text-white leading-none">
-                MASUNG
-              </span>
-              <span className="block text-[10px] sm:text-[11px] uppercase font-extrabold tracking-[0.25em] text-[#C67D26] -mt-0.5">
-                SMOKEHOUSE
-              </span>
-            </div>
           </button>
 
           {/* Center: Desktop Navigation Links */}
@@ -75,14 +67,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 <button
                   key={link.id}
                   onClick={() => handleNav(link.id)}
-                  className={`text-xs font-heading font-extrabold uppercase tracking-wider py-1 transition-all flex items-center gap-1.5 relative cursor-pointer ${
+                  className={`text-xs font-heading font-extrabold uppercase tracking-wider py-1 transition-all relative cursor-pointer ${
                     isActive 
                       ? 'text-white' 
                       : 'text-[#E5DFD5] hover:text-white'
                   }`}
                 >
-                  {link.icon}
-                  {link.label}
+                  <span>{link.label}</span>
                   {isActive && (
                     <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#C67D26]" />
                   )}
@@ -91,36 +82,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             })}
           </nav>
 
-          {/* Right: Actions (Theme Switcher, Points & Order) */}
+          {/* Right: Specialized Header Buttons (Order & Reservations) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
-            {/* Reserve Edition Subtext Pill */}
-            <button
-              onClick={() => handleNav('reserve')}
-              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C67D26]/70 hover:border-[#C67D26] bg-[#460B15] hover:bg-[#32070E] text-[10px] font-heading font-bold uppercase tracking-wider text-[#E5DFD5] hover:text-white transition-all cursor-pointer shadow-subtle"
-              title="Explore Prime Cuts (Reserve Edition)"
-            >
-              <Sparkles className="w-3 h-3 text-[#C67D26]" />
-              <span>Reserve Edition</span>
-            </button>
-
-            {/* Direct Points Display (Desktop) */}
-            <button
-              onClick={() => handleNav('loyalty')}
-              className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#460B15] hover:bg-[#32070E] border border-[#781728] text-xs font-bold transition-colors cursor-pointer"
-              title="View Pit Pass points & benefits"
-            >
-              <Award className="w-3.5 h-3.5 text-[#C67D26]" />
-              <span className="text-white">{profile.points} pts</span>
-            </button>
-
-            {/* Direct Table Order Button */}
+            {/* Specialized Header Button 1: Order */}
             <button
               onClick={() => handleNav('order')}
-              className="relative px-3.5 sm:px-4 py-2 sm:py-2.5 bg-[#C67D26] hover:bg-[#A5641A] text-white text-xs font-heading font-extrabold uppercase tracking-wider transition-colors flex items-center gap-2 shadow-subtle cursor-pointer"
+              className="relative px-3 sm:px-4 py-2 bg-[#C67D26] hover:bg-[#A5641A] text-white text-xs font-heading font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-subtle cursor-pointer"
             >
-              <ShoppingBag className="w-4 h-4" />
-              <span className="hidden xs:inline sm:inline">Order</span>
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span>Order</span>
               {totalQuantity > 0 && (
                 <span
                   ref={trayBadgeRef}
@@ -129,6 +100,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                   {totalQuantity}
                 </span>
               )}
+            </button>
+
+            {/* Specialized Header Button 2: Reservations */}
+            <button
+              onClick={() => handleNav('reservation')}
+              className="px-3 sm:px-4 py-2 bg-[#460B15] hover:bg-[#32070E] border border-[#781728] hover:border-[#C67D26] text-white text-xs font-heading font-extrabold uppercase tracking-wider transition-colors flex items-center gap-1.5 cursor-pointer shadow-subtle"
+            >
+              <Calendar className="w-3.5 h-3.5 text-[#C67D26]" />
+              <span>Reservations</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -160,36 +140,25 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 }`}
               >
                 <span>{link.label}</span>
-                {link.icon}
               </button>
             ))}
-
-            <button
-              onClick={() => handleNav('reserve')}
-              className="text-left text-xs font-heading font-extrabold uppercase tracking-wider py-2.5 px-3 border border-[#C67D26]/60 bg-[#32070E] text-[#C67D26] hover:text-white flex items-center justify-between mt-2"
-            >
-              <span className="flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5" />
-                Reserve Edition Cuts
-              </span>
-              <span>→</span>
-            </button>
           </nav>
 
-          <div className="pt-3 border-t border-[#32070E] flex items-center justify-between">
+          <div className="pt-3 border-t border-[#32070E] grid grid-cols-2 gap-2">
             <button
-              onClick={() => handleNav('loyalty')}
-              className="text-xs font-bold text-[#E5DFD5] flex items-center gap-1.5"
+              onClick={() => handleNav('order')}
+              className="py-2.5 bg-[#C67D26] text-white font-heading font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5"
             >
-              <Award className="w-4 h-4 text-[#C67D26]" />
-              <span>Rewards: {profile.points} pts</span>
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span>Order ({totalQuantity})</span>
             </button>
 
             <button
-              onClick={() => handleNav('order')}
-              className="px-3.5 py-1.5 bg-[#C67D26] text-white font-heading font-extrabold text-[11px] uppercase tracking-wider"
+              onClick={() => handleNav('reservation')}
+              className="py-2.5 bg-[#5B101D] border border-[#781728] text-white font-heading font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-1.5"
             >
-              Order: {totalQuantity} Items (₱{finalTotal})
+              <Calendar className="w-3.5 h-3.5 text-[#C67D26]" />
+              <span>Reservations</span>
             </button>
           </div>
         </div>

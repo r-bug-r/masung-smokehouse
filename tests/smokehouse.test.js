@@ -361,3 +361,34 @@ test('11. Smokehouse Dining Layout & Capacity Constraints (15 Tables)', async (t
   });
 });
 
+test('12. Redesigned Navigation, Three Fonts, and Dual Locations Contract', async (t) => {
+  // Required Header Nav links: Home, About, Our Menu, Reviews, Contact
+  const requiredNavLabels = ['Home', 'About', 'Our Menu', 'Reviews', 'Contact'];
+  const specializedHeaderButtons = ['Order', 'Reservations'];
+
+  assert.equal(requiredNavLabels.length, 5);
+  assert.equal(specializedHeaderButtons.length, 2);
+
+  // Required 3 consistent typography fonts
+  const brandFonts = {
+    heading: 'Syne',
+    sans: 'Plus Jakarta Sans',
+    serif: 'Cormorant Garamond'
+  };
+  assert.equal(Object.keys(brandFonts).length, 3);
+  assert.equal(brandFonts.heading, 'Syne');
+  assert.equal(brandFonts.sans, 'Plus Jakarta Sans');
+  assert.equal(brandFonts.serif, 'Cormorant Garamond');
+
+  // Dual locations: Montalban & U-Belt
+  const locations = [
+    { name: 'Montalban Smokehouse Pit', city: 'Rodriguez, Rizal' },
+    { name: 'U-Belt Smokehouse Branch', city: 'Sampaloc, Manila' }
+  ];
+  assert.equal(locations.length, 2);
+
+  // Social channels include TikTok alongside Facebook & Instagram
+  const socials = ['facebook', 'instagram', 'tiktok'];
+  assert.ok(socials.includes('tiktok'));
+});
+

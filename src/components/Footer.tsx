@@ -16,32 +16,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           
           {/* Col 1: Brand & Slogan */}
           <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center">
               <img
-                src="/mascot.jpg"
-                alt="Masung Mascot"
-                className="w-11 h-11 rounded-full object-cover border border-[#C67D26]"
+                src="/logo.png"
+                alt="Masung Smokehouse"
+                className="h-12 w-auto object-contain"
               />
-              <div>
-                <span className="font-heading font-extrabold text-xl uppercase tracking-tight text-white block">
-                  MASUNG
-                </span>
-                <span className="text-[10px] uppercase font-bold tracking-[0.22em] text-[#C67D26] block -mt-0.5">
-                  SMOKEHOUSE
-                </span>
-              </div>
             </div>
 
             <p className="text-xs sm:text-sm text-[#8A837C] leading-relaxed max-w-md">
-              Montalban's original smokehouse. Real hardwood low & slow smoked barbecue, free red rice refills, and hot bone broth.
+              Montalban & U-Belt's original smokehouse. Real hardwood low & slow smoked barbecue, free red rice refills, and hot bone broth.
             </p>
 
-            <div className="pt-2 flex items-center gap-3">
+            <div className="pt-2 flex flex-wrap items-center gap-2.5">
               <a
                 href="https://www.facebook.com/MasungSmokeHouse/"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="px-3.5 py-2 bg-[#24201D] hover:bg-[#5B101D] text-xs font-bold text-white transition-colors flex items-center gap-2 border border-[#3A3530]"
+                className="px-3.5 py-2 bg-[#24201D] hover:bg-[#5B101D] text-xs font-bold text-white transition-colors flex items-center gap-1.5 border border-[#3A3530]"
               >
                 <span>Facebook</span>
               </a>
@@ -50,9 +42,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 href="https://www.instagram.com/masungsmokehouse"
                 target="_blank"
                 rel="noreferrer noopener"
-                className="px-3.5 py-2 bg-[#24201D] hover:bg-[#5B101D] text-xs font-bold text-white transition-colors flex items-center gap-2 border border-[#3A3530]"
+                className="px-3.5 py-2 bg-[#24201D] hover:bg-[#5B101D] text-xs font-bold text-white transition-colors flex items-center gap-1.5 border border-[#3A3530]"
               >
                 <span>Instagram</span>
+              </a>
+
+              <a
+                href="https://www.tiktok.com/@masungsmokehouse"
+                target="_blank"
+                rel="noreferrer noopener"
+                className="px-3.5 py-2 bg-[#24201D] hover:bg-[#5B101D] text-xs font-bold text-white transition-colors flex items-center gap-1.5 border border-[#3A3530]"
+              >
+                <span>TikTok</span>
               </a>
             </div>
           </div>
