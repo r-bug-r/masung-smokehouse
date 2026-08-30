@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import type { PageId, SmokehouseOrder } from '../types';
 import { useCart } from '../context/CartContext';
 import { useLoyalty } from '../context/LoyaltyContext';
 import { useToast } from '../context/ToastContext';
 import { REWARD_VOUCHERS } from '../data/rewardsData';
-import { ShoppingBag, Trash2, Plus, Minus, Check, MessageCircle, Copy, Award, Utensils, Flame, ArrowLeft, Send, Tag } from 'lucide-react';
+import { ShoppingBag, Trash2, Plus, Minus, Check, MessageCircle, Copy, Award, Utensils, ArrowLeft, Send, Tag } from 'lucide-react';
 import { sanitizeText, sanitizePhoneNumber, sanitizePromoCode } from '../lib/sanitize';
 
 interface OrderPageProps {
@@ -12,12 +12,21 @@ interface OrderPageProps {
 }
 
 const TABLE_OPTIONS = [
-  'Table 1 (Front Pit View)',
-  'Table 2 (Front Pit View)',
-  'Table 3 (Billiards Side)',
-  'Table 4 (Billiards Side)',
-  'Table 5 (Arcade Lounge)',
-  'Table 6 (Arcade Lounge)',
+  'Table 01 (1st Floor)',
+  'Table 02 (1st Floor)',
+  'Table 03 (1st Floor)',
+  'Table 04 (1st Floor)',
+  'Table 05 (1st Floor)',
+  'Table 06 (1st Floor)',
+  'Table 07 (1st Floor)',
+  'Table 08 (1st Floor)',
+  'Table 09 (1st Floor)',
+  'Table 10 (1st Floor)',
+  'Table 11 (1st Floor)',
+  'Table 12 (2nd Floor)',
+  'Table 13 (2nd Floor)',
+  'Table 14 (2nd Floor)',
+  'Table 15 (2nd Floor)',
   'Takeout / Pickup Counter'
 ];
 
@@ -55,10 +64,28 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
 
   // Local state for the generated receipt slip on-page (Zero modal popup)
   const [activeOrder, setActiveOrder] = useState<SmokehouseOrder | null>(null);
-  const [livePitStep, setLivePitStep] = useState<'slicing' | 'plating' | 'served'>('slicing');
+  const [orderLiveStatus, setOrderLiveStatus] = useState<string>('submitted_unpaid');
   const [copiedSlip, setCopiedSlip] = useState(false);
   const [promoInput, setPromoInput] = useState('');
   const [promoMsg, setPromoMsg] = useState('');
+
+  // Sync live order status from staff POS updates
+  useEffect(() => {
+    if (!activeOrder) return;
+    const interval = setInterval(() => {
+      try {
+        const stored = localStorage.getItem('masung_live_orders');
+        if (stored) {
+          const orders = JSON.parse(stored);
+          const current = orders.find((o: any) => o.id === activeOrder.id || o.orderNumber === activeOrder.id);
+          if (current && current.status) {
+            setOrderLiveStatus(current.status);
+          }
+        }
+      } catch {}
+    }, 1500);
+    return () => clearInterval(interval);
+  }, [activeOrder]);
 
   const handleApplyPromo = (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,13 +125,23 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
     });
 
     setActiveOrder(newOrder);
-    setLivePitStep('slicing');
-    showToast('Order Sent to Kitchen', `Order ${newOrder.id} confirmed! Now slicing at the pit.`, 'success');
+    setOrderLiveStatus('submitted_unpaid');
+    showToast('Order Sent to Kitchen', `Order ${newOrder.id} confirmed! Proceed to counter to pay.`, 'success');
     clearCart();
 
-    // Auto-advance the live pit simulator
-    setTimeout(() => setLivePitStep('plating'), 2500);
-    setTimeout(() => setLivePitStep('served'), 5500);
+    // Sync to live POS system
+    try {
+      const existing = localStorage.getItem('masung_live_orders');
+      const list = existing ? JSON.parse(existing) : [];
+      const livePosOrder = {
+        ...newOrder,
+        orderNumber: newOrder.id,
+        status: 'submitted_unpaid'
+      };
+      localStorage.setItem('masung_live_orders', JSON.stringify([livePosOrder, ...list]));
+    } catch {
+      // ignore
+    }
   };
 
   const handleSendToMessenger = () => {
@@ -258,54 +295,53 @@ Please confirm receipt and start carving!`;
                 </div>
               </div>
 
-              {/* Live Pit Preparation Progress Simulator */}
-              <div className="bg-[#F2ECE1] p-4 border border-[#E5DFD5] space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="font-heading font-extrabold uppercase tracking-wider text-[#5B101D] flex items-center gap-1.5">
-                    <Flame className="w-4 h-4" />
-                    <span>Live Kitchen Status</span>
+              {/* Counter Payment Notice & Live Status Tracker */}
+              <div className="bg-[#FFF8E7] border-2 border-[#C67D26] p-5 space-y-4">
+                <div className="text-center space-y-1">
+                  <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#8A4F08]">
+                    Next Step: Pay at Counter
                   </span>
-                  <span className="text-[11px] font-bold uppercase text-[#181615]">
-                    {livePitStep === 'slicing' ? 'Carving from Pit' : livePitStep === 'plating' ? 'Plating & Rice Scoop' : 'Served to Table'}
-                  </span>
+                  <h3 className="font-heading font-extrabold text-lg text-[#181615] uppercase">
+                    Present Order #{activeOrder.id} to Cashier
+                  </h3>
+                  <p className="text-xs text-[#5C5651]">
+                    Staff processes payment at the counter → Kitchen cooks → Staff serves directly to {activeOrder.tableNumber}.
+                  </p>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                  <button
-                    onClick={() => setLivePitStep('slicing')}
-                    className={`py-2 px-1 border transition-colors cursor-pointer ${
-                      livePitStep === 'slicing'
-                        ? 'bg-[#5B101D] text-white border-[#5B101D]'
-                        : 'bg-white text-[#5C5651] border-[#E5DFD5]'
-                    }`}
-                  >
-                    <span className="text-[11px] font-bold block">1. Slicing</span>
-                    <span className="text-[9px] opacity-80">Carving Meat</span>
-                  </button>
+                {/* 4-Stage Visual Status Bar */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs font-mono">
+                  <div className="p-2.5 bg-green-700 text-white font-bold border border-green-700">
+                    <span className="block text-[10px] opacity-80">Step 1</span>
+                    <span>1. Placed</span>
+                  </div>
 
-                  <button
-                    onClick={() => setLivePitStep('plating')}
-                    className={`py-2 px-1 border transition-colors cursor-pointer ${
-                      livePitStep === 'plating'
-                        ? 'bg-[#5B101D] text-white border-[#5B101D]'
-                        : 'bg-white text-[#5C5651] border-[#E5DFD5]'
-                    }`}
-                  >
-                    <span className="text-[11px] font-bold block">2. Plating</span>
-                    <span className="text-[9px] opacity-80">Steaming Rice</span>
-                  </button>
+                  <div className={`p-2.5 border transition-colors ${
+                    ['paid_counter', 'kitchen_cooking', 'ready_to_serve', 'served'].includes(orderLiveStatus)
+                      ? 'bg-green-700 text-white font-bold border-green-700'
+                      : 'bg-white text-[#C67D26] border-[#C67D26] font-bold animate-pulse'
+                  }`}>
+                    <span className="block text-[10px] opacity-80">Step 2</span>
+                    <span>{['paid_counter', 'kitchen_cooking', 'ready_to_serve', 'served'].includes(orderLiveStatus) ? '✓ Paid' : '2. Pay Counter'}</span>
+                  </div>
 
-                  <button
-                    onClick={() => setLivePitStep('served')}
-                    className={`py-2 px-1 border transition-colors cursor-pointer ${
-                      livePitStep === 'served'
-                        ? 'bg-[#181615] text-white border-[#181615]'
-                        : 'bg-white text-[#5C5651] border-[#E5DFD5]'
-                    }`}
-                  >
-                    <span className="text-[11px] font-bold block">3. Served</span>
-                    <span className="text-[9px] opacity-80">Hot to Table</span>
-                  </button>
+                  <div className={`p-2.5 border transition-colors ${
+                    ['kitchen_cooking', 'ready_to_serve', 'served'].includes(orderLiveStatus)
+                      ? 'bg-green-700 text-white font-bold border-green-700'
+                      : 'bg-white text-stone-400 border-stone-200'
+                  }`}>
+                    <span className="block text-[10px] opacity-80">Step 3</span>
+                    <span>{['kitchen_cooking', 'ready_to_serve', 'served'].includes(orderLiveStatus) ? '✓ Cooking' : '3. Cooking'}</span>
+                  </div>
+
+                  <div className={`p-2.5 border transition-colors ${
+                    orderLiveStatus === 'served'
+                      ? 'bg-green-700 text-white font-bold border-green-700'
+                      : 'bg-white text-stone-400 border-stone-200'
+                  }`}>
+                    <span className="block text-[10px] opacity-80">Step 4</span>
+                    <span>{orderLiveStatus === 'served' ? '✓ Served' : '4. Served'}</span>
+                  </div>
                 </div>
               </div>
 
@@ -313,25 +349,25 @@ Please confirm receipt and start carving!`;
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
                 <button
                   onClick={handleSendToMessenger}
-                  className="w-full sm:flex-1 py-3.5 px-5 bg-[#181615] hover:bg-[#2B2724] text-white font-heading font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-subtle"
+                  className="w-full sm:flex-1 py-3 px-4 bg-[#181615] hover:bg-[#2B2724] text-white font-heading font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-subtle"
                 >
                   <MessageCircle className="w-4 h-4" />
-                  <span>Send to Masung Messenger</span>
+                  <span>Send to Messenger</span>
                 </button>
 
                 <button
                   onClick={handleCopySlip}
-                  className="w-full sm:w-auto py-3.5 px-5 bg-white hover:bg-[#F2ECE1] text-[#181615] font-heading font-bold text-xs uppercase tracking-wider border border-[#E5DFD5] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                  className="w-full sm:w-auto py-3 px-4 bg-white hover:bg-[#F2ECE1] text-[#181615] font-heading font-bold text-xs uppercase tracking-wider border border-[#E5DFD5] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                 >
                   {copiedSlip ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
-                  <span>{copiedSlip ? 'Copied Slip' : 'Copy Text Slip'}</span>
+                  <span>{copiedSlip ? 'Copied' : 'Copy Slip'}</span>
                 </button>
 
                 <button
                   onClick={() => { setActiveOrder(null); onNavigate('menu'); }}
-                  className="w-full sm:w-auto py-3.5 px-5 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
+                  className="w-full sm:w-auto py-3 px-5 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors cursor-pointer"
                 >
-                  <span>Order More Dishes</span>
+                  <span>Order More</span>
                 </button>
               </div>
 

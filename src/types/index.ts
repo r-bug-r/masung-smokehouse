@@ -4,7 +4,12 @@ export type MenuCategory =
   | 'pinoy-classics'
   | 'rice-meals'
   | 'sides-extras'
-  | 'drinks';
+  | 'drinks'
+  | 'texas-smoked'
+  | 'sulit-bowls'
+  | 'barkada-platters'
+  | 'sides-refills'
+  | 'drinks-brews';
 
 export type PageId = 
   | 'home' 
@@ -18,20 +23,35 @@ export type PageId =
   | 'reserve-shop' 
   | 'reserve-about' 
   | 'reserve-book' 
-  | 'reserve-vip';
+  | 'reserve-vip'
+  | 'pos'
+  | 'reservation'
+  | 'feedback'
+  | 'inventory';
 
 export interface MenuVariant {
   label: string;
   price: number;
+  macros?: NutritionalMacros;
+}
+
+export interface NutritionalMacros {
+  calories: number;
+  protein: number;
+  carbs: number;
+  fat: number;
+  servingSize?: string;
 }
 
 export interface MenuItem {
   id: string;
   name: string;
   tag?: string;
-  category: 'smoked-meats' | 'pinoy-classics' | 'rice-meals' | 'sides-extras' | 'drinks';
+  category: 'smoked-meats' | 'pinoy-classics' | 'rice-meals' | 'sides-extras' | 'drinks' | 'texas-smoked' | 'sulit-bowls' | 'barkada-platters' | 'sides-refills' | 'drinks-brews';
   price: number;
   description: string;
+  macros: NutritionalMacros;
+  reserveEdition?: boolean;
   variants?: MenuVariant[];
   includesUnlimited?: string[];
   imageUrl: string;
@@ -74,8 +94,21 @@ export interface RewardVoucher {
   minTier: LoyaltyTier;
 }
 
+export type OrderStatus = 
+  | 'submitted_unpaid'    // Step 1: Order created, customer instructed to pay at counter
+  | 'paid_counter'        // Step 2: Cashier received payment, ticket sent to kitchen
+  | 'kitchen_cooking'     // Step 3: Kitchen is carving / smoking / assembling
+  | 'ready_to_serve'      // Step 4: Plated at pass, ready for staff delivery
+  | 'served'              // Step 5: Staff served to customer table
+  | 'cancelled'
+  | 'pit_smoking'         // Legacy compat
+  | 'carving_plating'     // Legacy compat
+  | 'ready_served'        // Legacy compat
+  | 'smoking';            // Legacy compat
+
 export interface SmokehouseOrder {
   id: string;
+  orderNumber?: string;
   tableNumber: string;
   orderType: 'dine-in' | 'takeout';
   customerName: string;
@@ -90,22 +123,67 @@ export interface SmokehouseOrder {
   pointsEarned: number;
   timestamp: string;
   createdAt?: string;
-  status: 'pit_smoking' | 'carving_plating' | 'ready_served' | 'smoking';
+  status: OrderStatus;
+  paymentMethod?: 'cash' | 'gcash' | 'maya' | 'card' | 'counter';
+  paymentReceivedAt?: string;
+  followToSaveDiscountApplied?: boolean;
   specialInstructions?: string;
   specialNotes?: string;
 }
 
 export interface ReserveBooking {
   id: string;
+  bookingRef?: string;
   guestName: string;
   guestPhone: string;
   guestEmail?: string;
   date: string;
   timeSlot: string;
   partySize: number;
-  seatingZone: 'full_loft_buyout' | 'upper_mezzanine' | 'ground_cafe' | 'celebration_package' | string;
+  seatingZone: 'first_floor' | 'second_floor' | 'full_venue' | string;
   eventType?: string;
   specialRequests?: string;
-  status: 'confirmed' | 'pending';
+  status: 'confirmed' | 'pending' | 'seated';
   createdAt: string;
+}
+
+export interface InventoryCut {
+  id: string;
+  name: string;
+  cutType: 'beef_brisket' | 'pork_belly' | 'pork_ribs' | 'pulled_pork' | 'red_rice' | 'bone_broth';
+  currentStockKg: number;
+  portionsRemaining: number;
+  hourlyVelocity: number; // portions per hour
+  projectedStockoutHours: number;
+  smokerBatchNumber: string;
+  hoursInPit: number;
+  targetPitHours: number;
+  status: 'in_pit' | 'resting' | 'carving_ready' | 'low_stock' | 'sold_out';
+  nextBatchEta: string;
+  minimumPrepNoticeHours: number;
+}
+
+export interface StudentPoll {
+  id: string;
+  date: string;
+  question: string;
+  context: string;
+  yesCount: number;
+  noCount: number;
+  category: 'food_debate' | 'menu_drop' | 'barkada_culture';
+  userVoted?: 'yes' | 'no';
+}
+
+export interface ReviewFeedback {
+  id: string;
+  customerName: string;
+  rating: number; // 1 to 5
+  foodRating: number;
+  smokeRating: number;
+  valueRating: number;
+  comment: string;
+  tags: string[];
+  tableOrOrder?: string;
+  createdAt: string;
+  verifiedDiner: boolean;
 }

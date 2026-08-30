@@ -26,7 +26,7 @@ export const ReserveAboutPage: React.FC<ReserveAboutPageProps> = ({ onNavigate }
             The Heritage of Philippine Hardwood Smoke
           </h1>
           <p className="text-xs sm:text-base text-[#D8C7C4] font-light leading-relaxed">
-            In an era of commercial steam combi-ovens and liquid smoke flavorings, Masung Steakhouse honors the slow, patient craft of authentic offset log-fire cooking.
+            In an era of commercial steam combi-ovens and liquid smoke flavorings, Masung Smokehouse honors the slow, patient craft of authentic offset log-fire cooking.
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export const ReserveAboutPage: React.FC<ReserveAboutPageProps> = ({ onNavigate }
                   </h4>
                 </div>
                 <p className="text-xs text-[#D8C7C4] leading-relaxed font-light pl-7">
-                  Texas barbecue technique married with beloved Filipino traditions: free unlimited heirloom red rice, rich bone broth ladled steaming hot from giant stock pots, and complimentary billiards in our Montalban neighborhood lounge.
+                  Texas barbecue technique married with beloved Filipino traditions: free unlimited heirloom red rice, rich bone broth ladled steaming hot from giant stock pots, and warm smokehouse hospitality in Montalban.
                 </p>
               </div>
 

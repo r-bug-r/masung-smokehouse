@@ -65,7 +65,7 @@ export const ReserveShopPage: React.FC<ReserveShopPageProps> = ({ onNavigate }) 
     e.preventDefault();
 
     if (items.length === 0) {
-      showToast('Board Empty', 'Please add cuts to your carving board first.', 'info');
+      showToast('Tray Empty', 'Please add cuts to your order tray first.', 'info');
       return;
     }
 
@@ -382,14 +382,16 @@ Timestamp: ${new Date(submittedOrder.timestamp).toLocaleString()}`;
                       onChange={(e) => setTableNumber(e.target.value)}
                       className="w-full bg-[#0A0406] border border-[#3D0C15] text-[#FFF5F7] px-3 py-2 text-xs focus:outline-none focus:border-[#D4AF37] font-mono cursor-pointer"
                     >
-                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((t) => (
-                        <option key={t} value={`Table ${t < 10 ? '0' + t : t}`} className="bg-[#0A0406] text-white">
-                          Table {t < 10 ? '0' + t : t}
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((t) => (
+                        <option key={t} value={`Table ${t < 10 ? '0' + t : t} (1st Floor)`} className="bg-[#0A0406] text-white">
+                          Table {t < 10 ? '0' + t : t} (1st Floor)
                         </option>
                       ))}
-                      <option value="Smoker Bar 01" className="bg-[#0A0406] text-white">Smoker Bar Counter 01</option>
-                      <option value="Smoker Bar 02" className="bg-[#0A0406] text-white">Smoker Bar Counter 02</option>
-                      <option value="Billiards Lounge" className="bg-[#0A0406] text-white">Billiards Lounge Booth</option>
+                      {[12, 13, 14, 15].map((t) => (
+                        <option key={t} value={`Table ${t} (2nd Floor)`} className="bg-[#0A0406] text-white">
+                          Table {t} (2nd Floor)
+                        </option>
+                      ))}
                     </select>
                   </div>
                 )}

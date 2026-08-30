@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PageId } from '../types';
-import { Gamepad2, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface AboutPageProps {
   onNavigate: (page: PageId) => void;
@@ -62,38 +62,37 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Section 2: Dine & Play Games Lounge */}
+        {/* Section 2: Smokehouse Dining Layout */}
         <div className="bg-[#5B101D] text-white p-8 sm:p-12 shadow-elevated border-2 border-[#460B15] space-y-8">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-[#E5DFD5] text-xs font-bold uppercase tracking-widest mb-2">
-              <Gamepad2 className="w-4 h-4" />
-              <span>Free for Guests</span>
-            </div>
-            <h2 className="font-heading text-3xl sm:text-4xl font-extrabold uppercase text-white tracking-tight">
-              Eat Barbecue. <span className="text-[#C67D26]">Play for Free.</span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#C67D26] bg-[#460B15] px-3.5 py-1 inline-block">
+              Two Floors • 15 Tables
+            </span>
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold uppercase text-white tracking-tight mt-2">
+              Smokehouse Dining Layout
             </h2>
             <p className="text-xs sm:text-sm text-[#FBF8F3]/85 mt-2 leading-relaxed">
-              We built Masung as a neighborhood hangout in Montalban. All dining customers can play our games for free while waiting for food or after eating:
+              Two comfortable dining floors in Rodriguez, Rizal:
             </p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
-                title: 'Billiards Table',
-                desc: 'Standard pool table with cues and chalk.'
+                title: '1st Floor Dining',
+                desc: '11 tables on the ground floor near the carving station.'
               },
               {
-                title: 'Retro Arcade Machine',
-                desc: 'Classic 80s and 90s arcade favorites.'
+                title: '2nd Floor Dining',
+                desc: '4 tables on the upper level for quiet dining and groups.'
               },
               {
-                title: 'Darts Lane',
-                desc: 'Official dartboard with scoring board.'
+                title: 'Free Red Rice',
+                desc: 'Unlimited heirloom red rice refills on all meal plates.'
               },
               {
-                title: 'Board Games & Foosball',
-                desc: 'Fun games for families and barkadas.'
+                title: 'Hot Bone Broth',
+                desc: 'Slow-simmered beef bone broth refills on the house.'
               }
             ].map((amenity, idx) => (
               <div key={idx} className="bg-[#460B15] p-5 border border-[#781728] space-y-2">
@@ -108,7 +107,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           </div>
 
           <div className="pt-2 border-t border-[#781728] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#E5DFD5]">
-            <span>No tokens or rental fees. Free while you dine.</span>
+            <span>11 tables on the 1st floor • 4 tables on the 2nd floor</span>
             <button
               onClick={() => onNavigate('contact')}
               className="px-5 py-2.5 bg-[#C67D26] hover:bg-[#A5641A] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors cursor-pointer"

@@ -73,8 +73,8 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
                 <div className="text-[11px] text-[#E5DFD5] uppercase tracking-wider">Rice & Broth Refills</div>
               </div>
               <div className="p-3 bg-[#460B15] border border-[#781728]">
-                <div className="font-heading text-lg font-extrabold text-[#C67D26]">Free</div>
-                <div className="text-[11px] text-[#E5DFD5] uppercase tracking-wider">Billiards & Arcade</div>
+                <div className="font-heading text-lg font-extrabold text-[#C67D26]">15 Tables</div>
+                <div className="text-[11px] text-[#E5DFD5] uppercase tracking-wider">Two Floors</div>
               </div>
             </div>
 
@@ -84,7 +84,7 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
                 onClick={() => onNavigate('menu')}
                 className="w-full sm:w-auto px-7 py-3.5 bg-[#C67D26] hover:bg-[#A5641A] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-subtle"
               >
-                <span>See Our Menu</span>
+                <span>View Menu & Macros</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -92,8 +92,15 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
                 onClick={() => onNavigate('order')}
                 className="w-full sm:w-auto px-6 py-3.5 bg-[#460B15] hover:bg-[#32070E] border border-[#781728] text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2.5 cursor-pointer"
               >
-                <QrCode className="w-4 h-4 text-[#E5DFD5]" />
-                <span>Order for Table</span>
+                <QrCode className="w-4 h-4 text-[#C67D26]" />
+                <span>Order to Table</span>
+              </button>
+
+              <button
+                onClick={() => onNavigate('reservation')}
+                className="w-full sm:w-auto px-5 py-3.5 border border-[#C67D26]/60 hover:border-[#C67D26] text-[#E5DFD5] hover:text-white font-heading font-bold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Reserve Table</span>
               </button>
             </div>
           </div>

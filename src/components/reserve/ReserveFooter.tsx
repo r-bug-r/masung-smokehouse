@@ -33,11 +33,11 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
           {/* Col 1: Brand & Location */}
           <div className="space-y-4">
             <div>
-              <span className="font-heading text-lg font-bold tracking-[0.25em] uppercase text-[#FFF5F7] block">
-                MASUNG STEAKHOUSE
+              <span className="font-heading text-lg font-bold tracking-[0.2em] uppercase text-[#FFF5F7] block">
+                MASUNG
               </span>
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37]">
-                Cafe & Smokehouse Loft • Montalban
+              <span className="text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] font-semibold">
+                SMOKEHOUSE • Reserve Edition
               </span>
             </div>
 
@@ -46,11 +46,11 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
             </p>
             <div className="flex items-center gap-2 text-[11px] text-[#D4AF37] font-medium">
               <Coffee className="w-3.5 h-3.5 shrink-0" />
-              <span>Specialty Coffee & Sourced Smoked Meats</span>
+              <span>Specialty Coffee & Hardwood Smoked Meats</span>
             </div>
             <div className="flex items-center gap-2 text-[11px] text-[#A89895] font-light">
               <MapPin className="w-3.5 h-3.5 shrink-0 text-[#8E1B2D]" />
-              <span>Capacity ~50 Guests (Ground Floor + Loft)</span>
+              <span>Dine-In • Takeout • Events</span>
             </div>
           </div>
 
@@ -68,7 +68,7 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
                 Kitchen & specialty barista service.
               </p>
               <p className="text-[11px] text-[#8E1B2D] pt-1 pl-5.5">
-                Monday: Closed (Restocking & Maintenance)
+                Monday: Closed (Pit Curing & Maintenance)
               </p>
             </div>
           </div>
@@ -86,9 +86,6 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
               <p className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#D4AF37]" />
                 <span>masungsmokehouse@gmail.com</span>
-              </p>
-              <p className="text-[11px] text-[#A89895]">
-                Event Inquiries: Hosted by Cel & Gina
               </p>
               <div className="pt-2 flex items-center gap-4 text-xs">
                 <a
@@ -112,35 +109,35 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Col 4: Reserve Navigation & Theme Switcher */}
+          {/* Col 4: Digital Platforms & Modules */}
           <div className="space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-[#D4AF37]">
-              Reserve Index
+              Digital System
             </h4>
             <ul className="space-y-2 text-xs text-[#D8C7C4]">
               <li>
-                <button onClick={() => onNavigate('reserve-menu')} className="hover:text-[#D4AF37] transition-colors">
-                  Reserve Menu & Cuts
+                <button onClick={() => onNavigate('menu')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  Menu & Nutritional Macros
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('reserve-shop')} className="hover:text-[#D4AF37] transition-colors">
-                  Carving Board Order
+                <button onClick={() => onNavigate('pos')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  POS & Live Order Workflow
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('reserve-about')} className="hover:text-[#D4AF37] transition-colors">
-                  Sourcing & Heritage
+                <button onClick={() => onNavigate('reservation')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  Table & Event Reservations
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('reserve-book')} className="hover:text-[#D4AF37] transition-colors">
-                  Event & Venue Reservation
+                <button onClick={() => onNavigate('feedback')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  Reviews & Student Poll Wall
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('reserve-vip')} className="hover:text-[#D4AF37] transition-colors">
-                  Pit Pass VIP Lounge
+                <button onClick={() => onNavigate('inventory')} className="hover:text-[#D4AF37] transition-colors cursor-pointer">
+                  Predictive Smoker Inventory
                 </button>
               </li>
             </ul>
@@ -150,7 +147,7 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
                 onClick={() => onNavigate('home')}
                 className="w-full py-2 bg-[#1C0A0F] hover:bg-[#3D0C15] text-[#D8C7C4] hover:text-white border border-[#3D0C15] text-[10px] uppercase tracking-widest transition-all cursor-pointer text-center"
               >
-                Switch to Classic Smokehouse View →
+                Casual Smokehouse View →
               </button>
             </div>
           </div>
@@ -159,11 +156,11 @@ export const ReserveFooter: React.FC<ReserveFooterProps> = ({ onNavigate }) => {
 
         {/* Hairline Bottom Bar */}
         <div className="mt-14 pt-8 border-t border-[#3D0C15]/70 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#A89895]">
-          <p>© {new Date().getFullYear()} Masung Smokehouse & Steakhouse Reserve Edition. All Rights Reserved.</p>
+          <p>© {new Date().getFullYear()} Masung Smokehouse. All Rights Reserved.</p>
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1.5 text-[#D4AF37]">
               <ShieldCheck className="w-3.5 h-3.5" />
-              <span>Sourced from Montalban, Rizal</span>
+              <span>Authentic Texas Smoke • Filipino Soul</span>
             </span>
           </div>
         </div>

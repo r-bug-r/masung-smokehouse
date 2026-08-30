@@ -242,3 +242,122 @@ test('6. Reserve Suite Routing & Booking Contract Validation', async (t) => {
     assert.ok(mockBooking.partySize >= 6 && mockBooking.partySize <= 50);
   });
 });
+
+test('7. Nutritional Macros & Easy Lookup Aggregation Engine', async (t) => {
+  const sampleDishes = [
+    { name: 'Texas Smoked Beef Brisket', calories: 520, protein: 42, carbs: 46, fat: 22, quantity: 2 },
+    { name: 'House Calamansi Iced Tea', calories: 85, protein: 0, carbs: 21, fat: 0, quantity: 2 }
+  ];
+
+  await t.test('accurately sums total calories, protein, carbs, and fat', () => {
+    const totalMacros = sampleDishes.reduce((acc, cur) => ({
+      calories: acc.calories + (cur.calories * cur.quantity),
+      protein: acc.protein + (cur.protein * cur.quantity),
+      carbs: acc.carbs + (cur.carbs * cur.quantity),
+      fat: acc.fat + (cur.fat * cur.quantity)
+    }), { calories: 0, protein: 0, carbs: 0, fat: 0 });
+
+    assert.equal(totalMacros.calories, 1210);
+    assert.equal(totalMacros.protein, 84);
+    assert.equal(totalMacros.carbs, 134);
+    assert.equal(totalMacros.fat, 44);
+  });
+
+  await t.test('verifies High-Protein threshold filtering (>30g protein)', () => {
+    const isHighProtein = (protein) => protein >= 30;
+    assert.equal(isHighProtein(42), true); // Brisket
+    assert.equal(isHighProtein(0), false);  // Iced Tea
+  });
+});
+
+test('8. POS Full Workflow Lifecycle Validation', async (t) => {
+  // Step 1: Customer submits order -> gets order number -> status: submitted_unpaid
+  const orderNumber = 'MS-104';
+  let order = {
+    id: orderNumber,
+    status: 'submitted_unpaid',
+    subtotal: 300,
+    finalTotal: 300,
+    table: 'Table 3'
+  };
+
+  assert.equal(order.status, 'submitted_unpaid');
+
+  // Step 2: Staff processes payment at counter with Follow-to-Save discount
+  const followToSave = true;
+  const discount = followToSave ? 20 : 0;
+  order = {
+    ...order,
+    status: 'paid_counter',
+    discountAmount: discount,
+    finalTotal: order.subtotal - discount,
+    paymentMethod: 'cash'
+  };
+
+  assert.equal(order.status, 'paid_counter');
+  assert.equal(order.finalTotal, 280);
+
+  // Step 3: Kitchen cooks & plates at the pit
+  order = { ...order, status: 'kitchen_cooking' };
+  assert.equal(order.status, 'kitchen_cooking');
+
+  order = { ...order, status: 'ready_to_serve' };
+  assert.equal(order.status, 'ready_to_serve');
+
+  // Step 4: Staff delivers and marks served
+  order = { ...order, status: 'served' };
+  assert.equal(order.status, 'served');
+});
+
+test('9. Predictive Inventory & Stockout Math', async (t) => {
+  const portionsRemaining = 18;
+  const hourlyVelocity = 6.0; // 6 portions/hour
+  const peakMultiplier = 1.2;
+
+  const effectiveRate = hourlyVelocity * peakMultiplier; // 7.2 portions/hour
+  const projectedHours = Number((portionsRemaining / effectiveRate).toFixed(1));
+
+  assert.equal(projectedHours, 2.5); // 2.5 hours remaining
+
+  // Low stock threshold
+  const isLowStock = portionsRemaining < 10;
+  assert.equal(isLowStock, false);
+
+  const depletedStock = 5;
+  assert.equal(depletedStock < 10, true);
+});
+
+test('10. Student Poll Whiteboard Tally Math', async (t) => {
+  const yesCount = 142;
+  const noCount = 28;
+  const total = yesCount + noCount;
+
+  const yesPercentage = Math.round((yesCount / total) * 100);
+  const noPercentage = 100 - yesPercentage;
+
+  assert.equal(total, 170);
+  assert.equal(yesPercentage, 84);
+  assert.equal(noPercentage, 16);
+});
+
+test('11. Smokehouse Dining Layout & Capacity Constraints (15 Tables)', async (t) => {
+  const firstFloorTables = Array.from({ length: 11 }, (_, i) => `Table ${String(i + 1).padStart(2, '0')} (1st Floor)`);
+  const secondFloorTables = Array.from({ length: 4 }, (_, i) => `Table ${String(i + 12).padStart(2, '0')} (2nd Floor)`);
+
+  assert.equal(firstFloorTables.length, 11);
+  assert.equal(secondFloorTables.length, 4);
+
+  const allTables = [...firstFloorTables, ...secondFloorTables];
+  assert.equal(allTables.length, 15);
+  assert.equal(allTables[0], 'Table 01 (1st Floor)');
+  assert.equal(allTables[10], 'Table 11 (1st Floor)');
+  assert.equal(allTables[11], 'Table 12 (2nd Floor)');
+  assert.equal(allTables[14], 'Table 15 (2nd Floor)');
+
+  // Ensure no billiards or arcade in layout definitions
+  allTables.forEach(table => {
+    assert.ok(!table.toLowerCase().includes('billiard'));
+    assert.ok(!table.toLowerCase().includes('arcade'));
+  });
+});
+

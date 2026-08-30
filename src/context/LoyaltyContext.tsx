@@ -45,6 +45,7 @@ const DEFAULT_ORDERS: SmokehouseOrder[] = [
           price: 239,
           description: '12-hour oakwood smoked beef brisket',
           imageUrl: 'https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?w=800&auto=format&fit=crop&q=80',
+          macros: { calories: 520, protein: 42, carbs: 46, fat: 22, servingSize: '150g' }
         },
         quantity: 1,
         selectedVariant: { label: 'Budget Serving (120g)', price: 239 }
@@ -58,6 +59,7 @@ const DEFAULT_ORDERS: SmokehouseOrder[] = [
           price: 119,
           description: 'Sour tamarind broth with smoked pork',
           imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop&q=80',
+          macros: { calories: 340, protein: 28, carbs: 32, fat: 12, servingSize: 'Bowl (350ml)' }
         },
         quantity: 1
       }

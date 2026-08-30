@@ -23,14 +23,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 className="w-11 h-11 rounded-full object-cover border border-[#C67D26]"
               />
               <div>
-                <span className="font-heading font-extrabold text-xl uppercase tracking-tight text-white">
-                  Masung <span className="text-[#C67D26]">Smokehouse</span>
+                <span className="font-heading font-extrabold text-xl uppercase tracking-tight text-white block">
+                  MASUNG
+                </span>
+                <span className="text-[10px] uppercase font-bold tracking-[0.22em] text-[#C67D26] block -mt-0.5">
+                  SMOKEHOUSE
                 </span>
               </div>
             </div>
 
             <p className="text-xs sm:text-sm text-[#8A837C] leading-relaxed max-w-md">
-              Montalban's original smokehouse. Real wood-smoked barbecue, free red rice refills, hot soup, and free games for guests.
+              Montalban's original smokehouse. Real hardwood low & slow smoked barbecue, free red rice refills, and hot bone broth.
             </p>
 
             <div className="pt-2 flex items-center gap-3">
@@ -40,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 rel="noreferrer noopener"
                 className="px-3.5 py-2 bg-[#24201D] hover:bg-[#5B101D] text-xs font-bold text-white transition-colors flex items-center gap-2 border border-[#3A3530]"
               >
-                <span>Facebook (6.7K)</span>
+                <span>Facebook</span>
               </a>
 
               <a
@@ -62,18 +65,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs text-[#8A837C]">
               <li>
                 <button
-                  onClick={() => onNavigate('home')}
-                  className="hover:text-white transition-colors cursor-pointer"
-                >
-                  Home
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => onNavigate('menu')}
                   className="hover:text-white transition-colors cursor-pointer text-white font-semibold"
                 >
-                  Menu
+                  Menu & Macros
                 </button>
               </li>
               <li>
@@ -81,7 +76,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('order')}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Order
+                  Order Tray
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('reservation')}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  Table Reservations
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('feedback')}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  Reviews & Student Poll
                 </button>
               </li>
               <li>
@@ -89,15 +100,31 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('loyalty')}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Rewards
+                  Pit Pass Rewards
+                </button>
+              </li>
+              <li className="pt-2 border-t border-[#2B2724]">
+                <button
+                  onClick={() => onNavigate('pos')}
+                  className="hover:text-white transition-colors cursor-pointer text-[#C67D26] font-semibold"
+                >
+                  Staff POS Terminal
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => onNavigate('about')}
+                  onClick={() => onNavigate('inventory')}
+                  className="hover:text-white transition-colors cursor-pointer text-stone-400"
+                >
+                  Smoker Inventory
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('loyalty')}
                   className="hover:text-white transition-colors cursor-pointer"
                 >
-                  Our Story & Games
+                  Pit Pass Rewards
                 </button>
               </li>
               <li>

@@ -28,9 +28,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   const navLinks: { id: PageId; label: string; icon?: React.ReactNode }[] = [
     { id: 'home', label: 'Home' },
     { id: 'menu', label: 'Menu' },
+    { id: 'order', label: 'Order' },
+    { id: 'reservation', label: 'Reservations' },
+    { id: 'feedback', label: 'Reviews & Poll' },
     { id: 'loyalty', label: 'Rewards', icon: <Award className="w-3.5 h-3.5 text-[#C67D26]" /> },
-    { id: 'about', label: 'Our Story & Games' },
-    { id: 'contact', label: 'Location' },
   ];
 
   const handleNav = (page: PageId) => {
@@ -43,10 +44,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     <header className="sticky top-0 z-50 w-full bg-[#5B101D] text-white border-b border-[#460B15]">
       
       {/* Main Full-Width Header */}
-      <div className="w-full px-4 sm:px-8 lg:px-12">
+      <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-16 sm:h-18">
           
-          {/* Left: Brand Identity */}
+          {/* Left: Brand Identity with SMOKEHOUSE Subtext */}
           <button 
             onClick={() => handleNav('home')}
             className="flex items-center gap-2.5 sm:gap-3 text-left focus:outline-none shrink-0 group cursor-pointer"
@@ -58,13 +59,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             />
             <div>
               <span className="block font-heading text-lg sm:text-xl font-extrabold uppercase tracking-tight text-white leading-none">
-                Masung <span className="text-[#C67D26]">Smokehouse</span>
+                MASUNG
+              </span>
+              <span className="block text-[10px] sm:text-[11px] uppercase font-extrabold tracking-[0.25em] text-[#C67D26] -mt-0.5">
+                SMOKEHOUSE
               </span>
             </div>
           </button>
 
-          {/* Center: Desktop Navigation Links Spaced Across Full Width */}
-          <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+          {/* Center: Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map(link => {
               const isActive = currentPage === link.id;
               return (
@@ -90,14 +94,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           {/* Right: Actions (Theme Switcher, Points & Order) */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
-            {/* New Design Switcher Button */}
+            {/* Reserve Edition Subtext Pill */}
             <button
               onClick={() => handleNav('reserve')}
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C67D26]/70 hover:border-[#C67D26] bg-[#460B15] hover:bg-[#32070E] text-[11px] font-heading font-bold uppercase tracking-wider text-[#E5DFD5] hover:text-white transition-all cursor-pointer shadow-subtle"
-              title="Preview the Cru Steakhouse-inspired Minimal Reserve design"
+              className="hidden xl:inline-flex items-center gap-1.5 px-3 py-1.5 border border-[#C67D26]/70 hover:border-[#C67D26] bg-[#460B15] hover:bg-[#32070E] text-[10px] font-heading font-bold uppercase tracking-wider text-[#E5DFD5] hover:text-white transition-all cursor-pointer shadow-subtle"
+              title="Explore Prime Cuts (Reserve Edition)"
             >
               <Sparkles className="w-3 h-3 text-[#C67D26]" />
-              <span>Reserve Edition →</span>
+              <span>Reserve Edition</span>
             </button>
 
             {/* Direct Points Display (Desktop) */}
@@ -141,7 +145,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         </div>
       </div>
 
-      {/* Mobile Drawer Menu (Uncluttered, responsive to mobile aspect ratio) */}
+      {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
         <div className="lg:hidden bg-[#460B15] border-t border-[#32070E] px-4 py-5 space-y-3 animate-in fade-in slide-in-from-top-2 duration-200">
           <nav className="flex flex-col space-y-1">
@@ -166,7 +170,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             >
               <span className="flex items-center gap-2">
                 <Sparkles className="w-3.5 h-3.5" />
-                Cru Reserve Edition
+                Reserve Edition Cuts
               </span>
               <span>→</span>
             </button>

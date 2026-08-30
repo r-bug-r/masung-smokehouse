@@ -17,6 +17,10 @@ import { ReserveShopPage } from './pages/reserve/ReserveShopPage';
 import { ReserveAboutPage } from './pages/reserve/ReserveAboutPage';
 import { ReserveBookPage } from './pages/reserve/ReserveBookPage';
 import { ReserveVipPage } from './pages/reserve/ReserveVipPage';
+import { PosSystemPage } from './pages/PosSystemPage';
+import { ReservationPage } from './pages/ReservationPage';
+import { FeedbackPage } from './pages/FeedbackPage';
+import { InventoryPage } from './pages/InventoryPage';
 import { ReserveHeader } from './components/reserve/ReserveHeader';
 import { ReserveFooter } from './components/reserve/ReserveFooter';
 import { transitionPage } from './lib/animations';
@@ -28,6 +32,12 @@ function getInitialPage(): PageId {
   if (hash === 'loyalty') return 'loyalty';
   if (hash === 'about') return 'about';
   if (hash === 'contact') return 'contact';
+
+  // Digital Platform Core Routes
+  if (hash === 'pos' || hash === 'kds' || hash === 'cashier') return 'pos';
+  if (hash === 'reservation' || hash === 'reservations' || hash === 'book') return 'reservation';
+  if (hash === 'feedback' || hash === 'reviews' || hash === 'poll') return 'feedback';
+  if (hash === 'inventory' || hash === 'smoker') return 'inventory';
 
   // Reserve suite routes
   if (hash === 'reserve-menu' || hash === 'reserve/menu') return 'reserve-menu';
@@ -75,15 +85,19 @@ const MainApp: React.FC = () => {
 
       {/* Main Dedicated Page View with GSAP Transition */}
       <main ref={mainRef} className="flex-1">
-        {/* Classic Pages */}
+        {/* Core Smokehouse Pages */}
         {currentPage === 'home' && <HomePage onNavigate={navigateTo} />}
         {currentPage === 'menu' && <MenuPage onNavigate={navigateTo} />}
         {currentPage === 'order' && <OrderPage onNavigate={navigateTo} />}
+        {currentPage === 'pos' && <PosSystemPage onNavigate={navigateTo} />}
+        {currentPage === 'reservation' && <ReservationPage onNavigate={navigateTo} />}
+        {currentPage === 'feedback' && <FeedbackPage onNavigate={navigateTo} />}
+        {currentPage === 'inventory' && <InventoryPage onNavigate={navigateTo} />}
         {currentPage === 'loyalty' && <LoyaltyPage onNavigate={navigateTo} />}
         {currentPage === 'about' && <AboutPage onNavigate={navigateTo} />}
         {currentPage === 'contact' && <ContactPage onNavigate={navigateTo} />}
 
-        {/* Dedicated Reserve Pages */}
+        {/* Reserve Edition Pages */}
         {currentPage === 'reserve' && <CruReservePage onNavigate={navigateTo} />}
         {currentPage === 'reserve-menu' && <ReserveMenuPage onNavigate={navigateTo} />}
         {currentPage === 'reserve-shop' && <ReserveShopPage onNavigate={navigateTo} />}
@@ -92,7 +106,7 @@ const MainApp: React.FC = () => {
         {currentPage === 'reserve-vip' && <ReserveVipPage onNavigate={navigateTo} />}
       </main>
 
-      {/* Footer: Classic Smokehouse vs Luxury Reserve Edition */}
+      {/* Footer: Classic Smokehouse vs Reserve Edition */}
       {!isCruReserve && <Footer onNavigate={navigateTo} />}
       {isCruReserve && <ReserveFooter onNavigate={navigateTo} />}
     </div>

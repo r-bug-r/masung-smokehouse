@@ -50,7 +50,7 @@ export const ReserveVipPage: React.FC<ReserveVipPageProps> = ({ onNavigate }) =>
     const success = redeemVoucher(voucher);
     if (success) {
       applyReward(voucher);
-      showToast('Reward Redeemed', `${voucher.title} applied to your table carving board!`, 'reward');
+      showToast('Reward Redeemed', `${voucher.title} applied to your order tray!`, 'reward');
     } else {
       showToast('Insufficient Points', `You need ${voucher.pointsCost} points for this reward.`, 'info');
     }
@@ -60,8 +60,8 @@ export const ReserveVipPage: React.FC<ReserveVipPageProps> = ({ onNavigate }) =>
     order.items.forEach((cartItem) => {
       addItem(cartItem.item, cartItem.selectedVariant, cartItem.notes, cartItem.spiceChoice);
     });
-    showToast('Items Added', 'Dishes from previous visit added to carving board.', 'success');
-    onNavigate('reserve-shop');
+    showToast('Items Added', 'Dishes from previous visit added to order tray.', 'success');
+    onNavigate('order');
   };
 
   return (
@@ -73,11 +73,17 @@ export const ReserveVipPage: React.FC<ReserveVipPageProps> = ({ onNavigate }) =>
           <span className="text-[11px] font-bold uppercase tracking-[0.35em] text-[#D4AF37] block">
             Privilege & Loyalty
           </span>
-          <h1 className="font-serif text-4xl sm:text-6xl font-normal text-[#FFF5F7] tracking-tight">
-            Pit Pass VIP Club
-          </h1>
-          <p className="text-xs sm:text-sm text-[#D8C7C4] font-light leading-relaxed">
-            Earn 1 BBQ Point for every ₱10 spent at Masung Steakhouse. Redeem for complimentary prime cuts, table discounts, and exclusive pitmaster cellar tastings.
+          <div className="space-y-1">
+            <span className="font-heading font-extrabold text-2xl uppercase tracking-tight text-white block">
+              MASUNG
+            </span>
+            <span className="text-xs uppercase font-bold tracking-[0.25em] text-[#D4AF37] block">
+              SMOKEHOUSE • Pit Pass Rewards
+            </span>
+          </div>
+
+          <p className="text-xs sm:text-sm text-[#D8C7C4] font-light max-w-xl mx-auto leading-relaxed">
+            Earn 1 BBQ Point for every ₱10 spent at Masung Smokehouse. Redeem for complimentary smoked cuts, bill discounts, and pitmaster specials.
           </p>
         </div>
 
@@ -91,7 +97,7 @@ export const ReserveVipPage: React.FC<ReserveVipPageProps> = ({ onNavigate }) =>
               <div className="flex justify-between items-start">
                 <div>
                   <span className="text-[9px] uppercase tracking-[0.3em] text-[#D4AF37] font-semibold block">
-                    Masung Steakhouse Reserve
+                    Masung Smokehouse Reserve
                   </span>
                   <h3 className="font-heading text-xl sm:text-2xl font-bold tracking-[0.2em] text-[#FFF5F7] uppercase mt-1">
                     Pit Pass VIP Card

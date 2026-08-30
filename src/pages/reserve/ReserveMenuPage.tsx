@@ -4,7 +4,6 @@ import { MENU_ITEMS } from '../../data/menuData';
 import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { initScrollAnimations } from '../../lib/animations';
-import { FlavorRadar } from '../../components/reserve/FlavorRadar';
 import { Search, Plus, Check } from 'lucide-react';
 
 interface ReserveMenuPageProps {
@@ -227,11 +226,6 @@ export const ReserveMenuPage: React.FC<ReserveMenuPageProps> = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Sensory Radar Component Section */}
-        <div className="pt-16 animate-section">
-          <FlavorRadar />
         </div>
 
       </div>

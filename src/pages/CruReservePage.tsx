@@ -4,7 +4,6 @@ import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { MENU_ITEMS } from '../data/menuData';
 import { initScrollAnimations } from '../lib/animations';
-import { FlavorRadar } from '../components/reserve/FlavorRadar';
 import { 
   ChevronRight, 
   ChevronLeft, 
@@ -86,8 +85,8 @@ const FAQ_ITEMS = [
     a: 'Yes. Every signature smoked meat and Pinoy classic meal is served with unlimited heirloom red rice and piping-hot beef bone broth refills with zero extra charge.'
   },
   {
-    q: 'Can dining guests play the in-house billiards and retro arcade for free?',
-    a: 'Absolutely. We offer full complimentary access to our felt billiards table, retro arcade cabinet, darts lane, and foosball lounge for all dining customers.'
+    q: 'How many tables are available for dine-in guests?',
+    a: 'We have 11 tables on the first floor and 4 tables on the second floor (15 tables total), accommodating solo diners, couples, and gatherings.'
   },
   {
     q: 'Do you accept advance table reservations and private group dining?',
@@ -134,11 +133,11 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
       {/* ------------------------------------------------------------- */}
       <section className="relative min-h-[85vh] sm:min-h-[90vh] flex flex-col justify-between overflow-hidden bg-[#0A0406]">
         
-        {/* Ambient Dark Steakhouse Imagery Backdrop */}
+        {/* Ambient Dark Smokehouse Imagery Backdrop */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1920&q=80"
-            alt="Cru Steakhouse Ambience"
+            alt="Smokehouse Ambience"
             className="w-full h-full object-cover object-center filter brightness-[0.32] contrast-[1.1] scale-105 transition-transform duration-1000 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-[#1C0A0F]/60 to-[#0A0406]/90" />
@@ -154,9 +153,17 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             U-Belt, Manila • Montalban, Rizal
           </span>
           
-          <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-[#FFF5F7] tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.05]">
-            Masung Steakhouse
-          </h1>
+          <div className="space-y-1">
+            <h1 className="font-serif text-5xl sm:text-7xl md:text-8xl font-normal text-[#FFF5F7] tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] leading-[1.05]">
+              MASUNG
+            </h1>
+            <div className="text-base sm:text-xl uppercase tracking-[0.35em] text-[#D4AF37] font-semibold">
+              SMOKEHOUSE
+            </div>
+            <div className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#A89895] pt-1 font-mono">
+              Reserve Edition • 8–16 Hours Low & Slow
+            </div>
+          </div>
 
           <p className="max-w-xl mx-auto text-sm sm:text-base text-[#E2D5D2] font-light tracking-wide leading-relaxed">
             Hand-carved oakwood smoked meats, prime cuts, and authentic Pinoy comfort food cooked low and slow for 8 to 16 hours.
@@ -212,7 +219,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                 Savor hand-carved Texas-style smoked beef brisket, tender pork belly, and rich Pinoy classics cooked low and slow over Philippine hardwood logs for 8 to 16 hours.
               </p>
               <p className="text-xs sm:text-sm text-[#5C5651] leading-relaxed mb-6">
-                Every meal includes free unlimited heirloom red rice and piping-hot bone broth refills. Dine in our neighborhood lounge with complimentary access to in-house billiards and retro arcade games.
+                Every meal includes free unlimited heirloom red rice and piping-hot bone broth refills. Relax across our 15 dining tables on the first and second floors.
               </p>
               
               <button
@@ -462,15 +469,6 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             })}
           </div>
 
-        </div>
-      </section>
-
-      {/* ------------------------------------------------------------- */}
-      {/* 7. SENSORY RADAR SECTION */}
-      {/* ------------------------------------------------------------- */}
-      <section className="animate-section py-20 bg-[#0A0406] border-t border-[#3D0C15]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <FlavorRadar />
         </div>
       </section>
 

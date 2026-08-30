@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PageId } from '../types';
-import { MapPin, Clock, Phone, Navigation, Gamepad2, ArrowRight } from 'lucide-react';
+import { MapPin, Clock, Phone, Navigation, UtensilsCrossed, ArrowRight } from 'lucide-react';
 
 interface LocationGridProps {
   onNavigate: (page: PageId) => void;
@@ -99,29 +99,29 @@ export const LocationGrid: React.FC<LocationGridProps> = ({ onNavigate }) => {
           <div className="lg:col-span-5 bg-[#5B101D] text-white p-7 sm:p-9 shadow-subtle flex flex-col justify-between space-y-6">
             <div>
               <div className="flex items-center gap-2 text-[#E5DFD5] mb-2">
-                <Gamepad2 className="w-5 h-5" />
-                <span className="text-xs font-bold tracking-widest uppercase">
-                  Free Games
+                <UtensilsCrossed className="w-5 h-5" />
+                <span className="text-[10px] uppercase font-bold tracking-widest text-[#C67D26] block">
+                  Two Floors • 15 Tables
                 </span>
               </div>
               <h3 className="font-heading font-extrabold text-2xl uppercase tracking-tight text-white leading-tight">
-                Eat Barbecue. <br />
-                <span className="text-[#C67D26]">Play for Free.</span>
+                Dine-In <br />
+                <span className="text-[#C67D26]">Experience</span>
               </h3>
               <p className="text-xs sm:text-sm text-[#FBF8F3]/85 mt-3 leading-relaxed">
-                Bring your friends or family. Dining guests can play while waiting for food or after dinner:
+                Enjoy authentic hardwood-smoked barbecue in our two-level Montalban restaurant:
               </p>
 
               <div className="mt-5 space-y-2.5">
                 {[
-                  'Billiards Pool Table',
-                  'Retro Arcade Machine',
-                  'Darts Lane',
-                  'Board Games & Foosball'
-                ].map((game, i) => (
+                  '11 Tables on the 1st Floor (Ground Level)',
+                  '4 Tables on the 2nd Floor (Upper Level)',
+                  'Free Unlimited Heirloom Red Rice Refills',
+                  'Free Piping-Hot Bone Broth Refills'
+                ].map((feature, i) => (
                   <div key={i} className="flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#FBF8F3]">
                     <span className="w-1.5 h-1.5 bg-[#C67D26]" />
-                    <span>{game}</span>
+                    <span>{feature}</span>
                   </div>
                 ))}
               </div>
