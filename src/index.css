@@ -1,12 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-heading: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Bebas Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-bebas: 'Bebas Neue', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-nav: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-button: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-label: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-montserrat: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-poppins: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
 
-  /* Solid Premium Palette - Zero Gradients */
-  --color-cream: #FBF8F3;
+  /* Solid Premium Palette - 1:1 Match to Design System */
+  --color-cream: #F5EFEB;
+  --color-cream-light: #FAF7F2;
+  --color-cream-dark: #EAE3D9;
   --color-surface: #FFFFFF;
   --color-sand: #E5DFD5;
   --color-sand-light: #F2ECE1;
@@ -17,8 +26,10 @@
 
   --color-ochre: #C67D26;
   --color-ochre-dark: #A5641A;
+  --color-gold: #C67D26;
 
-  --color-charcoal: #181615;
+  --color-charcoal: #1E1E1E;
+  --color-charcoal-dark: #141312;
   --color-charcoal-muted: #5C5651;
   --color-charcoal-subtle: #8A837C;
 }
@@ -28,15 +39,15 @@
     border-color: #E5DFD5;
   }
   body {
-    background-color: #FBF8F3;
-    color: #181615;
-    font-family: var(--font-sans);
+    background-color: #F5EFEB;
+    color: #1E1E1E;
+    font-family: var(--font-body);
     overflow-x: hidden;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
-    letter-spacing: -0.02em;
-    color: #181615;
+    letter-spacing: 0.02em;
+    color: #1E1E1E;
   }
 }
 

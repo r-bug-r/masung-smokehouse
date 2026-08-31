@@ -6,7 +6,10 @@ import {
   CheckCircle2, 
   CalendarCheck, 
   Check, 
-  MapPin 
+  MapPin,
+  Clock,
+  Phone,
+  Users
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -84,17 +87,17 @@ export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate }) 
     {
       id: 'first_floor' as const,
       name: '1st Floor (Tables 01 – 11)',
-      desc: '11 tables on the ground floor.'
+      desc: '11 dining tables on the ground floor.'
     },
     {
       id: 'second_floor' as const,
       name: '2nd Floor (Tables 12 – 15)',
-      desc: '4 tables on the upper floor.'
+      desc: '4 dining tables on the upper floor.'
     },
     {
       id: 'full_venue' as const,
-      name: 'Full Floor Buyout',
-      desc: 'Reserved floor for private group gatherings.'
+      name: 'Full Floor Event Buyout',
+      desc: 'Reserved floor for large barkada celebrations.'
     }
   ];
 
@@ -139,204 +142,160 @@ export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate }) 
   };
 
   return (
-    <div className="min-h-screen bg-[#FBF8F3] py-8 pb-24">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+    <div className="min-h-screen bg-[#F5EFEB] py-12 sm:py-16 lg:py-20 pb-28">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 space-y-12">
         
         {/* Header */}
-        <div className="text-center space-y-1">
-          <span className="text-[10px] font-bold uppercase tracking-widest text-[#5B101D] bg-[#E5DFD5]/70 px-2.5 py-0.5 inline-block">
-            Montalban, Rizal
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <span className="text-xs font-montserrat font-extrabold uppercase tracking-widest text-[#C67D26] block">
+            TABLE & EVENT RESERVATIONS
           </span>
-          <h1 className="font-heading text-3xl sm:text-4xl font-extrabold uppercase text-[#181615] tracking-tight">
-            Event & Venue Reservation
+          <h1 className="font-bebas text-4xl sm:text-5xl lg:text-6xl font-bold uppercase tracking-tight text-[#1E1E1E]">
+            BOOK YOUR SMOKEHOUSE SEATS
           </h1>
-          <p className="text-xs text-[#5C5651]">
-            11 tables on the 1st floor • 4 tables on the 2nd floor (15 tables total)
+          <p className="font-body text-xs sm:text-sm text-[#5C5651] max-w-lg mx-auto">
+            15 total dining tables across two floors in Rodriguez, Rizal and U-Belt Manila. Reserve in advance with zero booking fees.
           </p>
         </div>
 
-        {/* Policy Alert Banner */}
-        <div className="bg-[#FFF8E7] border-2 border-[#C67D26] p-4 text-center max-w-2xl mx-auto space-y-1 shadow-xs">
-          <div className="text-xs font-heading font-extrabold uppercase tracking-wider text-[#8A4F08]">
-            Notice: Tables Cannot Be Individually Reserved
-          </div>
-          <p className="text-xs text-[#5C5651] leading-relaxed">
-            Individual tables are walk-in only. Advance online reservations are exclusively for <strong>Full Floor Buyouts, Organization Dinners, and Group Feasts</strong>.
-          </p>
-        </div>
-
-        {/* Confirmation Screen */}
+        {/* Confirmed Confirmation Voucher */}
         {confirmedBooking && (
-          <div className="bg-white border-2 border-green-700 p-6 sm:p-8 max-w-xl mx-auto space-y-5">
-            <div className="text-center space-y-1.5 pb-4 border-b border-[#E5DFD5]">
-              <CheckCircle2 className="w-10 h-10 text-green-700 mx-auto" />
-              <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#C67D26]">
-                Confirmed
+          <div className="max-w-2xl mx-auto bg-white rounded-2xl border-2 border-emerald-600 p-6 sm:p-8 shadow-elevated text-center space-y-4 animate-in fade-in zoom-in-95">
+            <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="w-8 h-8" />
+            </div>
+            <div className="space-y-1">
+              <span className="text-xs font-montserrat font-extrabold uppercase tracking-widest text-emerald-700 block">
+                BOOKING CONFIRMED
               </span>
-              <h2 className="font-heading font-extrabold text-2xl text-[#181615]">
-                Ref #{confirmedBooking.bookingRef}
+              <h2 className="font-bebas text-3xl uppercase text-[#1E1E1E]">
+                Reference #{confirmedBooking.bookingRef}
               </h2>
-              <p className="text-xs text-[#5C5651]">
-                Reserved for <strong>{confirmedBooking.guestName}</strong> ({confirmedBooking.partySize} Guests)
+              <p className="font-body text-xs text-[#5C5651]">
+                Salamat, {confirmedBooking.guestName}! Your table has been reserved for {confirmedBooking.date} at {confirmedBooking.timeSlot} ({confirmedBooking.partySize} guests).
               </p>
             </div>
-
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="p-2.5 bg-[#FBF8F3] border border-[#E5DFD5]">
-                <div className="text-[10px] text-[#8A837C] uppercase">Date</div>
-                <div className="font-bold text-[#181615]">{confirmedBooking.date}</div>
-              </div>
-              <div className="p-2.5 bg-[#FBF8F3] border border-[#E5DFD5]">
-                <div className="text-[10px] text-[#8A837C] uppercase">Time</div>
-                <div className="font-bold text-[#181615]">{confirmedBooking.timeSlot}</div>
-              </div>
-              <div className="p-2.5 bg-[#FBF8F3] border border-[#E5DFD5]">
-                <div className="text-[10px] text-[#8A837C] uppercase">Seating</div>
-                <div className="font-bold text-[#181615]">
-                  {confirmedBooking.seatingZone === 'first_floor' ? '1st Floor (Tables 1-11)' : confirmedBooking.seatingZone === 'second_floor' ? '2nd Floor (Tables 12-15)' : 'Full Floor'}
-                </div>
-              </div>
-              <div className="p-2.5 bg-[#FBF8F3] border border-[#E5DFD5]">
-                <div className="text-[10px] text-[#8A837C] uppercase">Contact</div>
-                <div className="font-bold text-[#181615]">{confirmedBooking.guestPhone}</div>
-              </div>
-            </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => setConfirmedBooking(null)}
-                className="flex-1 py-2.5 bg-[#5B101D] text-white font-heading font-bold text-xs uppercase tracking-wider cursor-pointer"
-              >
-                New Reservation
-              </button>
-              <button
-                onClick={() => onNavigate('menu')}
-                className="flex-1 py-2.5 bg-[#C67D26] text-white font-heading font-bold text-xs uppercase tracking-wider cursor-pointer"
-              >
-                View Menu →
-              </button>
-            </div>
+            <button
+              onClick={() => setConfirmedBooking(null)}
+              className="px-6 py-2.5 bg-[#5B101D] text-white font-montserrat font-extrabold text-xs uppercase tracking-wider rounded-md"
+            >
+              Book Another Table
+            </button>
           </div>
         )}
 
-        {/* Booking Form */}
-        {!confirmedBooking && (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            
-            <form onSubmit={handleSubmit} className="lg:col-span-8 bg-white border border-[#E5DFD5] p-5 sm:p-6 space-y-5">
+        {/* 2-Column Booking Form & Floor Breakdown */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* Left Column: Booking Form */}
+          <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl border border-[#E5DFD5] shadow-subtle space-y-6">
+            <div className="pb-4 border-b border-[#EAE3D9]">
+              <h2 className="font-bebas text-2xl uppercase text-[#1E1E1E]">
+                Reservation Details
+              </h2>
+              <p className="font-body text-xs text-[#5C5651]">
+                Fill out your details to secure table space for your barkada.
+              </p>
+            </div>
+
+            <form onSubmit={handleSubmit} className="space-y-5 font-body text-xs">
               
-              {/* Floor Selection */}
-              <div className="space-y-2">
-                <label className="text-xs font-bold uppercase tracking-wider text-[#181615] block">
-                  Select Seating Area:
+              {/* Floor Seating Zone */}
+              <div>
+                <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-2">
+                  Select Seating Floor:
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {seatingOptions.map(opt => {
-                    const isSelected = seatingZone === opt.id;
-                    return (
-                      <div
-                        key={opt.id}
-                        onClick={() => setSeatingZone(opt.id)}
-                        className={`p-3 border cursor-pointer transition-all ${
-                          isSelected
-                            ? 'bg-[#FBF8F3] border-[#5B101D] ring-1 ring-[#5B101D]'
-                            : 'bg-white border-[#E5DFD5] hover:border-[#C67D26]'
-                        }`}
-                      >
-                        <div className="flex justify-between items-start mb-0.5">
-                          <span className="font-heading font-extrabold text-xs uppercase text-[#181615]">
-                            {opt.name}
-                          </span>
-                          {isSelected && <Check className="w-3.5 h-3.5 text-[#5B101D]" />}
-                        </div>
-                        <p className="text-[11px] text-[#5C5651]">
-                          {opt.desc}
-                        </p>
-                      </div>
-                    );
-                  })}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {seatingOptions.map(opt => (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => setSeatingZone(opt.id)}
+                      className={`p-3.5 rounded-xl border text-left transition-all cursor-pointer ${
+                        seatingZone === opt.id
+                          ? 'bg-[#5B101D] text-white border-[#5B101D] shadow-xs'
+                          : 'bg-[#FAF7F2] text-[#5C5651] border-[#E5DFD5] hover:border-[#5B101D]'
+                      }`}
+                    >
+                      <strong className="font-montserrat font-bold text-xs uppercase block">
+                        {opt.name}
+                      </strong>
+                      <span className="text-[11px] opacity-80 block mt-1">
+                        {opt.desc}
+                      </span>
+                    </button>
+                  ))}
                 </div>
               </div>
 
-              {/* Schedule and Party */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+              {/* Date & Time Slot */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="font-bold text-[#181615] uppercase tracking-wider block mb-1">
-                    Date:
+                  <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-1">
+                    Reservation Date:
                   </label>
                   <input
                     type="date"
                     required
                     value={date}
                     onChange={e => setDate(e.target.value)}
-                    className="w-full p-2 bg-[#FBF8F3] border border-[#E5DFD5] text-xs font-bold focus:outline-none focus:border-[#5B101D]"
+                    className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E5DFD5] rounded text-xs focus:outline-none focus:border-[#5B101D]"
                   />
                 </div>
 
                 <div>
-                  <label className="font-bold text-[#181615] uppercase tracking-wider block mb-1">
-                    Time:
+                  <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-1">
+                    Time Slot:
                   </label>
                   <select
                     value={timeSlot}
                     onChange={e => setTimeSlot(e.target.value)}
-                    className="w-full p-2 bg-[#FBF8F3] border border-[#E5DFD5] text-xs font-semibold focus:outline-none focus:border-[#5B101D]"
+                    className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E5DFD5] rounded text-xs focus:outline-none focus:border-[#5B101D]"
                   >
                     <option value="12:00 PM">12:00 PM (Lunch)</option>
-                    <option value="01:30 PM">01:30 PM (Afternoon)</option>
-                    <option value="04:00 PM">04:00 PM (Opening)</option>
-                    <option value="05:30 PM">05:30 PM (Early Dinner)</option>
-                    <option value="06:00 PM">06:00 PM (Dinner)</option>
-                    <option value="07:30 PM">07:30 PM (Peak)</option>
-                    <option value="08:45 PM">08:45 PM (Late)</option>
+                    <option value="01:30 PM">01:30 PM (Lunch)</option>
+                    <option value="04:00 PM">04:00 PM (Early Dinner)</option>
+                    <option value="06:00 PM">06:00 PM (Prime Dinner)</option>
+                    <option value="07:30 PM">07:30 PM (Prime Dinner)</option>
+                    <option value="09:00 PM">09:00 PM (Late Dinner)</option>
                   </select>
-                </div>
-
-                <div>
-                  <label className="font-bold text-[#181615] uppercase tracking-wider block mb-1">
-                    Guests:
-                  </label>
-                  <div className="flex items-center border border-[#E5DFD5] bg-[#FBF8F3]">
-                    <button
-                      type="button"
-                      onClick={() => setPartySize(Math.max(1, partySize - 1))}
-                      className="px-3 py-1.5 font-bold hover:bg-[#E5DFD5] cursor-pointer"
-                    >
-                      -
-                    </button>
-                    <span className="flex-1 text-center font-bold text-xs">
-                      {partySize} {partySize === 1 ? 'Guest' : 'Guests'}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setPartySize(partySize + 1)}
-                      className="px-3 py-1.5 font-bold hover:bg-[#E5DFD5] cursor-pointer"
-                    >
-                      +
-                    </button>
-                  </div>
                 </div>
               </div>
 
-              {/* Guest Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1 border-t border-[#E5DFD5]">
+              {/* Party Size, Name & Contact */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="font-bold text-[#181615] uppercase tracking-wider block mb-1">
-                    Name:
+                  <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-1">
+                    Party Size:
+                  </label>
+                  <input
+                    type="number"
+                    min={1}
+                    max={40}
+                    required
+                    value={partySize}
+                    onChange={e => setPartySize(Number(e.target.value))}
+                    className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E5DFD5] rounded text-xs focus:outline-none focus:border-[#5B101D]"
+                  />
+                </div>
+
+                <div>
+                  <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-1">
+                    Full Name:
                   </label>
                   <input
                     type="text"
                     required
                     value={guestName}
                     onChange={e => setGuestName(e.target.value)}
-                    placeholder="Full name"
-                    className="w-full p-2 bg-[#FBF8F3] border border-[#E5DFD5] text-xs focus:outline-none focus:border-[#5B101D]"
+                    placeholder="e.g. Patricia Mendoza"
+                    className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E5DFD5] rounded text-xs focus:outline-none focus:border-[#5B101D]"
                   />
                 </div>
 
                 <div>
-                  <label className="font-bold text-[#181615] uppercase tracking-wider block mb-1">
-                    Mobile:
+                  <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-1">
+                    Mobile Number:
                   </label>
                   <input
                     type="tel"
@@ -344,113 +303,79 @@ export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate }) 
                     value={guestPhone}
                     onChange={e => setGuestPhone(e.target.value)}
                     placeholder="0917-xxx-xxxx"
-                    className="w-full p-2 bg-[#FBF8F3] border border-[#E5DFD5] text-xs focus:outline-none focus:border-[#5B101D]"
-                  />
-                </div>
-
-                <div className="sm:col-span-2">
-                  <label className="font-bold text-[#181615] uppercase tracking-wider block mb-1">
-                    Special Requests (Optional):
-                  </label>
-                  <input
-                    type="text"
-                    value={specialRequests}
-                    onChange={e => setSpecialRequests(e.target.value)}
-                    placeholder="e.g. Birthday, high chair, dietary preference"
-                    className="w-full p-2 bg-[#FBF8F3] border border-[#E5DFD5] text-xs focus:outline-none focus:border-[#5B101D]"
+                    className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E5DFD5] rounded text-xs focus:outline-none focus:border-[#5B101D]"
                   />
                 </div>
               </div>
 
+              {/* Special Requests */}
+              <div>
+                <label className="font-montserrat font-bold text-[#1E1E1E] uppercase tracking-wider block mb-1">
+                  Special Notes / Occasion (Optional):
+                </label>
+                <input
+                  type="text"
+                  value={specialRequests}
+                  onChange={e => setSpecialRequests(e.target.value)}
+                  placeholder="e.g. Birthday celebration, high chair needed..."
+                  className="w-full px-3.5 py-2.5 bg-[#FAF7F2] border border-[#E5DFD5] rounded text-xs focus:outline-none focus:border-[#5B101D]"
+                />
+              </div>
+
               <button
                 type="submit"
-                className="w-full py-3 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="w-full py-3.5 bg-[#5B101D] hover:bg-[#460B15] text-white font-montserrat font-extrabold text-xs uppercase tracking-wider rounded-md transition-colors shadow-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 <CalendarCheck className="w-4 h-4 text-[#C67D26]" />
                 <span>Confirm Reservation</span>
               </button>
 
             </form>
+          </div>
 
-            {/* Quick Info Card */}
-            <div className="lg:col-span-4 bg-white border border-[#E5DFD5] p-5 space-y-4 text-xs">
-              <div className="flex items-center gap-2 pb-2 border-b border-[#E5DFD5]">
-                <MapPin className="w-4 h-4 text-[#5B101D]" />
-                <strong className="font-heading uppercase text-[#181615]">Location & Hours</strong>
-              </div>
-
-              <div className="space-y-2 text-[#5C5651]">
-                <p>
-                  <strong>Address:</strong><br />
-                  Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez, Rizal
-                </p>
-                <p>
-                  <strong>Hours:</strong><br />
-                  Tuesday – Sunday: 4:00 PM – 11:00 PM<br />
-                  (Closed Mondays for pit curing)
-                </p>
-                <p>
-                  <strong>Phone:</strong><br />
-                  0968 237 0329
+          {/* Right Column: Seating Capacity Guide */}
+          <div className="lg:col-span-5 space-y-6">
+            
+            <div className="bg-white p-6 sm:p-8 rounded-2xl border border-[#E5DFD5] shadow-subtle space-y-5">
+              <div className="pb-4 border-b border-[#EAE3D9]">
+                <h3 className="font-bebas text-2xl uppercase text-[#1E1E1E]">
+                  Dining Space Capacity
+                </h3>
+                <p className="font-body text-xs text-[#5C5651]">
+                  15 curated tables tailored for solo diners, barkadas, and family feasts.
                 </p>
               </div>
 
-              <div className="pt-2 border-t border-[#E5DFD5]">
-                <span className="text-[10px] text-[#8A837C] block uppercase font-mono">
-                  Seating Capacity
-                </span>
-                <span className="text-xs font-bold text-[#181615]">
-                  11 Tables (1st Floor) • 4 Tables (2nd Floor)
-                </span>
+              <div className="space-y-4 font-body text-xs text-[#5C5651]">
+                <div className="p-4 bg-[#FAF7F2] rounded-xl border border-[#EAE3D9] space-y-1">
+                  <strong className="font-montserrat font-extrabold text-xs text-[#5B101D] uppercase block">
+                    1st Floor: Ground Dining (11 Tables)
+                  </strong>
+                  <p>
+                    Fast-casual communal tables right near the counter and hot soup refill kettle.
+                  </p>
+                </div>
+
+                <div className="p-4 bg-[#FAF7F2] rounded-xl border border-[#EAE3D9] space-y-1">
+                  <strong className="font-montserrat font-extrabold text-xs text-[#5B101D] uppercase block">
+                    2nd Floor: Upper Mezzanine (4 Tables)
+                  </strong>
+                  <p>
+                    Cozy mezzanine space with comfortable seating for larger groups and quiet study breaks.
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2 text-[#5B101D] pt-2">
+                  <Users className="w-4 h-4" />
+                  <span className="font-montserrat font-bold text-xs">
+                    Total Capacity: 60+ Seats across both floors
+                  </span>
+                </div>
               </div>
             </div>
 
           </div>
-        )}
 
-        {/* Live Reservation Board */}
-        <div className="bg-white border border-[#E5DFD5] p-5 space-y-3">
-          <div className="flex justify-between items-center pb-2 border-b border-[#E5DFD5]">
-            <h3 className="font-heading font-extrabold text-sm uppercase text-[#181615]">
-              Upcoming Reservations ({reservationsList.length})
-            </h3>
-            <span className="text-[10px] font-mono text-[#8A837C]">
-              Host Desk
-            </span>
-          </div>
-
-          <div className="divide-y divide-[#E5DFD5] text-xs">
-            {reservationsList.map(res => (
-              <div key={res.id} className="py-2.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono font-bold text-[#5B101D]">#{res.id}</span>
-                    <strong className="text-[#181615]">{res.guestName}</strong>
-                    <span className="text-[#8A837C]">({res.partySize}pax)</span>
-                  </div>
-                  <div className="text-[#5C5651] text-[11px]">
-                    {res.date} • {res.timeSlot} • {res.seatingZone === 'first_floor' ? '1st Floor (Tables 1-11)' : res.seatingZone === 'second_floor' ? '2nd Floor (Tables 12-15)' : 'Full Floor'}
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className={`px-2 py-0.5 font-bold uppercase text-[9px] ${
-                    res.status === 'seated'
-                      ? 'bg-blue-100 text-blue-800'
-                      : 'bg-green-100 text-green-800'
-                  }`}>
-                    {res.status}
-                  </span>
-                  <button
-                    onClick={() => handleUpdateStatus(res.id, res.status === 'seated' ? 'confirmed' : 'seated')}
-                    className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 text-[#181615] text-[10px] border border-[#E5DFD5] cursor-pointer"
-                  >
-                    {res.status === 'seated' ? 'Undo' : 'Mark Seated'}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
       </div>

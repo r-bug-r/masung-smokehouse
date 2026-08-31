@@ -24,9 +24,13 @@ import { FeedbackPage } from './pages/FeedbackPage';
 import { InventoryPage } from './pages/InventoryPage';
 import { ReserveHeader } from './components/reserve/ReserveHeader';
 import { ReserveFooter } from './components/reserve/ReserveFooter';
+import { MobileBottomNav } from './components/MobileBottomNav';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { transitionPage } from './lib/animations';
 
 function getInitialPage(): PageId {
+
+
   const hash = window.location.hash.replace('#/', '').replace('#', '').toLowerCase();
   if (hash === 'menu') return 'menu';
   if (hash === 'order') return 'order';
@@ -110,6 +114,12 @@ const MainApp: React.FC = () => {
       {/* Footer: Classic Smokehouse vs Reserve Edition */}
       {!isCruReserve && <Footer onNavigate={navigateTo} />}
       {isCruReserve && <ReserveFooter onNavigate={navigateTo} />}
+
+      {/* PWA Install Prompt Banner */}
+      <PWAInstallBanner />
+
+      {/* Sticky Mobile App Bottom Bar */}
+      {!isCruReserve && <MobileBottomNav currentPage={currentPage} onNavigate={navigateTo} />}
     </div>
   );
 };

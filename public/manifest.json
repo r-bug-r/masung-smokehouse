@@ -1,0 +1,31 @@
+{
+  "name": "Masung Smokehouse | Real Smoke. Real Good.",
+  "short_name": "Masung",
+  "description": "Real hardwood low & slow smoked barbecue, free red rice refills, and hot bone broth in Montalban & U-Belt.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5EFEB",
+  "theme_color": "#5B101D",
+  "orientation": "portrait-primary",
+  "categories": ["food", "restaurant", "shopping"],
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PageId } from '../types';
-import { MapPin, Navigation, ExternalLink } from 'lucide-react';
+import { MapPin, Clock, Phone, Navigation, Flame, Car, Utensils } from 'lucide-react';
 
 interface LocationGridProps {
   onNavigate?: (page: PageId) => void;
@@ -8,230 +8,245 @@ interface LocationGridProps {
 
 export const LocationGrid: React.FC<LocationGridProps> = () => {
   return (
-    <section id="locations" className="animate-section py-16 sm:py-20 bg-[#FBF8F3] border-b border-[#E5DFD5]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section id="locations" className="py-16 sm:py-20 lg:py-24 bg-[#F5EFEB] border-b border-[#E5DFD5]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 space-y-12">
         
-        {/* Simple Clean Header: Location */}
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#5B101D] bg-[#E5DFD5]/70 px-3.5 py-1 inline-block">
-            Find Our Pits
+        {/* Section Header: Eyebrow, Headline, Subtitle */}
+        <div className="text-center max-w-2xl mx-auto space-y-1.5">
+          <span className="text-xs font-montserrat font-extrabold uppercase tracking-widest text-[#C67D26] block">
+            FIND OUR PITS
           </span>
-          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#181615]">
-            Location
+          <h2 className="font-bebas text-5xl sm:text-6xl font-bold uppercase tracking-tight text-[#1E1E1E]">
+            LOCATIONS
           </h2>
-          <p className="text-xs sm:text-sm text-[#5C5651]">
-            Quick addresses and maps for Montalban (Rizal) and U-Belt (Manila).
+          <p className="font-body text-sm sm:text-base text-[#5C5651]">
+            Two pits. Same smoke. Different sides of the metro.
           </p>
         </div>
 
-        {/* Dual Location Grid: Montalban & U-Belt with Authentic Location Pictures */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Dual Location Grid (1:1 Match) */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           
-          {/* Card 1: Montalban, Rizal (Original Pit) */}
-          <div className="bg-white border-2 border-[#5B101D] shadow-subtle flex flex-col justify-between overflow-hidden group">
+          {/* Card 1: Montalban Smokehouse Pit (Rodriguez, Rizal) */}
+          <div className="bg-white rounded-xl border border-[#E5DFD5] shadow-subtle flex flex-col justify-between overflow-hidden group hover:shadow-elevated transition-all">
             <div>
-              {/* Authentic Location Picture */}
-              <div className="relative h-52 sm:h-60 overflow-hidden bg-[#181615] border-b-2 border-[#5B101D]">
+              {/* Photo with Badge */}
+              <div className="relative h-60 sm:h-64 overflow-hidden bg-[#181615]">
                 <img
                   src="/locations/montalban.jpg"
                   alt="Montalban Smokehouse Pit in Rodriguez, Rizal"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
                   loading="lazy"
                 />
-                <span className="absolute top-3 left-3 px-3 py-1 bg-[#5B101D] text-white text-[11px] font-heading font-extrabold uppercase tracking-wider shadow-md">
-                  Original Smokehouse Pit
-                </span>
-                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-[#181615]/90 text-[#C67D26] text-[10px] font-mono font-bold uppercase border border-[#C67D26]/40 backdrop-blur-xs">
-                  Main Smoker Rig
+                <span className="absolute top-3.5 left-3.5 px-3 py-1 bg-[#5B101D] text-white text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md">
+                  MAIN PIT
                 </span>
               </div>
 
-              {/* Card Details */}
-              <div className="p-6 sm:p-7 space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD5]">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-[#5B101D] text-white flex items-center justify-center shrink-0">
-                      <MapPin className="w-4 h-4 text-[#C67D26]" />
+              {/* Details */}
+              <div className="p-6 sm:p-7 space-y-5">
+                
+                {/* Title and City */}
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-[#5B101D] text-white flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-[#C67D26]" />
+                  </div>
+                  <div>
+                    <h3 className="font-montserrat font-extrabold text-base sm:text-lg uppercase text-[#1E1E1E] leading-tight">
+                      MONTALBAN SMOKEHOUSE PIT
+                    </h3>
+                    <span className="font-montserrat font-bold text-xs uppercase text-[#C67D26]">
+                      RODRIGUEZ, RIZAL
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3-Column Info Row */}
+                <div className="grid grid-cols-3 gap-2 py-3 border-y border-[#E5DFD5] text-center">
+                  <div className="space-y-0.5 pr-2 border-r border-[#E5DFD5]">
+                    <Clock className="w-4 h-4 text-[#5B101D] mx-auto mb-1" />
+                    <strong className="font-montserrat font-extrabold text-[11px] text-[#1E1E1E] block leading-tight">
+                      4:00 PM – 11:00 PM
+                    </strong>
+                    <span className="font-body text-[10px] text-[#8A837C] uppercase">
+                      TUES – SUN
+                    </span>
+                  </div>
+
+                  <div className="space-y-0.5 px-2 border-r border-[#E5DFD5]">
+                    <Phone className="w-4 h-4 text-[#5B101D] mx-auto mb-1" />
+                    <strong className="font-montserrat font-extrabold text-[11px] text-[#1E1E1E] block leading-tight">
+                      0968 237 0329
+                    </strong>
+                    <span className="font-body text-[10px] text-[#8A837C] uppercase">
+                      CALL / TEXT
+                    </span>
+                  </div>
+
+                  <div className="space-y-0.5 pl-2">
+                    <Car className="w-4 h-4 text-[#5B101D] mx-auto mb-1" />
+                    <strong className="font-montserrat font-extrabold text-[11px] text-[#1E1E1E] block leading-tight">
+                      PARKING
+                    </strong>
+                    <span className="font-body text-[10px] text-[#8A837C] uppercase">
+                      AVAILABLE
+                    </span>
+                  </div>
+                </div>
+
+                {/* Macro Sample Box */}
+                <div className="bg-[#FAF7F2] rounded-lg p-3 border border-[#EAE3D9] space-y-1">
+                  <div className="grid grid-cols-3 gap-1 text-center">
+                    <div>
+                      <strong className="font-montserrat font-extrabold text-xs text-[#1E1E1E] block">650 CAL</strong>
+                      <span className="font-body text-[9px] text-[#8A837C] uppercase">CALORIES</span>
+                    </div>
+                    <div className="border-x border-[#E5DFD5]">
+                      <strong className="font-montserrat font-extrabold text-xs text-[#1E1E1E] block">45g</strong>
+                      <span className="font-body text-[9px] text-[#8A837C] uppercase">PROTEIN</span>
                     </div>
                     <div>
-                      <h3 className="font-heading font-extrabold text-lg uppercase text-[#181615] leading-tight">
-                        Montalban Smokehouse Pit
-                      </h3>
-                      <span className="text-[10px] uppercase font-bold text-[#8A837C]">
-                        Rodriguez, Rizal
-                      </span>
+                      <strong className="font-montserrat font-extrabold text-xs text-[#1E1E1E] block">48g</strong>
+                      <span className="font-body text-[9px] text-[#8A837C] uppercase">CARBS</span>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 bg-[#FFF8E7] text-[#8A4F08] border border-[#C67D26]/40 text-[10px] font-mono font-bold uppercase shrink-0">
-                    Main Pit
+                  <span className="font-body text-[10px] text-[#8A837C] text-center block pt-1">
+                    *Example from Beef Brisket Platter
                   </span>
                 </div>
 
-                <div className="space-y-2.5 text-xs text-[#5C5651] leading-relaxed">
-                  <div>
-                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                      Address:
-                    </strong>
-                    <p>Block 43 Lot 13 Phase 02 Dela Costa V, Burgos, Rodriguez (Montalban), Rizal</p>
-                  </div>
-
-                  <div>
-                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                      Schedule:
-                    </strong>
-                    <p>Tuesday – Sunday: 4:00 PM to 11:00 PM</p>
-                    <p className="text-[11px] text-[#8A837C]">(Closed Mondays for smoker curing)</p>
-                  </div>
-
-                  <div>
-                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                      Contact & Orders:
-                    </strong>
-                    <p className="font-mono font-bold text-[#181615]">0968 237 0329</p>
-                  </div>
-                </div>
               </div>
             </div>
 
+            {/* View on Maps Button */}
             <div className="p-6 sm:p-7 pt-0">
               <a
                 href="https://maps.google.com/?q=Masung+Smokehouse+Rodriguez+Rizal"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 bg-[#5B101D] hover:bg-[#460B15] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-subtle"
+                className="w-full py-3.5 bg-[#5B101D] hover:bg-[#460B15] text-white font-montserrat font-extrabold text-xs uppercase tracking-wider rounded-md transition-all flex items-center justify-center gap-2 shadow-subtle hover:scale-[1.01]"
               >
-                <Navigation className="w-3.5 h-3.5 text-[#C67D26]" />
-                <span>Open Montalban Google Maps</span>
+                <Navigation className="w-4 h-4 text-[#C67D26]" />
+                <span>VIEW ON MAPS</span>
               </a>
             </div>
+
           </div>
 
-          {/* Card 2: U-Belt, Manila (University Belt Pit) */}
-          <div className="bg-white border-2 border-[#181615] shadow-subtle flex flex-col justify-between overflow-hidden group">
+          {/* Card 2: U-Belt Smokehouse Branch (Sampaloc, Manila) */}
+          <div className="bg-white rounded-xl border border-[#E5DFD5] shadow-subtle flex flex-col justify-between overflow-hidden group hover:shadow-elevated transition-all">
             <div>
-              {/* Authentic Location Picture */}
-              <div className="relative h-52 sm:h-60 overflow-hidden bg-[#181615] border-b-2 border-[#181615]">
+              {/* Photo with Badge */}
+              <div className="relative h-60 sm:h-64 overflow-hidden bg-[#181615]">
                 <img
                   src="/locations/ubelt.jpg"
-                  alt="U-Belt Smokehouse Branch near FEU Morayta, Sampaloc, Manila"
+                  alt="U-Belt Smokehouse Branch in Sampaloc, Manila"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
                   loading="lazy"
                 />
-                <span className="absolute top-3 left-3 px-3 py-1 bg-[#181615] text-[#C67D26] text-[11px] font-heading font-extrabold uppercase tracking-wider shadow-md border border-[#C67D26]/40">
-                  U-Belt Branch
-                </span>
-                <span className="absolute bottom-3 right-3 px-2.5 py-1 bg-[#181615]/90 text-white text-[10px] font-mono font-bold uppercase border border-white/20 backdrop-blur-xs">
-                  Near FEU Morayta
+                <span className="absolute top-3.5 left-3.5 px-3 py-1 bg-[#1E1E1E] text-white text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md">
+                  U-BELT BRANCH
                 </span>
               </div>
 
-              {/* Card Details */}
-              <div className="p-6 sm:p-7 space-y-4">
-                <div className="flex items-center justify-between pb-3 border-b border-[#E5DFD5]">
-                  <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-[#181615] text-white flex items-center justify-center shrink-0">
-                      <MapPin className="w-4 h-4 text-[#C67D26]" />
+              {/* Details */}
+              <div className="p-6 sm:p-7 space-y-5">
+                
+                {/* Title and City */}
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-lg bg-[#1E1E1E] text-white flex items-center justify-center shrink-0">
+                    <MapPin className="w-5 h-5 text-[#C67D26]" />
+                  </div>
+                  <div>
+                    <h3 className="font-montserrat font-extrabold text-base sm:text-lg uppercase text-[#1E1E1E] leading-tight">
+                      U-BELT SMOKEHOUSE BRANCH
+                    </h3>
+                    <span className="font-montserrat font-bold text-xs uppercase text-[#C67D26]">
+                      SAMPALOC, MANILA
+                    </span>
+                  </div>
+                </div>
+
+                {/* 3-Column Info Row */}
+                <div className="grid grid-cols-3 gap-2 py-3 border-y border-[#E5DFD5] text-center">
+                  <div className="space-y-0.5 pr-2 border-r border-[#E5DFD5]">
+                    <Clock className="w-4 h-4 text-[#5B101D] mx-auto mb-1" />
+                    <strong className="font-montserrat font-extrabold text-[11px] text-[#1E1E1E] block leading-tight">
+                      10:30 AM – 9:00 PM
+                    </strong>
+                    <span className="font-body text-[10px] text-[#8A837C] uppercase">
+                      MON – SAT
+                    </span>
+                  </div>
+
+                  <div className="space-y-0.5 px-2 border-r border-[#E5DFD5]">
+                    <Phone className="w-4 h-4 text-[#5B101D] mx-auto mb-1" />
+                    <strong className="font-montserrat font-extrabold text-[11px] text-[#1E1E1E] block leading-tight">
+                      0968 237 0329
+                    </strong>
+                    <span className="font-body text-[10px] text-[#8A837C] uppercase">
+                      CALL / TEXT
+                    </span>
+                  </div>
+
+                  <div className="space-y-0.5 pl-2">
+                    <Utensils className="w-4 h-4 text-[#5B101D] mx-auto mb-1" />
+                    <strong className="font-montserrat font-extrabold text-[11px] text-[#1E1E1E] block leading-tight">
+                      STUDENT-
+                    </strong>
+                    <span className="font-body text-[10px] text-[#8A837C] uppercase">
+                      FRIENDLY
+                    </span>
+                  </div>
+                </div>
+
+                {/* Macro Sample Box */}
+                <div className="bg-[#FAF7F2] rounded-lg p-3 border border-[#EAE3D9] space-y-1">
+                  <div className="grid grid-cols-3 gap-1 text-center">
+                    <div>
+                      <strong className="font-montserrat font-extrabold text-xs text-[#1E1E1E] block">560 CAL</strong>
+                      <span className="font-body text-[9px] text-[#8A837C] uppercase">CALORIES</span>
+                    </div>
+                    <div className="border-x border-[#E5DFD5]">
+                      <strong className="font-montserrat font-extrabold text-xs text-[#1E1E1E] block">32g</strong>
+                      <span className="font-body text-[9px] text-[#8A837C] uppercase">PROTEIN</span>
                     </div>
                     <div>
-                      <h3 className="font-heading font-extrabold text-lg uppercase text-[#181615] leading-tight">
-                        U-Belt Smokehouse Branch
-                      </h3>
-                      <span className="text-[10px] uppercase font-bold text-[#8A837C]">
-                        Sampaloc, Manila
-                      </span>
+                      <strong className="font-montserrat font-extrabold text-xs text-[#1E1E1E] block">61g</strong>
+                      <span className="font-body text-[9px] text-[#8A837C] uppercase">CARBS</span>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 bg-[#F2ECE1] text-[#181615] border border-[#E5DFD5] text-[10px] font-mono font-bold uppercase shrink-0">
-                    U-Belt Branch
+                  <span className="font-body text-[10px] text-[#8A837C] text-center block pt-1">
+                    *Example from P99 Bowl
                   </span>
                 </div>
 
-                <div className="space-y-2.5 text-xs text-[#5C5651] leading-relaxed">
-                  <div>
-                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                      Address:
-                    </strong>
-                    <p>Near FEU / Morayta, Sampaloc, Manila (University Belt)</p>
-                  </div>
-
-                  <div>
-                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                      Schedule:
-                    </strong>
-                    <p>Monday – Saturday: 10:30 AM to 9:00 PM</p>
-                    <p className="text-[11px] text-[#8A837C]">(Student ₱99 Bowls & Unli Rice all day)</p>
-                  </div>
-
-                  <div>
-                    <strong className="text-[#181615] block uppercase font-bold text-[11px] mb-0.5">
-                      Dining Features:
-                    </strong>
-                    <p>Fast student counter service, takeout trays, delivery dispatch</p>
-                  </div>
-                </div>
               </div>
             </div>
 
+            {/* View on Maps Button */}
             <div className="p-6 sm:p-7 pt-0">
               <a
-                href="https://maps.google.com/?q=Morayta+Sampaloc+Manila"
+                href="https://maps.google.com/?q=University+Belt+Sampaloc+Manila"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3.5 bg-[#181615] hover:bg-[#2B2724] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer shadow-subtle"
+                className="w-full py-3.5 bg-[#1E1E1E] hover:bg-[#32070E] text-white font-montserrat font-extrabold text-xs uppercase tracking-wider rounded-md transition-all flex items-center justify-center gap-2 shadow-subtle hover:scale-[1.01]"
               >
-                <Navigation className="w-3.5 h-3.5 text-[#C67D26]" />
-                <span>Open U-Belt Google Maps</span>
+                <Navigation className="w-4 h-4 text-[#C67D26]" />
+                <span>VIEW ON MAPS</span>
               </a>
             </div>
+
           </div>
 
         </div>
 
-        {/* Social Follow Strip: Facebook, Instagram, and TikTok */}
-        <div className="bg-[#181615] text-white p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 border-2 border-[#5B101D] shadow-subtle">
-          <div className="space-y-1 text-center md:text-left">
-            <h4 className="font-heading font-extrabold text-base uppercase text-white tracking-wider">
-              Follow Masung Smokehouse
-            </h4>
-            <p className="text-xs text-[#A89F96]">
-              Catch live pit slicing alerts, secret menus, and daily student specials on our socials.
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            {/* Facebook Button */}
-            <a
-              href="https://www.facebook.com/MasungSmokeHouse/"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="px-4 py-2.5 bg-[#24201D] hover:bg-[#5B101D] text-xs font-heading font-extrabold uppercase tracking-wider text-white transition-colors flex items-center gap-2 border border-[#3D3733]"
-            >
-              <span>Facebook</span>
-              <ExternalLink className="w-3 h-3 text-[#C67D26]" />
-            </a>
-
-            {/* Instagram Button */}
-            <a
-              href="https://www.instagram.com/masungsmokehouse"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="px-4 py-2.5 bg-[#24201D] hover:bg-[#5B101D] text-xs font-heading font-extrabold uppercase tracking-wider text-white transition-colors flex items-center gap-2 border border-[#3D3733]"
-            >
-              <span>Instagram</span>
-              <ExternalLink className="w-3 h-3 text-[#C67D26]" />
-            </a>
-
-            {/* TikTok Button */}
-            <a
-              href="https://www.tiktok.com/@masungsmokehouse"
-              target="_blank"
-              rel="noreferrer noopener"
-              className="px-4 py-2.5 bg-[#24201D] hover:bg-[#5B101D] text-xs font-heading font-extrabold uppercase tracking-wider text-white transition-colors flex items-center gap-2 border border-[#3D3733]"
-            >
-              <span>TikTok</span>
-              <ExternalLink className="w-3 h-3 text-[#C67D26]" />
-            </a>
-          </div>
+        {/* 1:1 Full-Width Bottom Banner Strip */}
+        <div className="bg-[#5B101D] text-white py-4 px-6 rounded-xl flex items-center justify-center gap-3 text-center shadow-md">
+          <Flame className="w-5 h-5 text-[#C67D26] shrink-0" />
+          <span className="font-montserrat font-extrabold text-xs sm:text-sm uppercase tracking-widest">
+            REAL SMOKE. REAL FLAVOR. REAL FILIPINO HOSPITALITY.
+          </span>
         </div>
 
       </div>

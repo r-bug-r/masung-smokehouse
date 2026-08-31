@@ -1,156 +1,124 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import type { PageId } from '../types';
-import { Play, Pause, Volume2, VolumeX, ShoppingBag, Calendar } from 'lucide-react';
-import { animateHeroEntrance } from '../lib/animations';
+import { ShoppingBag, Calendar, MapPin, Clock, Users } from 'lucide-react';
 
 interface SmokehouseHeroProps {
   onNavigate: (page: PageId) => void;
 }
 
 export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-
-  // 3D Fire Text Tilt State
-  const [fireTilt, setFireTilt] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    animateHeroEntrance(containerRef.current);
-  }, []);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-
-    // Subtle 3D tilt
-    const rotX = ((y - centerY) / centerY) * -12;
-    const rotY = ((x - centerX) / centerX) * 12;
-    setFireTilt({ x: rotX, y: rotY });
-  };
-
-  const handleMouseLeave = () => {
-    setFireTilt({ x: 0, y: 0 });
-  };
-
-  const togglePlay = () => {
-    if (!videoRef.current) return;
-    if (isPlaying) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    } else {
-      videoRef.current.play();
-      setIsPlaying(true);
-    }
-  };
-
-  const toggleMute = () => {
-    if (!videoRef.current) return;
-    videoRef.current.muted = !isMuted;
-    setIsMuted(!isMuted);
-  };
-
   return (
-    <section 
-      ref={containerRef} 
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative min-h-[580px] sm:min-h-[660px] lg:min-h-[720px] flex items-center justify-center overflow-hidden bg-[#181615] text-white border-b-2 border-[#5B101D] perspective-[1200px]"
-    >
-      {/* Background Video Layer */}
-      <video
-        ref={videoRef}
-        src="https://assets.mixkit.co/videos/46668/46668-720.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover filter brightness-[0.70] contrast-[1.1]"
-      />
-
-      {/* Dark Smokehouse Vignette & Tint Overlay */}
-      <div className="absolute inset-0 bg-black/60 bg-gradient-to-t from-[#181615] via-black/45 to-black/70 pointer-events-none" />
-
-      {/* Video Audio/Playback Controls (Discrete Corner Controls) */}
-      <div className="absolute top-4 right-4 z-20 flex items-center gap-1.5 p-1 bg-[#181615]/80 backdrop-blur-xs border border-white/20">
-        <button
-          onClick={togglePlay}
-          className="p-1.5 hover:bg-white/20 transition-colors text-white cursor-pointer"
-          title={isPlaying ? 'Pause Background Video' : 'Play Background Video'}
-          aria-label="Toggle Video Playback"
-        >
-          {isPlaying ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5 fill-current" />}
-        </button>
-        <button
-          onClick={toggleMute}
-          className="p-1.5 hover:bg-white/20 transition-colors text-white cursor-pointer"
-          title={isMuted ? 'Unmute Video Audio' : 'Mute Video Audio'}
-          aria-label="Toggle Video Audio"
-        >
-          {isMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5" />}
-        </button>
-      </div>
-
-      {/* Centered Hero Content with 3D Fire Effect */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center flex flex-col items-center justify-center space-y-6">
+    <section className="relative bg-[#F5EFEB] text-[#1E1E1E] border-b border-[#E5DFD5] overflow-hidden pt-8 sm:pt-12 lg:pt-14 pb-0">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         
-        {/* 3D Fire Brand Name: MASUNG with dynamic fire ember depth and 3D tilt */}
-        <div 
-          style={{
-            transform: `perspective(1000px) rotateX(${fireTilt.x}deg) rotateY(${fireTilt.y}deg)`,
-            transition: 'transform 0.15s ease-out',
-            transformStyle: 'preserve-3d'
-          }}
-          className="hero-anim-item space-y-2 select-none"
-        >
-          {/* 3D Fire Text */}
-          <div className="relative inline-block">
-            {/* Ambient Flame Glow Background Layer */}
-            <div 
-              className="absolute -inset-4 bg-radial from-[#FF5722]/30 via-[#C67D26]/15 to-transparent blur-xl pointer-events-none -z-10" 
-              aria-hidden="true"
-            />
+        {/* Main Hero Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+          
+          {/* Left Column: Headlines & CTA Buttons (1:1 with Mockup) */}
+          <div className="lg:col-span-6 space-y-6 z-10 py-4">
+            
+            {/* Big 1:1 Headline */}
+            <div className="space-y-0">
+              <h1 className="font-bebas text-6xl sm:text-7xl md:text-8xl lg:text-[7.2rem] font-bold uppercase tracking-tight leading-[0.88] select-none">
+                <span className="text-[#5B101D] block">REAL SMOKE.</span>
+                <span className="text-[#1E1E1E] block">REAL GOOD.</span>
+              </h1>
+            </div>
 
-            <h1 className="fire-text-3d font-heading text-7xl sm:text-8xl md:text-9xl lg:text-[10.5rem] font-extrabold uppercase tracking-tight text-white leading-none">
-              MASUNG
-            </h1>
+            {/* Red Accent Dash */}
+            <div className="w-12 h-1 bg-[#5B101D]" />
+
+            {/* Subtext */}
+            <p className="font-body text-base sm:text-lg text-[#1E1E1E] leading-relaxed font-normal max-w-md">
+              Smoked to perfection.<br />
+              Made for the U-Belt.
+            </p>
+
+            {/* 2 CTA Action Buttons (1:1 with Mockup) */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
+              
+              {/* Button 1: Order to Table (Solid Maroon) */}
+              <button
+                onClick={() => onNavigate('order')}
+                className="px-7 sm:px-8 py-3.5 sm:py-4 bg-[#5B101D] hover:bg-[#460B15] text-white font-montserrat font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-subtle hover:scale-[1.01]"
+              >
+                <ShoppingBag className="w-4 h-4" />
+                <span>ORDER TO TABLE</span>
+              </button>
+
+              {/* Button 2: Event Reservation (Outline Maroon) */}
+              <button
+                onClick={() => onNavigate('reservation')}
+                className="px-7 sm:px-8 py-3.5 sm:py-4 bg-transparent hover:bg-[#5B101D]/5 border-2 border-[#5B101D] text-[#5B101D] font-montserrat font-extrabold text-xs sm:text-sm uppercase tracking-wider rounded-xs transition-all flex items-center justify-center gap-2 cursor-pointer shadow-subtle hover:scale-[1.01]"
+              >
+                <Calendar className="w-4 h-4 text-[#5B101D]" />
+                <span>EVENT RESERVATION</span>
+              </button>
+
+            </div>
+
           </div>
 
-          <span className="block text-sm sm:text-lg md:text-2xl font-extrabold tracking-[0.4em] text-[#E5DFD5] uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-            smokehouse
-          </span>
+          {/* Right Column: High Fidelity Platter Image (Baked-in Stamp Seal) */}
+          <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
+            <div className="relative w-full max-w-xl lg:max-w-none overflow-hidden rounded-2xl shadow-elevated">
+              <img
+                src="/masung_smoked_meat_hero_hd.png"
+                alt="Masung Smokehouse Slow-Smoked Barbecue Meat HD"
+                className="w-full h-auto max-h-[540px] object-cover object-center filter contrast-[1.03] hover:scale-[1.02] transition-transform duration-700"
+              />
+            </div>
+          </div>
+
         </div>
 
-        {/* Two Centered Action Buttons */}
-        <div className="hero-anim-item flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-4 w-full max-w-xl">
+        {/* Bottom 3-Column Info Strip (1:1 Match) */}
+        <div className="mt-10 lg:mt-14 border-t border-[#E5DFD5] py-6 grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm">
           
-          {/* Button 1: Order to Table */}
-          <button
-            onClick={() => onNavigate('order')}
-            className="w-full sm:w-auto px-8 py-4 bg-[#C67D26] hover:bg-[#A5641A] text-white font-heading font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-elevated hover:scale-[1.02]"
-          >
-            <ShoppingBag className="w-4 h-4" />
-            <span>Order to Table</span>
-          </button>
-
-          {/* Button 2: Event Reservation (tables can't be individually reserved) */}
-          <button
-            onClick={() => onNavigate('reservation')}
-            className="w-full sm:w-auto px-6 py-3.5 bg-[#5B101D]/90 hover:bg-[#460B15] border border-[#781728] hover:border-[#C67D26] text-white font-heading font-extrabold text-xs uppercase tracking-wider transition-all flex flex-col items-center justify-center cursor-pointer shadow-elevated hover:scale-[1.02] text-center"
-          >
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5 text-[#C67D26]" />
-              <span>Event Reservation</span>
+          {/* Item 1: Located in U-Belt */}
+          <div className="flex items-center gap-3.5 pr-4 md:border-r border-[#E5DFD5]">
+            <div className="w-9 h-9 rounded-full bg-[#EAE3D9] flex items-center justify-center shrink-0 text-[#5B101D]">
+              <MapPin className="w-4 h-4" />
             </div>
-            <span className="text-[10px] text-[#E5DFD5] font-normal normal-case mt-0.5 opacity-90">
-              (tables can't be individually reserved)
-            </span>
-          </button>
+            <div>
+              <strong className="font-montserrat font-bold uppercase tracking-wider text-[#1E1E1E] block text-xs sm:text-sm">
+                LOCATED IN U-BELT
+              </strong>
+              <span className="font-body text-[#5C5651] text-xs">
+                Near students. For students.
+              </span>
+            </div>
+          </div>
+
+          {/* Item 2: Open Daily */}
+          <div className="flex items-center gap-3.5 pr-4 md:border-r border-[#E5DFD5]">
+            <div className="w-9 h-9 rounded-full bg-[#EAE3D9] flex items-center justify-center shrink-0 text-[#5B101D]">
+              <Clock className="w-4 h-4" />
+            </div>
+            <div>
+              <strong className="font-montserrat font-bold uppercase tracking-wider text-[#1E1E1E] block text-xs sm:text-sm">
+                OPEN DAILY
+              </strong>
+              <span className="font-body text-[#5C5651] text-xs">
+                11:00 AM – 10:00 PM
+              </span>
+            </div>
+          </div>
+
+          {/* Item 3: Good Food, Good People */}
+          <div className="flex items-center gap-3.5">
+            <div className="w-9 h-9 rounded-full bg-[#EAE3D9] flex items-center justify-center shrink-0 text-[#5B101D]">
+              <Users className="w-4 h-4" />
+            </div>
+            <div>
+              <strong className="font-montserrat font-bold uppercase tracking-wider text-[#1E1E1E] block text-xs sm:text-sm">
+                GOOD FOOD.
+              </strong>
+              <span className="font-montserrat font-bold uppercase tracking-wider text-[#5C5651] text-xs sm:text-sm block">
+                GOOD PEOPLE.
+              </span>
+            </div>
+          </div>
 
         </div>
 
@@ -158,3 +126,4 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
     </section>
   );
 };
+
