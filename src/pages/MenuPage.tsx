@@ -14,12 +14,10 @@ import {
   Heart, 
   ChevronDown, 
   ChevronUp, 
-  Plus, 
-  ChevronLeft, 
-  ChevronRight,
   Search,
   ArrowRight
 } from 'lucide-react';
+
 
 
 interface MenuPageProps {

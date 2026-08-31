@@ -1,6 +1,8 @@
 import React from 'react';
 import type { PageId } from '../types';
-import { ArrowRight, Flame, TreePine, Heart, Users, Sparkles, MapPin } from 'lucide-react';
+import { ArrowRight, Flame, TreePine, Heart, Users, Sparkles } from 'lucide-react';
+
+
 
 interface AboutPageProps {
   onNavigate: (page: PageId) => void;

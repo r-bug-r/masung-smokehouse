@@ -6,8 +6,7 @@ import {
   Utensils, 
   ShoppingBag, 
   Star, 
-  CalendarCheck,
-  Flame
+  CalendarCheck
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
@@ -16,7 +15,8 @@ interface MobileBottomNavProps {
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ currentPage, onNavigate }) => {
-  const { totalQuantity, finalTotal } = useCart();
+  const { totalQuantity } = useCart();
+
 
   const navItems = [
     { id: 'home' as PageId, label: 'Home', icon: Home },

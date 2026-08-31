@@ -5,10 +5,6 @@ import { sanitizeText, sanitizePhoneNumber } from '../lib/sanitize';
 import { 
   CheckCircle2, 
   CalendarCheck, 
-  Check, 
-  MapPin,
-  Clock,
-  Phone,
   Users
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -49,8 +45,9 @@ const DEFAULT_RESERVATIONS: ReserveBooking[] = [
   }
 ];
 
-export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate }) => {
+export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate: _onNavigate }) => {
   const { showToast } = useToast();
+
 
   const [date, setDate] = useState<string>(() => {
     const today = new Date();
@@ -134,11 +131,6 @@ export const ReservationPage: React.FC<ReservationPageProps> = ({ onNavigate }) 
     });
 
     showToast('Table Reserved', `Booking ${ref} confirmed!`, 'success');
-  };
-
-  const handleUpdateStatus = (id: string, status: 'confirmed' | 'pending' | 'seated') => {
-    setReservationsList(prev => prev.map(r => r.id === id ? { ...r, status } : r));
-    showToast('Updated', `Status set to ${status}`, 'info');
   };
 
   return (

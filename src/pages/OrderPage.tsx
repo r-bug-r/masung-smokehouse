@@ -9,7 +9,6 @@ import {
   Plus, 
   Minus, 
   Check, 
-  Clock, 
   Flame, 
   Utensils, 
   ArrowLeft, 
@@ -51,24 +50,20 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
     subtotal,
     discountAmount,
     appliedReward,
-    appliedPromoCode,
     promoDiscount,
     finalTotal,
     specialInstructions,
     setTableNumber,
-    setOrderType,
     setCustomerName,
-    setCustomerPhone,
-    setSpecialInstructions,
     updateQuantity,
     removeItem,
     clearCart,
-    applyPromoCode,
-    removePromoCode
+    applyPromoCode
   } = useCart();
 
-  const { profile, recordOrder } = useLoyalty();
+  const { recordOrder } = useLoyalty();
   const { showToast } = useToast();
+
 
   // Active Order State
   const [activeOrder, setActiveOrder] = useState<SmokehouseOrder | null>(null);

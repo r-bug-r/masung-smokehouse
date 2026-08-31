@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import type { PageId, ReviewFeedback } from '../types';
 import { useToast } from '../context/ToastContext';
 import { sanitizeText } from '../lib/sanitize';
@@ -9,7 +9,6 @@ import {
   ArrowRight, 
   X, 
   Send, 
-  Check, 
   Quote
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -79,7 +78,7 @@ const DEFAULT_REVIEWS: ReviewFeedback[] = [
   }
 ];
 
-export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onNavigate }) => {
+export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onNavigate: _onNavigate }) => {
   const { showToast } = useToast();
 
   const [reviews, setReviews] = useState<ReviewFeedback[]>(() => {
@@ -95,7 +94,6 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onNavigate }) => {
   const [rating, setRating] = useState<number>(5);
   const [authorName, setAuthorName] = useState('');
   const [userSchool, setUserSchool] = useState('');
-  const [headlineQuote, setHeadlineQuote] = useState('');
   const [userComment, setUserComment] = useState('');
 
   // 5 Portrait UGC Cards from Mockup
@@ -191,7 +189,6 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onNavigate }) => {
     setIsSubmitModalOpen(false);
     setAuthorName('');
     setUserSchool('');
-    setHeadlineQuote('');
     setUserComment('');
   };
 

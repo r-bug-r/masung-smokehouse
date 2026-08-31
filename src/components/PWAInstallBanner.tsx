@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Download, X, Smartphone, Share2, PlusSquare } from 'lucide-react';
+import { Download, X, Smartphone } from 'lucide-react';
+
 
 export const PWAInstallBanner: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
