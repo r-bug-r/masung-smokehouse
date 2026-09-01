@@ -52,16 +52,55 @@ const calculateTier = (lifetimePoints: number): LoyaltyTier => {
   return 'Apprentice';
 };
 
+const DEFAULT_SEED_USERS: RegisteredUser[] = [
+  {
+    username: 'testuser',
+    password: 'masung123',
+    profile: {
+      name: 'Juan Dela Cruz',
+      phone: '0917-123-4567',
+      points: 85,
+      lifetimePoints: 85,
+      totalSpent: 850,
+      ordersCount: 3,
+      tier: 'Apprentice',
+      memberSince: '2026'
+    },
+    orders: [],
+    createdAt: '2026-08-20'
+  },
+  {
+    username: 'vip_diner',
+    password: 'pitmaster2026',
+    profile: {
+      name: 'Maria Santos',
+      phone: '0922-888-9999',
+      points: 420,
+      lifetimePoints: 420,
+      totalSpent: 4200,
+      ordersCount: 12,
+      tier: 'Pitmaster',
+      memberSince: '2026'
+    },
+    orders: [],
+    createdAt: '2026-08-15'
+  }
+];
+
 const LoyaltyContext = createContext<LoyaltyContextType | undefined>(undefined);
 
 export const LoyaltyProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // Load registered user registry
+  // Load registered user registry with seed test accounts
   const [users, setUsers] = useState<RegisteredUser[]>(() => {
     try {
       const stored = localStorage.getItem(STORAGE_KEY_USERS);
-      return stored ? JSON.parse(stored) : [];
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      return DEFAULT_SEED_USERS;
     } catch {
-      return [];
+      return DEFAULT_SEED_USERS;
     }
   });
 

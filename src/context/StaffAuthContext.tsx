@@ -16,6 +16,18 @@ interface StaffAuthContextType {
 const StaffAuthContext = createContext<StaffAuthContextType | undefined>(undefined);
 
 const STAFF_ACCOUNTS: Record<string, { pin: string; user: StaffUser }> = {
+  'SUPERADMIN': {
+    pin: 'masung2026',
+    user: { id: 'SUPERADMIN', name: 'Executive Superadmin & Pitmaster', role: 'manager' }
+  },
+  'ADMIN': {
+    pin: 'masung2026',
+    user: { id: 'ADMIN', name: 'General Administrator', role: 'manager' }
+  },
+  'MANAGER': {
+    pin: '8888',
+    user: { id: 'MANAGER', name: 'General Manager', role: 'manager' }
+  },
   'STAFF-01': {
     pin: '1925',
     user: { id: 'STAFF-01', name: 'Pitmaster Dave', role: 'pitmaster' }
@@ -23,14 +35,6 @@ const STAFF_ACCOUNTS: Record<string, { pin: string; user: StaffUser }> = {
   'CASHIER-01': {
     pin: '1234',
     user: { id: 'CASHIER-01', name: 'Front Counter Cashier', role: 'cashier' }
-  },
-  'MANAGER': {
-    pin: '8888',
-    user: { id: 'MANAGER', name: 'General Manager', role: 'manager' }
-  },
-  'admin': {
-    pin: 'masung2026',
-    user: { id: 'admin', name: 'Lead Pitmaster', role: 'manager' }
   }
 };
 
@@ -55,8 +59,12 @@ export const StaffAuthProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const cleanId = staffId.trim().toUpperCase();
     const cleanPin = pin.trim();
 
-    // Check exact or case-insensitive match
-    const account = STAFF_ACCOUNTS[cleanId] || STAFF_ACCOUNTS[staffId.trim()];
+    // Check exact or case-insensitive match across all accounts
+    const matchedKey = Object.keys(STAFF_ACCOUNTS).find(
+      key => key.toUpperCase() === cleanId
+    );
+    const account = matchedKey ? STAFF_ACCOUNTS[matchedKey] : undefined;
+
     if (!account) {
       return { success: false, error: 'Staff ID not recognized. Contact management.' };
     }

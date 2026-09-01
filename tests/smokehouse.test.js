@@ -394,12 +394,18 @@ test('12. Redesigned Navigation, Three Fonts, and Dual Locations Contract', asyn
 
 test('13. Staff Security Gate & Terminal Authorization', async (t) => {
   const staffAccounts = {
+    'SUPERADMIN': { pin: 'masung2026', name: 'Executive Superadmin & Pitmaster', role: 'manager' },
     'STAFF-01': { pin: '1925', name: 'Pitmaster Dave', role: 'pitmaster' },
     'CASHIER-01': { pin: '1234', name: 'Front Counter Cashier', role: 'cashier' },
     'admin': { pin: 'masung2026', name: 'Lead Pitmaster', role: 'manager' }
   };
 
-  await t.test('authenticates valid staff credentials', () => {
+  await t.test('authenticates valid staff credentials and superadmin', () => {
+    const superadmin = staffAccounts['SUPERADMIN'];
+    assert.ok(superadmin);
+    assert.equal(superadmin.pin, 'masung2026');
+    assert.equal(superadmin.role, 'manager');
+
     const account = staffAccounts['STAFF-01'];
     assert.ok(account);
     assert.equal(account.pin, '1925');
