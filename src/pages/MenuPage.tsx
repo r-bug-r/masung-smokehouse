@@ -17,8 +17,7 @@ import {
   Search,
   ArrowRight
 } from 'lucide-react';
-
-
+import { SafeImage } from '../components/SafeImage';
 
 interface MenuPageProps {
   onNavigate: (page: PageId) => void;
@@ -248,23 +247,24 @@ export const MenuPage: React.FC<MenuPageProps> = ({ onNavigate }) => {
                     >
                       <div>
                         {/* Food Image with Floating Badge & Heart Icon */}
-                        <div className="relative h-48 overflow-hidden bg-[#181615]">
-                          <img
-                            src={dish.imageUrl || 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80'}
+                        <div className="relative h-48 overflow-hidden bg-gradient-to-br from-[#3D0C15] via-[#2A060C] to-[#180306]">
+                          <SafeImage
+                            src={dish.imageUrl}
                             alt={dish.name}
+                            category={dish.category}
+                            fallbackSrc="/masung_brisket_food_asset_hd.png"
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            loading="lazy"
                           />
                           
                           {/* Badge */}
-                          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#5B101D] text-white text-[9px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md">
+                          <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#5B101D] text-white text-[9px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md z-20">
                             {dish.tag || 'BESTSELLER'}
                           </span>
 
                           {/* Heart Button */}
                           <button
                             onClick={e => toggleFavorite(dish.id, e)}
-                            className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#1E1E1E] hover:text-[#5B101D] transition-colors shadow-sm cursor-pointer"
+                            className="absolute top-3 right-3 w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#1E1E1E] hover:text-[#5B101D] transition-colors shadow-sm cursor-pointer z-20"
                             aria-label="Save to favorites"
                           >
                             <Heart className={`w-3.5 h-3.5 ${isFav ? 'fill-[#5B101D] text-[#5B101D]' : ''}`} />

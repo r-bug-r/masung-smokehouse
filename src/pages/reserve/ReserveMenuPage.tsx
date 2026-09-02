@@ -5,6 +5,7 @@ import { useCart } from '../../context/CartContext';
 import { useToast } from '../../context/ToastContext';
 import { initScrollAnimations } from '../../lib/animations';
 import { Search, Plus, Check } from 'lucide-react';
+import { SafeImage } from '../../components/SafeImage';
 
 interface ReserveMenuPageProps {
   onNavigate?: (page: PageId) => void;
@@ -131,25 +132,26 @@ export const ReserveMenuPage: React.FC<ReserveMenuPageProps> = () => {
                 <div>
                   
                   {/* Food Image with High-Contrast Overlay */}
-                  <div className="relative h-56 overflow-hidden bg-[#0A0406]">
-                    <img
+                  <div className="relative h-56 overflow-hidden bg-gradient-to-br from-[#3D0C15] via-[#2A060C] to-[#180306]">
+                    <SafeImage
                       src={item.imageUrl}
                       alt={item.name}
-                      loading="lazy"
+                      category={item.category}
+                      fallbackSrc="/masung_brisket_food_asset_hd.png"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out brightness-[0.9]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#120609] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#120609] via-transparent to-transparent pointer-events-none z-15" />
                     
                     {/* Bestseller Badge */}
                     {item.popular && (
-                      <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#8E1B2D] text-white font-mono text-[9px] uppercase tracking-widest font-semibold border border-[#D4AF37]/40">
+                      <span className="absolute top-3 left-3 px-2.5 py-0.5 bg-[#8E1B2D] text-white font-mono text-[9px] uppercase tracking-widest font-semibold border border-[#D4AF37]/40 z-20">
                         Bestseller
                       </span>
                     )}
 
                     {/* Free Rice & Soup Badge */}
                     {item.includesUnlimited && item.includesUnlimited.length > 0 && (
-                      <span className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-[#0A0406]/90 border border-[#3D0C15] text-[#D4AF37] text-[9px] uppercase tracking-wider font-mono">
+                      <span className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-[#0A0406]/90 border border-[#3D0C15] text-[#D4AF37] text-[9px] uppercase tracking-wider font-mono z-20">
                         Free Red Rice & Soup
                       </span>
                     )}

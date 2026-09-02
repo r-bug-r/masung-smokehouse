@@ -4,14 +4,15 @@ import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { MENU_ITEMS } from '../data/menuData';
 import { initScrollAnimations } from '../lib/animations';
-import { 
-  ChevronRight, 
-  ChevronLeft, 
-  Plus, 
-  Check, 
+import {
+  ChevronRight,
+  ChevronLeft,
   ArrowRight,
+  Plus,
+  Check,
   ChevronDown
 } from 'lucide-react';
+import { SafeImage } from '../components/SafeImage';
 
 interface CruReservePageProps {
   onNavigate: (page: PageId) => void;
@@ -234,13 +235,15 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             {/* Overlapping Gourmet Food Photography with Scarlet Hairline Glow */}
             <div className="lg:col-span-7 relative z-10 lg:-ml-12">
               <div className="relative overflow-hidden border border-[#3D0C15] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-                <img
+                <SafeImage
                   src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1200&q=80"
                   alt="Plated Smoked Steak"
+                  fallbackSrc="/masung_smoked_meat_hero_hd.png"
+                  category="texas-smoked"
                   className="w-full h-[350px] sm:h-[480px] object-cover hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent" />
-                <div className="absolute bottom-4 right-4 text-right">
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent pointer-events-none z-15" />
+                <div className="absolute bottom-4 right-4 text-right z-20">
                   <span className="text-[10px] uppercase tracking-[0.2em] text-[#D4AF37] block font-semibold">
                     Carved Fresh Daily
                   </span>
@@ -279,12 +282,14 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
             {/* Left: High-Contrast Sliced Cut Photography */}
             <div className="lg:col-span-6 relative">
               <div className="relative overflow-hidden border border-[#3D0C15] bg-[#0A0406] shadow-2xl">
-                <img
+                <SafeImage
                   src={activeCut.imageUrl}
                   alt={activeCut.name}
+                  fallbackSrc="/masung_smoked_meat_hero_hd.png"
+                  category="texas-smoked"
                   className="w-full h-[380px] sm:h-[460px] object-cover transition-opacity duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406]/90 via-transparent to-transparent pointer-events-none z-15" />
                 
                 {/* Carousel Controls */}
                 <div className="absolute top-4 right-4 flex items-center gap-2">

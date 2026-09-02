@@ -1,6 +1,7 @@
 import React from 'react';
 import type { PageId } from '../types';
 import { MapPin, Clock, Phone, Navigation, Flame, Car, Utensils } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 interface LocationGridProps {
   onNavigate?: (page: PageId) => void;
@@ -31,14 +32,14 @@ export const LocationGrid: React.FC<LocationGridProps> = () => {
           <div className="bg-white rounded-xl border border-[#E5DFD5] shadow-subtle flex flex-col justify-between overflow-hidden group hover:shadow-elevated transition-all">
             <div>
               {/* Photo with Badge */}
-              <div className="relative h-60 sm:h-64 overflow-hidden bg-[#181615]">
-                <img
+              <div className="relative h-60 sm:h-64 overflow-hidden bg-gradient-to-br from-[#3D0C15] via-[#2A060C] to-[#180306]">
+                <SafeImage
                   src="/locations/montalban.jpg"
                   alt="Montalban Smokehouse Pit in Rodriguez, Rizal"
+                  fallbackSrc="/masung_smoked_meat_hero_hd.png"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
-                  loading="lazy"
                 />
-                <span className="absolute top-3.5 left-3.5 px-3 py-1 bg-[#5B101D] text-white text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md">
+                <span className="absolute top-3.5 left-3.5 px-3 py-1 bg-[#5B101D] text-white text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md z-20">
                   MAIN PIT
                 </span>
               </div>
@@ -137,14 +138,14 @@ export const LocationGrid: React.FC<LocationGridProps> = () => {
           <div className="bg-white rounded-xl border border-[#E5DFD5] shadow-subtle flex flex-col justify-between overflow-hidden group hover:shadow-elevated transition-all">
             <div>
               {/* Photo with Badge */}
-              <div className="relative h-60 sm:h-64 overflow-hidden bg-[#181615]">
-                <img
+              <div className="relative h-60 sm:h-64 overflow-hidden bg-gradient-to-br from-[#3D0C15] via-[#2A060C] to-[#180306]">
+                <SafeImage
                   src="/locations/ubelt.jpg"
                   alt="U-Belt Smokehouse Branch in Sampaloc, Manila"
+                  fallbackSrc="/masung_smoked_meat_hero_hd.png"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter contrast-105"
-                  loading="lazy"
                 />
-                <span className="absolute top-3.5 left-3.5 px-3 py-1 bg-[#1E1E1E] text-white text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md">
+                <span className="absolute top-3.5 left-3.5 px-3 py-1 bg-[#1E1E1E] text-white text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md z-20">
                   U-BELT BRANCH
                 </span>
               </div>

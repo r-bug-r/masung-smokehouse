@@ -3,6 +3,7 @@ import type { PageId } from '../types';
 import { useCart } from '../context/CartContext';
 import { useToast } from '../context/ToastContext';
 import { ChevronLeft, ChevronRight, ShoppingBag, ArrowRight } from 'lucide-react';
+import { SafeImage } from './SafeImage';
 
 interface CraftSectionProps {
   onNavigate?: (page: PageId) => void;
@@ -155,14 +156,15 @@ export const CraftSection: React.FC<CraftSectionProps> = ({ onNavigate }) => {
             >
               <div>
                 {/* Food Image with Floating Badge */}
-                <div className="relative h-52 overflow-hidden bg-[#181615]">
-                  <img
+                <div className="relative h-52 overflow-hidden bg-gradient-to-br from-[#3D0C15] via-[#2A060C] to-[#180306]">
+                  <SafeImage
                     src={dish.image}
                     alt={dish.title}
+                    fallbackSrc="/masung_brisket_food_asset_hd.png"
+                    category="texas-smoked"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
                   />
-                  <span className={`absolute top-3.5 left-3.5 px-3 py-1 text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md ${dish.badgeColor}`}>
+                  <span className={`absolute top-3.5 left-3.5 px-3 py-1 text-[10px] font-montserrat font-extrabold uppercase tracking-wider rounded-sm shadow-md z-20 ${dish.badgeColor}`}>
                     {dish.badge}
                   </span>
                 </div>

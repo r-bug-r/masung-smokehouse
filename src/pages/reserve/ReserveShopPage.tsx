@@ -16,6 +16,7 @@ import {
   ArrowRight,
   Sparkles
 } from 'lucide-react';
+import { SafeImage } from '../../components/SafeImage';
 
 interface ReserveShopPageProps {
   onNavigate: (page: PageId) => void;
@@ -242,11 +243,15 @@ Timestamp: ${new Date(submittedOrder.timestamp).toLocaleString()}`;
                       return (
                         <div key={cartItem.id} className="py-4 flex items-center justify-between gap-4">
                           <div className="flex items-center gap-4">
-                            <img
-                              src={cartItem.item.imageUrl}
-                              alt={cartItem.item.name}
-                              className="w-16 h-16 object-cover border border-[#3D0C15]"
-                            />
+                            <div className="w-16 h-16 shrink-0 overflow-hidden border border-[#3D0C15] rounded-xs">
+                              <SafeImage
+                                src={cartItem.item.imageUrl}
+                                alt={cartItem.item.name}
+                                category={cartItem.item.category}
+                                fallbackSrc="/masung_brisket_food_asset_hd.png"
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
                             <div>
                               <h4 className="font-serif text-base sm:text-lg text-[#FFF5F7]">
                                 {cartItem.item.name}

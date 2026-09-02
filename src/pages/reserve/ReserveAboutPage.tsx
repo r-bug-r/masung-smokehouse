@@ -3,6 +3,7 @@ import type { PageId } from '../../types';
 import { initScrollAnimations } from '../../lib/animations';
 import { SmokeTimeline } from '../../components/reserve/SmokeTimeline';
 import { Flame, Award, HeartHandshake } from 'lucide-react';
+import { SafeImage } from '../../components/SafeImage';
 
 interface ReserveAboutPageProps {
   onNavigate: (page: PageId) => void;
@@ -36,12 +37,14 @@ export const ReserveAboutPage: React.FC<ReserveAboutPageProps> = ({ onNavigate }
           {/* Left: Food & Pit Photo with Scarlet Glow */}
           <div className="lg:col-span-6 relative">
             <div className="relative overflow-hidden border border-[#3D0C15] shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-              <img
+              <SafeImage
                 src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=80"
                 alt="Pitmaster Slicing Brisket"
+                fallbackSrc="/masung_smoked_meat_hero_hd.png"
+                category="texas-smoked"
                 className="w-full h-[400px] sm:h-[500px] object-cover hover:scale-105 transition-transform duration-700 ease-out brightness-[0.85]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A0406] via-transparent to-transparent pointer-events-none z-15" />
               <div className="absolute bottom-6 left-6 right-6">
                 <span className="text-[10px] uppercase tracking-[0.25em] text-[#D4AF37] block font-mono">
                   Dela Costa V, Montalban
