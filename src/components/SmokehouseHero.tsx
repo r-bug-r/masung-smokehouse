@@ -60,11 +60,11 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
 
           {/* Right Column: High Fidelity Platter Image (Baked-in Stamp Seal) */}
           <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end">
-            <div className="relative w-full max-w-xl lg:max-w-none overflow-hidden rounded-2xl shadow-elevated">
+            <div className="relative w-full max-w-xl lg:max-w-none">
               <img
                 src="/masung_smoked_meat_hero_hd.png"
                 alt="Masung Smokehouse Slow-Smoked Barbecue Meat HD"
-                className="w-full h-auto max-h-[540px] object-cover object-center filter contrast-[1.03] hover:scale-[1.02] transition-transform duration-700"
+                className="w-full h-auto max-h-[540px] object-contain object-center filter contrast-[1.03] hover:scale-[1.02] transition-transform duration-700"
               />
             </div>
           </div>
