@@ -133,7 +133,7 @@ export const LocationGrid: React.FC<LocationGridProps> = ({ onNavigate }) => {
                     </span>
                     <span className="px-2.5 py-1 bg-[#FAF7F2] border border-[#EAE3D9] text-[#1E1E1E] font-body text-xs rounded-xs flex items-center gap-1.5">
                       <Utensils className="w-3 h-3 text-[#C67D26]" />
-                      <span>Free Red Rice & Soup</span>
+                      <span>Hot Bone Broth</span>
                     </span>
                     <span className="px-2.5 py-1 bg-[#FAF7F2] border border-[#EAE3D9] text-[#1E1E1E] font-body text-xs rounded-xs flex items-center gap-1.5">
                       <Car className="w-3 h-3 text-[#5B101D]" />
@@ -310,7 +310,7 @@ export const LocationGrid: React.FC<LocationGridProps> = ({ onNavigate }) => {
                 REAL SMOKE. REAL FLAVOR. REAL FILIPINO HOSPITALITY.
               </span>
               <span className="font-body text-xs text-[#E5DFD5] block mt-0.5">
-                Authentic low & slow barbecue served fresh with unlimited rice refills in Montalban & U-Belt.
+                Authentic low & slow barbecue served fresh daily in Montalban & U-Belt.
               </span>
             </div>
           </div>

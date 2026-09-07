@@ -33,7 +33,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
 
             <p className="text-xs font-body text-[#8A837C] leading-relaxed max-w-sm">
-              Real hardwood-smoked meats in Montalban & U-Belt. Slow-cooked over fruitwood for hours, served fresh with unlimited rice refills and authentic sides.
+              Real hardwood-smoked meats in Montalban & U-Belt. Slow-cooked over fruitwood for hours, served fresh with authentic glazes and heirloom sides.
             </p>
 
             <div className="flex items-center gap-4 text-xs font-montserrat font-bold text-[#C67D26] pt-1">

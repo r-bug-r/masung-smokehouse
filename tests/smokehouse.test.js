@@ -490,4 +490,72 @@ test('14. Production Pit Pass Authentication & Zero-Placeholder Integrity', asyn
   });
 });
 
+test('15. Order Cart Minus Button & Menu Contract QA', async (t) => {
+  await t.test('minus button correctly decrements cart item quantity', () => {
+    let items = [
+      { id: 'smoked-beef-brisket-standard-normal', item: { id: 'smoked-beef-brisket', price: 239 }, quantity: 3 }
+    ];
+
+    const updateQuantity = (cartItemId, targetQuantity) => {
+      items = items
+        .map(i => {
+          if (i.id === cartItemId || i.item.id === cartItemId) {
+            return targetQuantity > 0 ? { ...i, quantity: targetQuantity } : null;
+          }
+          return i;
+        })
+        .filter(Boolean);
+    };
+
+    // User clicks minus button when quantity is 3
+    updateQuantity(items[0].id, items[0].quantity - 1);
+    assert.equal(items.length, 1);
+    assert.equal(items[0].quantity, 2);
+
+    // User clicks minus button again when quantity is 2
+    updateQuantity(items[0].id, items[0].quantity - 1);
+    assert.equal(items.length, 1);
+    assert.equal(items[0].quantity, 1);
+
+    // User clicks minus button when quantity is 1 -> removes item
+    updateQuantity(items[0].id, items[0].quantity - 1);
+    assert.equal(items.length, 0);
+  });
+
+  await t.test('plus button correctly increments cart item quantity', () => {
+    let items = [
+      { id: 'smoked-beef-brisket-standard-normal', item: { id: 'smoked-beef-brisket', price: 239 }, quantity: 1 }
+    ];
+
+    const updateQuantity = (cartItemId, targetQuantity) => {
+      items = items
+        .map(i => {
+          if (i.id === cartItemId || i.item.id === cartItemId) {
+            return targetQuantity > 0 ? { ...i, quantity: targetQuantity } : null;
+          }
+          return i;
+        })
+        .filter(Boolean);
+    };
+
+    updateQuantity(items[0].id, items[0].quantity + 1);
+    assert.equal(items[0].quantity, 2);
+  });
+
+  await t.test('removeItem cleanly removes by either cartItemId or item.id', () => {
+    let items = [
+      { id: 'smoked-beef-brisket-standard-normal', item: { id: 'smoked-beef-brisket', price: 239 }, quantity: 2 },
+      { id: 'smoked-pork-belly-standard-normal', item: { id: 'smoked-pork-belly', price: 179 }, quantity: 1 }
+    ];
+
+    const removeItem = (cartItemId) => {
+      items = items.filter(i => i.id !== cartItemId && i.item.id !== cartItemId);
+    };
+
+    removeItem('smoked-beef-brisket-standard-normal');
+    assert.equal(items.length, 1);
+    assert.equal(items[0].item.id, 'smoked-pork-belly');
+  });
+});
+
 

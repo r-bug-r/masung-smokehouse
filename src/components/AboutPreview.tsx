@@ -68,14 +68,14 @@ export const AboutPreview: React.FC<AboutPreviewProps> = ({ onNavigate }) => {
                 </span>
               </div>
 
-              {/* Feature 2: Free Red Rice */}
+              {/* Feature 2: Hot Bone Broth */}
               <div className="space-y-1 px-2 sm:px-4 border-r border-[#E5DFD5]">
                 <Utensils className="w-5 h-5 text-[#5B101D]" />
                 <strong className="font-montserrat font-extrabold text-xs sm:text-sm text-[#1E1E1E] uppercase block pt-1">
-                  FREE RED RICE
+                  HOT BONE BROTH
                 </strong>
                 <span className="font-body text-[#5C5651] text-[11px] sm:text-xs block">
-                  Unlimited refills.
+                  Simmered for hours.
                 </span>
               </div>
 

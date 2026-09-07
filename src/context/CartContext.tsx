@@ -33,7 +33,7 @@ interface CartContextType {
   setIsCartOpen: (open: boolean) => void;
   setIsQRMode: (qrMode: boolean) => void;
   addItem: (item: MenuItem, variant?: MenuVariant, notes?: string, spice?: string) => void;
-  updateQuantity: (cartItemId: string, delta: number) => void;
+  updateQuantity: (cartItemId: string, targetQuantity: number) => void;
   removeItem: (cartItemId: string) => void;
   applyReward: (voucher?: RewardVoucher) => void;
   applyPromoCode: (code: string) => { success: boolean; message: string };
@@ -109,13 +109,12 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     });
   };
 
-  const updateQuantity = (cartItemId: string, delta: number) => {
+  const updateQuantity = (cartItemId: string, targetQuantity: number) => {
     setItems(prev => {
       return prev
         .map(i => {
-          if (i.id === cartItemId) {
-            const newQty = i.quantity + delta;
-            return newQty > 0 ? { ...i, quantity: newQty } : null;
+          if (i.id === cartItemId || i.item.id === cartItemId) {
+            return targetQuantity > 0 ? { ...i, quantity: targetQuantity } : null;
           }
           return i;
         })
@@ -124,7 +123,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const removeItem = (cartItemId: string) => {
-    setItems(prev => prev.filter(i => i.id !== cartItemId));
+    setItems(prev => prev.filter(i => i.id !== cartItemId && i.item.id !== cartItemId));
   };
 
   const applyReward = (voucher?: RewardVoucher) => {

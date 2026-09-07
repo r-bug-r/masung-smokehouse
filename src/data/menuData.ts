@@ -34,7 +34,7 @@ export const MENU_ITEMS: MenuItem[] = [
         macros: { calories: 760, protein: 68, carbs: 46, fat: 34, servingSize: '200g Sliced Brisket + Rice' }
       }
     ],
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1594041680534-e8c8cdebd659?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
@@ -70,7 +70,7 @@ export const MENU_ITEMS: MenuItem[] = [
         macros: { calories: 880, protein: 56, carbs: 48, fat: 48, servingSize: '220g Pork Belly + Rice' }
       }
     ],
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 0
@@ -102,7 +102,7 @@ export const MENU_ITEMS: MenuItem[] = [
         macros: { calories: 1220, protein: 94, carbs: 54, fat: 62, servingSize: 'Full Rack (7-8 Bones)' }
       }
     ],
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
@@ -123,7 +123,7 @@ export const MENU_ITEMS: MenuItem[] = [
       fat: 15,
       servingSize: 'Single Bowl with Rice & Broth'
     },
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
@@ -142,7 +142,7 @@ export const MENU_ITEMS: MenuItem[] = [
       fat: 12,
       servingSize: 'Single Bowl with Rice & Broth'
     },
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1541832676-9b763b0239ab?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 2
@@ -153,7 +153,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Sulit ₱99',
     category: 'sulit-bowls',
     price: 99,
-    description: 'Tender smoked pork cuts braised in sweet-savory garlic star anise gravy. Served with unlimited hot red rice and piping bone soup.',
+    description: 'Tender smoked pork cuts braised in sweet-savory garlic star anise gravy. Served with hot red rice and piping bone soup.',
     macros: {
       calories: 440,
       protein: 26,
@@ -161,7 +161,7 @@ export const MENU_ITEMS: MenuItem[] = [
       fat: 16,
       servingSize: 'Single Bowl with Rice & Broth'
     },
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
@@ -194,7 +194,7 @@ export const MENU_ITEMS: MenuItem[] = [
         macros: { calories: 920, protein: 62, carbs: 68, fat: 42, servingSize: 'Sharing Bowl for 2-3' }
       }
     ],
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 0
@@ -213,7 +213,7 @@ export const MENU_ITEMS: MenuItem[] = [
       fat: 20,
       servingSize: 'Sizzling Plate with Rice & Egg'
     },
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 2
@@ -232,7 +232,7 @@ export const MENU_ITEMS: MenuItem[] = [
       fat: 26,
       servingSize: 'Sizzling Plate with Rice & Calamansi'
     },
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 2
@@ -263,7 +263,7 @@ export const MENU_ITEMS: MenuItem[] = [
         macros: { calories: 840, protein: 58, carbs: 70, fat: 26, servingSize: 'Sharing Platter for 2' }
       }
     ],
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
@@ -294,7 +294,7 @@ export const MENU_ITEMS: MenuItem[] = [
         macros: { calories: 720, protein: 56, carbs: 52, fat: 24, servingSize: 'Family Pot for 3-4' }
       }
     ],
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=800&auto=format&fit=crop&q=80',
     popular: false,
     spicyLevel: 1
@@ -307,7 +307,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Group Feast (3-4 Pax)',
     category: 'barkada-platters',
     price: 699,
-    description: 'The ultimate table share: 200g Texas Smoked Brisket, 200g Hickory Smoked Pork Belly, Sizzling Sisig, sweet corn, atchara, and unlimited red rice refills for the table.',
+    description: 'The ultimate table share: 200g Texas Smoked Brisket, 200g Hickory Smoked Pork Belly, Sizzling Sisig, sweet corn, atchara, and fragrant red rice for the table.',
     macros: {
       calories: 1850,
       protein: 142,
@@ -316,7 +316,7 @@ export const MENU_ITEMS: MenuItem[] = [
       servingSize: 'Platter for 3-4 diners (approx. 460 kcal / 35g protein per pax)'
     },
     reserveEdition: true,
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
@@ -327,7 +327,7 @@ export const MENU_ITEMS: MenuItem[] = [
     tag: 'Complete Meal',
     category: 'barkada-platters',
     price: 332,
-    description: '120g sliced oak-smoked beef brisket with house barbecue glaze, pickled papaya atchara, buttered sweet corn, and unlimited red rice.',
+    description: '120g sliced oak-smoked beef brisket with house barbecue glaze, pickled papaya atchara, buttered sweet corn, and heirloom red rice.',
     macros: {
       calories: 680,
       protein: 46,
@@ -335,20 +335,20 @@ export const MENU_ITEMS: MenuItem[] = [
       fat: 28,
       servingSize: 'Complete Plate with Sides & Rice'
     },
-    includesUnlimited: ['Unlimited Heirloom Red Rice', 'Unlimited Smoked Bone Broth'],
+    includesUnlimited: ['Hot Bone Broth'],
     imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&auto=format&fit=crop&q=80',
     popular: true,
     spicyLevel: 1
   },
 
-  // --- SIDES & FREE REFILLS ---
+  // --- SIDES & ADD-ONS ---
   {
     id: 'extra-red-rice',
     name: 'Heirloom Red Rice Cup',
-    tag: 'Free Refills on Meals',
+    tag: 'Heirloom Grain',
     category: 'sides-refills',
     price: 30,
-    description: 'Steamed nutrient-dense heirloom red rice. Refills are completely free for all meal orders.',
+    description: 'Steamed nutrient-dense heirloom red rice from the Cordillera highlands.',
     macros: {
       calories: 180,
       protein: 4,

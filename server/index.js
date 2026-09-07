@@ -93,7 +93,7 @@ const server = http.createServer(async (req, res) => {
       woodType: 'Philippine Oak & Hickory',
       internalTemp: '203°F (Peak Tenderness)',
       slicedReady: ['Texas Smoked Beef Brisket', 'Smoked Pork Belly', 'Sizzling Sisig'],
-      unlimitedRiceAvailable: true,
+      steamedRiceAvailable: true,
       boneBrothRefill: 'Piping Hot'
     }));
     return;

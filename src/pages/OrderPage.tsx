@@ -356,7 +356,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
                     <strong className="font-montserrat font-bold text-xs text-[#1E1E1E] block">
                       Slow smoke takes time, but your tray is almost ready!
                     </strong>
-                    <span>All meals include unlimited red rice and hot bone soup refills at the counter station.</span>
+                    <span>Complimentary hot beef bone soup is served fresh at the counter station.</span>
                   </div>
                 </div>
 
@@ -379,7 +379,7 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
                     ORDER #{orderNumberDisplay} IS READY!
                   </h1>
                   <p className="font-body text-sm text-[#5C5651] max-w-md mx-auto">
-                    Please claim your tray at the pickup counter. Don't forget your unlimited red rice and hot beef bone broth!
+                    Please claim your tray at the pickup counter. Don't forget your hot beef bone broth!
                   </p>
                 </div>
 
@@ -440,49 +440,60 @@ export const OrderPage: React.FC<OrderPageProps> = ({ onNavigate }) => {
                   </div>
 
                   <div className="divide-y divide-[#FAF7F2]">
-                    {items.map(item => (
-                      <div key={item.item.id} className="py-4 flex items-center justify-between gap-4">
-                        <div>
-                          <h3 className="font-montserrat font-bold text-xs uppercase text-[#1E1E1E]">
-                            {item.item.name}
-                          </h3>
-                          <span className="font-body text-[11px] text-[#5C5651]">
-                            ₱{item.item.price} each
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-3">
-                          <div className="flex items-center border border-[#E5DFD5] rounded-md overflow-hidden">
-                            <button
-                              onClick={() => updateQuantity(item.item.id, item.quantity - 1)}
-                              className="p-1.5 hover:bg-[#FAF7F2] text-[#5C5651] cursor-pointer"
-                            >
-                              <Minus className="w-3.5 h-3.5" />
-                            </button>
-                            <span className="px-3 text-xs font-montserrat font-bold text-[#1E1E1E]">
-                              {item.quantity}
+                    {items.map(item => {
+                      const itemPrice = item.selectedVariant?.price ?? item.item.price;
+                      return (
+                        <div key={item.id} className="py-4 flex items-center justify-between gap-4">
+                          <div>
+                            <h3 className="font-montserrat font-bold text-xs uppercase text-[#1E1E1E]">
+                              {item.item.name}
+                            </h3>
+                            {item.selectedVariant && (
+                              <span className="font-montserrat text-[10px] text-[#C67D26] block font-bold">
+                                {item.selectedVariant.label}
+                              </span>
+                            )}
+                            <span className="font-body text-[11px] text-[#5C5651]">
+                              ₱{itemPrice} each
                             </span>
-                            <button
-                              onClick={() => updateQuantity(item.item.id, item.quantity + 1)}
-                              className="p-1.5 hover:bg-[#FAF7F2] text-[#5C5651] cursor-pointer"
-                            >
-                              <Plus className="w-3.5 h-3.5" />
-                            </button>
                           </div>
 
-                          <span className="font-montserrat font-extrabold text-xs text-[#5B101D] w-14 text-right">
-                            ₱{item.item.price * item.quantity}
-                          </span>
+                          <div className="flex items-center gap-3">
+                            <div className="flex items-center border border-[#E5DFD5] rounded-md overflow-hidden bg-white">
+                              <button
+                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                className="p-1.5 hover:bg-[#FAF7F2] text-[#5C5651] cursor-pointer"
+                                aria-label="Decrease quantity"
+                              >
+                                <Minus className="w-3.5 h-3.5" />
+                              </button>
+                              <span className="px-3 text-xs font-montserrat font-bold text-[#1E1E1E]">
+                                {item.quantity}
+                              </span>
+                              <button
+                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                className="p-1.5 hover:bg-[#FAF7F2] text-[#5C5651] cursor-pointer"
+                                aria-label="Increase quantity"
+                              >
+                                <Plus className="w-3.5 h-3.5" />
+                              </button>
+                            </div>
 
-                          <button
-                            onClick={() => removeItem(item.item.id)}
-                            className="p-1.5 text-[#8A837C] hover:text-[#5B101D] cursor-pointer"
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
+                            <span className="font-montserrat font-extrabold text-xs text-[#5B101D] w-14 text-right">
+                              ₱{itemPrice * item.quantity}
+                            </span>
+
+                            <button
+                              onClick={() => removeItem(item.id)}
+                              className="p-1.5 text-[#8A837C] hover:text-[#5B101D] cursor-pointer"
+                              aria-label="Remove item"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   {/* Promo Voucher Input */}

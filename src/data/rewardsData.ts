@@ -17,8 +17,8 @@ export const TIER_CONFIGS: Record<LoyaltyTier, TierConfig> = {
     color: 'bg-[#32070E]',
     perks: [
       'Earn 1 BBQ Point for every ₱10 spent',
-      'Unlimited Free Red Rice with any meal order',
-      'Unlimited Free Hot Bone Broth refills'
+      'Complimentary Red Rice with any meal order',
+      'Hot Bone Broth refills'
     ],
     multiplier: 1.0
   },

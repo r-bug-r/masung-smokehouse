@@ -34,7 +34,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <p className="font-body text-base sm:text-lg text-[#1E1E1E] leading-relaxed">
               Rooted in Montalban, Rizal. Inspired by Texas.<br />
               We smoke our meats low & slow for <strong className="font-semibold text-[#5B101D]">8 to 16 hours</strong> using real hardwood.<br />
-              Every meal comes with <strong className="font-semibold text-[#1E1E1E]">unlimited heirloom red rice</strong> and hot smoked bone broth.
+              Every meal comes with <strong className="font-semibold text-[#1E1E1E]">heirloom red rice</strong> and hot smoked bone broth.
             </p>
 
             {/* 3 Core Icons */}

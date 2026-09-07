@@ -57,7 +57,7 @@ const DEFAULT_REVIEWS: ReviewFeedback[] = [
     foodRating: 5,
     smokeRating: 5,
     valueRating: 5,
-    comment: 'Unlimited rice + hot broth = perfect combo.',
+    comment: 'Smoked meats + hot broth = perfect combo.',
     tags: ['Sulit every time', 'UP Manila Student'],
     tableOrOrder: 'UP Manila Student',
     createdAt: '3 days ago',
@@ -144,7 +144,7 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onNavigate: _onNavig
       school: 'UP Manila Student',
       avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
       headline: '“Sulit every time.”',
-      quote: 'Unlimited rice + hot broth = perfect combo.'
+      quote: 'Smoked meats + hot broth = perfect combo.'
     },
     {
       name: 'Carlo R.',

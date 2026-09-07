@@ -101,7 +101,7 @@ export const ReserveAboutPage: React.FC<ReserveAboutPageProps> = ({ onNavigate }
                   </h4>
                 </div>
                 <p className="text-xs text-[#D8C7C4] leading-relaxed font-light pl-7">
-                  Texas barbecue technique married with beloved Filipino traditions: free unlimited heirloom red rice, rich bone broth ladled steaming hot from giant stock pots, and warm smokehouse hospitality in Montalban.
+                  Texas barbecue technique married with beloved Filipino traditions: fragrant heirloom red rice, rich bone broth ladled steaming hot from giant stock pots, and warm smokehouse hospitality in Montalban.
                 </p>
               </div>
 

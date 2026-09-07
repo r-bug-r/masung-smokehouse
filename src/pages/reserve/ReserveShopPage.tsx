@@ -508,7 +508,7 @@ Timestamp: ${new Date(submittedOrder.timestamp).toLocaleString()}`;
 
                 <div className="flex items-center justify-center gap-2 text-[10px] text-[#A89895] uppercase tracking-wider text-center">
                   <ShieldCheck className="w-3.5 h-3.5 text-[#D4AF37]" />
-                  <span>Free unlimited heirloom red rice & bone broth refills included</span>
+                  <span>Complimentary heirloom red rice & bone broth refills included</span>
                 </div>
 
               </form>

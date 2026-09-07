@@ -16,7 +16,7 @@ export const SpecialsBoard: React.FC<SpecialsBoardProps> = ({ onNavigate }) => {
   const specials = [
     {
       item: MENU_ITEMS.find(i => i.id === 'smoked-pulled-pork-rice') || MENU_ITEMS[0],
-      serving1: 'Solo Meal (with Unlimited Red Rice) • ₱99',
+      serving1: 'Solo Meal (with Heirloom Red Rice) • ₱99',
       serving2: 'Special Oakwood Glaze',
       tag: 'Sulit ₱99 Meal'
     },
@@ -70,7 +70,7 @@ export const SpecialsBoard: React.FC<SpecialsBoardProps> = ({ onNavigate }) => {
             Popular <span className="text-[#181615]">Dishes</span>
           </h2>
           <p className="text-sm sm:text-base text-[#5C5651] mt-2">
-            Served with unlimited heirloom red rice and hot bone soup.
+            Served with steamed heirloom red rice and hot bone soup.
           </p>
         </div>
 

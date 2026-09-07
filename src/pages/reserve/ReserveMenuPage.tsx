@@ -72,7 +72,7 @@ export const ReserveMenuPage: React.FC<ReserveMenuPageProps> = () => {
             Reserve Dining Menu
           </h1>
           <p className="text-xs sm:text-sm text-[#D8C7C4] font-light leading-relaxed">
-            Every dish is cooked over Philippine mountain oak and hardwood logs for 8 to 16 hours. Complimentary unlimited heirloom red rice and piping-hot bone broth refills are included with all carving meals.
+            Every dish is cooked over Philippine mountain oak and hardwood logs for 8 to 16 hours. Complimentary heirloom red rice and piping-hot bone broth refills are included with all carving meals.
           </p>
         </div>
 
@@ -149,10 +149,10 @@ export const ReserveMenuPage: React.FC<ReserveMenuPageProps> = () => {
                       </span>
                     )}
 
-                    {/* Free Rice & Soup Badge */}
+                    {/* Rice & Soup Badge */}
                     {item.includesUnlimited && item.includesUnlimited.length > 0 && (
                       <span className="absolute bottom-3 left-3 px-2.5 py-0.5 bg-[#0A0406]/90 border border-[#3D0C15] text-[#D4AF37] text-[9px] uppercase tracking-wider font-mono z-20">
-                        Free Red Rice & Soup
+                        Heirloom Rice & Soup
                       </span>
                     )}
                   </div>

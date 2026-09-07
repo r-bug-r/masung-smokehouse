@@ -46,7 +46,7 @@ const FEATURED_CUTS: CruFeaturedCut[] = [
     subname: '8-Hour Hickory Cured & Glazed',
     price: 149,
     description: 'Thick-slab pork belly smoked over cured Philippine hardwood until the fat renders completely and caramelizes with our house spice rub.',
-    pairingNotes: 'Served with sweet-savory smokehouse dipping sauce and unlimited red rice.',
+    pairingNotes: 'Served with sweet-savory smokehouse dipping sauce and heirloom red rice.',
     imageUrl: 'https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?auto=format&fit=crop&w=1200&q=80',
     menuItem: MENU_ITEMS.find(i => i.id === 'smoked-pork-belly-meal') || MENU_ITEMS[1]
   },
@@ -66,7 +66,7 @@ const FEATURED_CUTS: CruFeaturedCut[] = [
     subname: 'Wood-Smoked Pork & Fresh Calamansi',
     price: 149,
     description: 'Chopped wood-smoked pork belly seared with onions, bird-eye chilies, and fresh calamansi for an unforgettable savory crunch.',
-    pairingNotes: 'A smokehouse favorite best enjoyed piping hot with unlimited rice.',
+    pairingNotes: 'A smokehouse favorite best enjoyed piping hot with heirloom red rice.',
     imageUrl: 'https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80',
     menuItem: MENU_ITEMS.find(i => i.id === 'sizzling-smoked-sisig') || MENU_ITEMS[3]
   }
@@ -82,8 +82,8 @@ const FAQ_ITEMS = [
     a: 'Guests earn 1 BBQ Point for every ₱10 spent. Points can be redeemed anytime for free signature cuts (such as 120g Smoked Beef Brisket), pitchers of house iced tea, side dishes, or direct ₱100 bill discounts.'
   },
   {
-    q: 'Do all rice meals include free unlimited red rice and hot bone soup?',
-    a: 'Yes. Every signature smoked meat and Pinoy classic meal is served with unlimited heirloom red rice and piping-hot beef bone broth refills with zero extra charge.'
+    q: 'Do all rice meals include hot bone soup?',
+    a: 'Yes. Every signature smoked meat and Pinoy classic meal is served with steamed heirloom red rice and piping-hot beef bone broth refills with zero extra charge.'
   },
   {
     q: 'How many tables are available for dine-in guests?',
@@ -220,7 +220,7 @@ export const CruReservePage: React.FC<CruReservePageProps> = ({ onNavigate }) =>
                 Savor hand-carved Texas-style smoked beef brisket, tender pork belly, and rich Pinoy classics cooked low and slow over Philippine hardwood logs for 8 to 16 hours.
               </p>
               <p className="text-xs sm:text-sm text-[#5C5651] leading-relaxed mb-6">
-                Every meal includes free unlimited heirloom red rice and piping-hot bone broth refills. Relax across our 15 dining tables on the first and second floors.
+                Every meal includes steamed heirloom red rice and piping-hot bone broth refills. Relax across our 15 dining tables on the first and second floors.
               </p>
               
               <button
