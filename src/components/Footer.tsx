@@ -1,6 +1,6 @@
 import React from 'react';
 import type { PageId } from '../types';
-import { MapPin, Clock, Phone, Navigation } from 'lucide-react';
+import { MapPin, Clock, Phone, Navigation, ShieldCheck } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: PageId) => void;
@@ -18,60 +18,39 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <img
-                src="/logo.png"
-                alt="Masung Smokehouse"
-                className="h-10 w-auto object-contain"
+                src="/mascot.jpg"
+                alt="Masung Smokehouse Pitmaster Monkey"
+                className="w-10 h-10 object-contain rounded-full border border-[#5B101D]"
               />
               <div>
                 <span className="font-bebas text-2xl tracking-wider text-white block leading-none">
-                  MASUNG
+                  MASUNG SMOKEHOUSE
                 </span>
-                <span className="font-montserrat font-bold text-[9px] uppercase tracking-[0.25em] text-[#C67D26] block">
-                  SMOKEHOUSE
+                <span className="text-[10px] font-mono tracking-widest text-[#C67D26] uppercase">
+                  Real Hardwood Smoke
                 </span>
               </div>
             </div>
 
-            <p className="font-body text-xs sm:text-sm text-[#8A837C] leading-relaxed max-w-md">
-              Montalban & U-Belt's original smokehouse. Real hardwood low & slow smoked barbecue, free red rice refills, and hot bone broth.
+            <p className="text-xs font-body text-[#8A837C] leading-relaxed max-w-sm">
+              Real hardwood-smoked meats in Montalban & U-Belt. Slow-cooked over fruitwood for hours, served fresh with unlimited rice refills and authentic sides.
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-2">
-              <a
-                href="https://www.facebook.com/MasungSmokeHouse/"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="px-3 py-1.5 bg-[#24201D] hover:bg-[#5B101D] text-[11px] font-montserrat font-bold uppercase tracking-wider text-white transition-colors border border-[#3A3530] rounded-sm"
-              >
-                Facebook
-              </a>
-
-              <a
-                href="https://www.instagram.com/masungsmokehouse"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="px-3 py-1.5 bg-[#24201D] hover:bg-[#5B101D] text-[11px] font-montserrat font-bold uppercase tracking-wider text-white transition-colors border border-[#3A3530] rounded-sm"
-              >
-                Instagram
-              </a>
-
-              <a
-                href="https://www.tiktok.com/@masungsmokehouse"
-                target="_blank"
-                rel="noreferrer noopener"
-                className="px-3 py-1.5 bg-[#24201D] hover:bg-[#5B101D] text-[11px] font-montserrat font-bold uppercase tracking-wider text-white transition-colors border border-[#3A3530] rounded-sm"
-              >
-                TikTok
-              </a>
+            <div className="flex items-center gap-4 text-xs font-montserrat font-bold text-[#C67D26] pt-1">
+              <span>EST. 2026</span>
+              <span>•</span>
+              <span>U-BELT & MONTALBAN</span>
+              <span>•</span>
+              <span>REAL SMOKE</span>
             </div>
           </div>
 
           {/* Col 2: Useful Links */}
           <div className="md:col-span-3 space-y-3">
             <h4 className="font-montserrat font-extrabold text-xs tracking-wider uppercase text-[#C67D26]">
-              Quick Links
+              Quick Navigation
             </h4>
-            <ul className="space-y-2 text-xs font-montserrat font-bold uppercase text-[#8A837C]">
+            <ul className="space-y-2 text-xs font-body text-[#8A837C]">
               <li>
                 <button
                   onClick={() => onNavigate('home')}
@@ -91,7 +70,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <li>
                 <button
                   onClick={() => onNavigate('menu')}
-                  className="hover:text-white transition-colors cursor-pointer text-white"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Menu & Macros
                 </button>
@@ -118,6 +97,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-white transition-colors cursor-pointer"
                 >
                   Reviews & UGC
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => onNavigate('pos')}
+                  className="text-[#C67D26] hover:text-white transition-colors cursor-pointer flex items-center gap-1.5 font-bold"
+                >
+                  <ShieldCheck className="w-3 h-3" />
+                  <span>Staff POS Terminal</span>
                 </button>
               </li>
             </ul>
@@ -165,7 +153,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Bottom Copyright Bar */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-body text-[#8A837C]">
           <p>© {new Date().getFullYear()} Masung Smokehouse. Real Hardwood Smoke. Filipino Soul.</p>
-          <p>Montalban & U-Belt, Manila, Philippines</p>
+          <div className="flex items-center gap-3">
+            <span>Montalban & U-Belt, Manila, Philippines</span>
+            <span>•</span>
+            <button
+              onClick={() => onNavigate('pos')}
+              className="text-[#C67D26] hover:text-white transition-colors cursor-pointer font-mono text-[11px] flex items-center gap-1 underline underline-offset-2"
+            >
+              <ShieldCheck className="w-3 h-3" />
+              <span>Staff Login</span>
+            </button>
+          </div>
         </div>
 
       </div>
