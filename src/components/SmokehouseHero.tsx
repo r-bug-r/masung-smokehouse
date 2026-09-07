@@ -20,8 +20,7 @@ export const SmokehouseHero: React.FC<SmokehouseHeroProps> = ({ onNavigate }) =>
             {/* Big 1:1 Headline */}
             <div className="space-y-0">
               <h1 className="font-bebas text-6xl sm:text-7xl md:text-8xl lg:text-[7.2rem] font-bold uppercase tracking-tight leading-[0.88] select-none">
-                <span className="text-[#5B101D] block">REAL SMOKE.</span>
-                <span className="text-[#1E1E1E] block">REAL GOOD.</span>
+                <span className="text-[#5B101D] block">MASUNG</span>
               </h1>
             </div>
 
