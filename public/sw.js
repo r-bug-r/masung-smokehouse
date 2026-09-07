@@ -1,4 +1,4 @@
-const CACHE_NAME = 'masung-pwa-v1';
+const CACHE_NAME = 'masung-pwa-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
@@ -39,6 +39,11 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
+
+  // Only intercept same-origin requests; let external requests (Google Fonts, CDNs) pass through directly
+  if (url.origin !== self.location.origin) {
+    return;
+  }
 
   // Network first for navigation requests
   if (event.request.mode === 'navigate') {
